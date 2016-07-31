@@ -1,0 +1,1 @@
+("5.3.1" ("b29cbbf283d823c95261b8150759a8b643c7b82e" . "49bcf6337a49db53e9124f0a12b8379a0095907c") #"/home/mridul/cs-152-154/lab3/110040083-assignment3/declarations.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"lang" #"reader.rkt"))

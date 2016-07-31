@@ -1,0 +1,242 @@
+#lang racket
+;The facility to plot a curve.
+(require plot)
+(plot-new-window? #t)
+(plot-width 1400)
+(plot-height 700)
+(define (draw curve)
+(plot (parametric
+(lambda (t) (vector
+(x-of (curve t))
+(y-of (curve t))))
+0 1 #:width 1 #:samples 20000
+#:x-min -100.0 #:x-max 100.0
+#:y-min -10.0 #:y-max 90.0)))
+;
+;
+;
+;
+;
+;
+;plot-width and plot-height give the size of the window
+;#:width refers to the thickness of the line
+;#:samples is the number of sample points. decrease it if
+;your program takes too much time
+;#:x-min -1 #:x-max 2 says that the graph is plotted in
+;the x-axis range -1 to 2
+
+(define (compose f g)
+  (lambda (x)
+  (f (g x))))
+
+
+(define (identity x) x)
+
+
+(define (repeated f n)
+  (if (= n 0)
+      identity
+      (compose f (repeated f (- n 1)))))
+
+
+(define (make-point x y)
+  (cons x y))
+
+
+(define (x-of point)
+  (car point))
+
+
+(define (y-of point)
+  (cdr point))
+
+
+(define (unit-circle t)
+  (make-point (sin (* 2 pi t))
+              (cos (* 2 pi t))))
+
+
+(define (unit-line-at y)
+  (lambda (t) (make-point t y)))
+
+
+(define unit-line (unit-line-at 0))
+
+
+(define (vertical-line p l)
+  (lambda (t) (make-point (x-of p) (+ (y-of p) (* l t)))))
+
+
+(define (rotate-pi/2 curve)
+  (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (- (y-of ct))
+       (x-of ct)))))
+
+
+(define (reflect-through-y-axis curve)
+  (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (- (x-of ct))
+       (y-of ct)))))
+
+
+(define (translate x y)
+  (lambda (curve)
+   (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (+ (x-of ct) x)
+       (+ (y-of ct) y))))))
+
+
+(define (scale x y)
+  (lambda (curve)
+   (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (* (x-of ct) x)
+       (* (y-of ct) y))))))
+
+
+(define (rotate-around-origin radians)
+  (lambda (curve)
+   (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (-  (* (x-of ct) (cos radians)) 
+           (* (y-of ct) (sin radians)))
+       (+  (* (x-of ct) (sin radians)) 
+           (* (y-of ct) (cos radians))))))))
+
+
+(define (put-in-standard-position curve)
+  (let* ((s-point (curve 0))
+         (curve-at-origin
+          ((translate (- (x-of s-point))
+                      (- (y-of s-point)))
+           curve))
+         (e-point (curve-at-origin 1))
+         (angle (atan (y-of e-point) (x-of e-point)))
+         (curve-at-x-axis
+          ((rotate-around-origin (- angle)) curve-at-origin))
+         (e-point-x-axis (x-of (curve-at-x-axis 1))))
+    ((scale (/ 1 e-point-x-axis) 1) curve-at-x-axis)))
+
+
+(define (connect-rigidly curve1 curve2)
+  (lambda (t) 
+    (if (< t (/ 1 2))
+        (curve1 (* 2 t))
+        (curve2 (- (* 2 t) 1)))))
+
+
+(define (connect-ends curve1 curve2)
+  (lambda (t)
+    (if (< t (/ 1 2))
+        (curve1 (* 2 t))
+        (let* ((start-point1 (curve1 1))
+               (start-point2 (curve2 0)))
+               (((translate 
+                  (- (x-of start-point1) (x-of start-point2))
+                  (- (y-of start-point1) (y-of start-point2)))
+                 curve2) (- (* 2 t) 1))))))
+
+
+(define (gosperize curve)
+  (let ((scaled-curve ((scale (/ (sqrt 2) 2) (/ (sqrt 2) 2))
+                       curve)))
+    (connect-rigidly
+     ((rotate-around-origin (/ pi 4)) scaled-curve)
+     ((translate .5 .5)
+      ((rotate-around-origin (/ (- pi) 4)) scaled-curve)))))
+
+
+(define (gosper-curve level)
+  ((repeated gosperize level) unit-line))
+
+
+(define (kochify curve)
+  (let ((line1 curve)
+        (line2 ((rotate-around-origin (/ pi 3)) curve))
+        (line3 ((rotate-around-origin (- (/ pi 3))) curve))
+        (line4 curve))       
+       ((scale (/ 1 3) (/ 1 3))
+        (connect-ends
+        (connect-ends line1 line2)
+        (connect-ends line3 line4)))))
+
+
+(define (koch-flakes level)
+  (let* ((final-curve ((repeated kochify level) unit-line))
+        (curve1 ((translate 1 0) ((rotate-around-origin pi) 
+                                  final-curve)))
+        (curve2 ((rotate-around-origin (/ pi 3)) 
+                 final-curve))
+        (curve3 ((rotate-around-origin (/ (- pi) 3)) 
+                 final-curve)))
+       (connect-ends
+        (connect-ends curve1 curve2)
+        curve3)))
+
+
+(define square-box
+  (let ((line1 ((rotate-around-origin (/ pi 4)) 
+                unit-line))
+        (line2 ((rotate-around-origin (* (/ pi 4) 3)) 
+                unit-line))
+        (line3 ((rotate-around-origin (* (/ pi 4) 5)) 
+                unit-line))
+        (line4 ((rotate-around-origin (* (/ pi 4) 7)) 
+                unit-line))) 
+    (connect-ends
+     (connect-ends 
+      (connect-ends line1 line2) line3) line4)))
+
+
+(define (param-cactus level factor-at)
+  (if (= level 0)
+      square-box
+      ((cactasize (factor-at level))
+       (param-cactus (- level 1) factor-at))))
+
+
+(define (cactasize factor)
+   (lambda (curve)
+     (let ((scale-factor factor))
+     (let* (
+            (right-block ((rotate-around-origin (/ pi 2)) 
+                          curve))
+            (upper-block curve)
+            (left-block ((rotate-around-origin (- (/ pi 2))) 
+                         curve))
+            (line1 ((scale scale-factor scale-factor) 
+                    ((rotate-around-origin (/ pi 4)) 
+                     unit-line)))
+            (line2 ((scale scale-factor scale-factor) 
+                    ((rotate-around-origin (* (/ pi 4) 3)) 
+                     unit-line)))
+            (line3 ((scale scale-factor scale-factor) 
+                    ((rotate-around-origin (* (/ pi 4) 5)) 
+                     unit-line)))
+            (line4 ((scale scale-factor scale-factor) 
+                    ((rotate-around-origin (* (/ pi 4) 7)) 
+                     unit-line))))
+       (connect-ends
+        (connect-ends
+         (connect-ends
+          (connect-ends
+           (connect-ends
+            (connect-ends line1 left-block)
+            line2)
+           upper-block)
+          line3)
+         right-block)
+        line4)
+       ))))
+
+
+(define (cactus n)
+   ((scale (/ 1 (+ n 1)) (/ 1 (+ n 1))) (param-cactus n (lambda (level) (expt 3 level)))))

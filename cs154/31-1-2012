@@ -1,0 +1,49 @@
+#lang racket
+(define (compose f g)
+  (lambda (x)
+  (f (g x))))
+
+(define (square x)
+  (* x x))
+
+(define (thrice f)
+  (compose (compose f f) f))
+
+(define (identity x) x)
+
+(define (repeated f n)
+  (if (= n 0)
+      identity
+      (compose f (repeated f (- n 1)))))
+
+(define (oneplus x)
+  (+ 1 x))
+
+
+(define (make-point x y)
+  (cons x y))
+
+(define (x-of point)
+  (car point))
+
+(define (y-of point)
+  (cdr point))
+
+(define (unit-circle t)
+  (make-point (sin (* 2 pi t))
+              (cos (* 2 pi t))))
+
+(define (unit-line-at y)
+  (lambda (t) (make-point t y)))
+
+(define unit-line (unit-line-at 0))
+
+(define (vertical-line p l)
+  (lambda (t) (make-point (x-of p) (+ (y-of p) (* l t)))))
+
+(define (rotate-pi/2 curve)
+  (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (- (y-of ct))
+       (x-of ct)))))

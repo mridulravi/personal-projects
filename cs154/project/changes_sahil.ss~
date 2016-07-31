@@ -1,0 +1,43 @@
+(define (missile-destroyed-by-anti-missile l) ; l is the active-anti-missiles list.
+  (define missiles-deleted `())
+  (define anti-missiles-deleted `())
+;  (define (helper l1)
+;    (cond [ (and (not( null? l1))
+;                 (get-field missile-attached (car l1)))
+;            (let* ([ A (car l1)]
+;                   [ M (get-field missile-attached A)]
+;                   [ A-pos (get-field pos2 A)]
+;                   [ M-pos (get-field pos2 M)]
+;                   [ Ax (car A-pos)]
+;                   [ Ay (cdr A-pos)]
+;                   [ Mx (car M-pos)]
+;                   [ My (cdr M-pos)]
+;                   [ dist (sqrt (+ (expt (- Mx Ax) 2) (expt (- My Ay) 2)))])
+;              (begin 
+;                (cond [ (<= dist 5) 
+;                        (begin 
+;                          (set! missiles-deleted (cons M missiles-deleted))
+;                          (set! anti-missiles-deleted (cons A anti-missiles-deleted)))])
+;                (helper (cdr l1))))]
+;          [(and (not( null? l1))
+;                 (not (get-field missile-attached (car l1)))) (helper (cdr l1))]))
+;  (begin
+;    (helper l)
+;    (map (lambda(x) (set!  active-anti-missiles (delete x active-anti-missiles))) anti-missiles-deleted)
+;    (map (lambda(x) (set! active-missiles (delete x active-missiles))) missiles-deleted)))
+(map (lambda(x)
+       (cond [ (get-field missile-attached x) 
+                (let* ([ M (get-field missile-attached x)]
+                       [ A-pos (get-field pos2 x)]
+                       [ M-pos (get-field pos2 M)]
+                       [ Ax (car A-pos)]
+                       [ Ay (cdr A-pos)]
+                       [ Mx (car M-pos)]
+                       [ My (cdr M-pos)]
+                       [ dist (sqrt (+ (expt (- Mx Ax) 2) (expt (- My Ay) 2)))])
+                  (cond [ (<= dist 5) 
+                        (begin 
+                          (set! missiles-deleted (cons M missiles-deleted))
+                          (set! anti-missiles-deleted (cons x anti-missiles-deleted)))]))])) l)
+       (map (lambda(x) (set!  active-anti-missiles (delete x active-anti-missiles))) anti-missiles-deleted)
+       (map (lambda(x) (set! active-missiles (delete x active-missiles))) missiles-deleted))

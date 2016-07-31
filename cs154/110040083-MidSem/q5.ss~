@@ -1,0 +1,16 @@
+#lang racket
+
+; Question 5
+
+(struct gnode (val ltree rtree) #:transparent)
+(struct leaf (val) #:transparent)
+
+(define (value tree)
+  0)
+
+(define (fast-value tree)
+  0)
+
+(define test-tree
+  (gnode 0 (gnode 0 (leaf 40) (gnode 0 (leaf 7) (leaf 15)))
+           (gnode 0 (leaf 12) (gnode 0 (leaf 8) (gnode 0 (leaf 18) (leaf 10))))))

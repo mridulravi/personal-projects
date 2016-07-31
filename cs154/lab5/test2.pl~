@@ -1,0 +1,28 @@
+% Each Combination is represented as [A,B,C]
+% where A,B,C are the respective colors.
+
+permitted(X,Y,[X,_,Y]) :- auncertain(X,Y,[X,_,Y]).
+
+auncertain(X,Y,[_,X,Y]) :-  ((X=green , Y=red) ;
+                          (X=green , Y=yellow) ;
+                          (X=green , Y=green) ;
+                          (X=red , Y=yellow) ;
+                          (X=red , Y=green) ;
+                          (X=yellow , Y=red) ;
+                          (X=yellow , Y=green)),			  
+                          auncertain(X,Y,[X,_,Y]).
+
+buncertain(X,Y,[X,_,Y]) :-  (X=green , Y=red) ;
+                          (X=green , Y=yellow) ;
+                          (X=green , Y=green) ;
+                          (X=red , Y=yellow) ;
+                          (X=red , Y=green) ;
+                          (X=yellow , Y=red) ;
+                          (X=yellow , Y=green).
+
+
+goal(Color,Combinations) :-
+	                   Combinations = [_,_,_],
+                           auncertain(_,_,Combinations),
+                           buncertain(_,_,Combinations).
+                            

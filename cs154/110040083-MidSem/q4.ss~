@@ -1,0 +1,6 @@
+#lang racket
+
+; Question 4
+
+(define (number-paren-exps n)
+  0)

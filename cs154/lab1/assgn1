@@ -1,0 +1,150 @@
+#lang racket
+;The facility to plot a curve.
+(require plot)
+(plot-new-window? #t)
+(plot-width 700)
+(plot-height 700)
+(define (draw curve)
+(plot (parametric
+(lambda (t) (vector
+(x-of (curve t))
+(y-of (curve t))))
+0 1 #:width 1 #:samples 20000
+#:x-min -3.0 #:x-max 3.0
+#:y-min -3.0 #:y-max 3.0)))
+;
+;
+;
+;
+;
+;
+;plot-width and plot-height give the size of the window
+;#:width refers to the thickness of the line
+;#:samples is the number of sample points. decrease it if
+;your program takes too much time
+;#:x-min -1 #:x-max 2 says that the graph is plotted in
+;the x-axis range -1 to 2
+
+(define (compose f g)
+  (lambda (x)
+  (f (g x))))
+
+(define (square x)
+  (* x x))
+
+(define (thrice f)
+  (compose (compose f f) f))
+
+(define (identity x) x)
+
+(define (repeated f n)
+  (if (= n 0)
+      identity
+      (compose f (repeated f (- n 1)))))
+
+(define (oneplus x)
+  (+ 1 x))
+
+
+(define (make-point x y)
+  (cons x y))
+
+(define (x-of point)
+  (car point))
+
+(define (y-of point)
+  (cdr point))
+
+(define (unit-circle t)
+  (make-point (sin (* 2 pi t))
+              (cos (* 2 pi t))))
+
+(define (unit-line-at y)
+  (lambda (t) (make-point t y)))
+
+(define unit-line (unit-line-at 0))
+
+(define second-line (unit-line-at 1))
+
+(define (vertical-line p l)
+  (lambda (t) (make-point (x-of p) (+ (y-of p) (* l t)))))
+
+(define (rotate-pi/2 curve)
+  (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (- (y-of ct))
+       (x-of ct)))))
+
+(define (reflect-through-y-axis curve)
+  (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (- (x-of ct))
+       (y-of ct)))))
+
+(define (translate x y)
+  (lambda (curve)
+   (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (+ (x-of ct) x)
+       (+ (y-of ct) y))))))
+    
+(define (scale x y)
+  (lambda (curve)
+   (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (* (x-of ct) x)
+       (* (y-of ct) y))))))
+
+(define (rotate-around-origin radians)
+  (lambda (curve)
+   (lambda (t)
+    (let ((ct (curve t)))
+      (make-point
+       (-  (* (x-of ct) (cos radians)) (* (y-of ct) (sin radians)))
+       (+  (* (x-of ct) (sin radians)) (* (y-of ct) (cos radians))))))))
+
+
+(define (put-in-standard-position curve)
+  (let* ((start-point (curve 0))
+         (curve-started-at-origin
+          ((translate (- (x-of start-point))
+                      (- (y-of start-point)))
+           curve))
+         (new-end-point (curve-started-at-origin 1))
+         (theta (atan (y-of new-end-point) (x-of new-end-point)))
+         (curve-ended-at-x-axis
+          ((rotate-around-origin (- theta)) curve-started-at-origin))
+         (end-point-on-x-axis (x-of (curve-ended-at-x-axis 1))))
+    ((scale (/ 1 end-point-on-x-axis) 1) curve-ended-at-x-axis)))
+
+
+(define (connect-rigidly curve1 curve2)
+  (lambda (t)
+    (if (< t (/ 1 2))
+        (curve1 (* 2 t))
+        (curve2 (- (* 2 t) 1)))))
+
+
+(define (connect-ends curve1 curve2)
+  (lambda (t)
+        (let* ((start-point1 (curve1 1))
+               (start-point2 (curve2 0)))
+                ((translate (- (x-of start-point1) (x-of start-point2))
+                            (- (y-of start-point1) (y-of start-point2)))
+                 curve2))
+    (if (< t (/ 1 2))
+        (curve1 (* 2 t))
+        (curve2 (- (* 2 t) 1)))))
+;        (let* ((start-point1 (curve1 1))
+;               (start-point2 (curve2 0))
+;               (curve2-started-at-curve1
+;                ((translate (- (x-of start-point1) (x-of start-point2))
+;                            (- (y-of start-point1) (y-of start-point2)))
+;                 (make-point 2 3))))
+;          ;(curve2 (- (* 2 t) 1))))))
+;          curve2-started-at-curve1))))
+

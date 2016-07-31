@@ -1,0 +1,15 @@
+#lang racket
+
+(define n 4)
+(define m 8)
+(define k 4)
+(define l 3)
+
+; Returns a pair of carry and sum (carry.sum)
+; carry = (a & b) | (b & c) | (a & c)
+; sum = a ^ b ^ c
+(define (bit-adder a b c)
+  (cons (bitwise-ior (bitwise-and a b)
+                     (bitwise-and b c)
+                     (bitwise-and a c))
+        (bitwise-xor a b c)))

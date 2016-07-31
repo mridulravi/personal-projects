@@ -1,0 +1,122 @@
+#lang racket
+
+(define (is-single-digit q)
+  (and (<= q 9) (>= q 0)))
+
+(define (convert t v)
+  (+(* t 10) v))
+
+(define (mult r s)
+  (if (is-single-digit s)
+      (multunic r s)
+      (+ (mult r (remainder s 10)) (* (mult r (quotient s 10)) 10))))
+
+(define (multunic x y)
+  (if (and (is-single-digit x) (is-single-digit y))
+      (* x y)
+      (convert (+ (multunic (quotient x 10)
+                            y)
+                          (quotient (* (remainder x 10) y) 10))
+               (remainder (* (remainder x 10) y) 10))))
+
+(define (akmult x y)
+  (cond [(= x 0) 0]
+       [(= x 1) y]
+       [(even? x) (* 2 (akmult (quotient x 2) y))]
+       [(odd? x) (+ (* 2 (akmult (quotient x 2) y)) y)]))
+
+
+;(define (div x y)
+;  (lambda (p) (if (< x (* 2 y))
+;                  ((set-cdr! (p) (- x y)) (set-car! p 1))
+;                  ((div (quotient x 2) y)
+;                   (if (even? x) 
+;                       (if ( >= (* 2 (cdr p)) y)
+;                            ((set-car! p (+ (* 2 (car p)) 1)) (set-cdr! p (- (* 2 (cdr p)) y)))
+;                            ((set-car! p (* 2 (car p))) (set-cdr! p (* 2 (cdr p)))))
+;                       (if ( >= (* 2 b) y)
+;                           ((set-car! p (+ (* 2 (car p)) 1)) (set-cdr! p (+ (- (* 2 (cdr p)) y) 1)))
+;                           ((set-car! p (* 2 (car p))) (set-cdr! p (+ (* 2 (cdr p)) 1))))         
+;                   )))))
+;
+;(define (dive x y a b)
+; (if ( >= (* 2 b) y)
+;     ((set! a (+ (* 2 a) 1)) (set! b (- (* 2 b) y)))
+;     ((set! a (* 2 a)) (set! b (* 2 b)))))
+
+;(define (divo x y a b)
+; (if ( >= (* 2 b) y)
+;     ((set! a (+ (* 2 a) 1)) (set! b (+ (- (* 2 b) y) 1)))
+;     ((set! a (* 2 a)) (set! b (+ (* 2 b) 1)))))
+
+
+(define (factorial n)
+  (if (= n 0) 1
+      (* n (factorial (- n 1)))))
+
+
+
+
+
+(define (fact-iter n acc)
+  (if (= n 0) acc
+      (fact-iter (- n 1) (* n acc))))
+
+(define (fib n)
+  (cond [(= n 0) 1]
+        [(= n 1) 1]
+        [else (+ (fib (- n 1)) (fib (- n 2)))]))
+
+(define (fibnew n)
+  (cond [(= n 0) 1]
+        [(= n 1) 1]
+        [else (fib-iter 1 1 2 n)]))
+
+(define (fib-iter n1 n2 i n)
+  (if (= i n) (+ n1 n2)
+      (fib-iter n2 (+ n1 n2) (+ i 1) n)))
+
+(define (akmultnew x y)
+  (akmultiter x y 0))
+(define (akmultiter x y c)
+  (cond [(even? x) (akmultiter (/ x 2) (* 2 y) c)]
+        [else (if (> x 1)
+                  (akmultiter (quotient x 2) (* 2 y) (+ c y))
+                  (+ y c))]))
+
+(define (exp x y)
+  (cond [(= y 1) x]
+        [(odd? y) (* (exp x (quotient y 2)) (exp x (quotient y 2)) x)]
+        [else (* (exp x (quotient y 2)) (exp x (quotient y 2)))]))
+
+(define (expmod x y n)
+  (cond [(= y 1) (remainder x n)]
+        [(odd? y) (expmod (* (expmod x (quotient y 2) n) (expmod x (quotient y 2) n) (expmod x 1 n)) 1 n)]
+        [else (expmod (* (expmod x (quotient y 2) n) (expmod x (quotient y 2) n)) 1 n)]))
+
+(define (gcd a b)
+  (if (= b 0) a
+      (gcd b (remainder a b))))
+
+(define (has_solution a b c)
+  (= (remainder c (gcd a b)) 0))
+
+(define (hof op1 op2 n m k)
+  (define (hof-h i)
+    (if (> i k) 
+        (op2 (m i) (n i))
+        (op1 (n i) (op2 (m i) (hof-h (+ i 1))))))
+  (hof-h 1))
+
+(define (tan x k)
+  (define (n i) (if( = i 1) x (* x x)))
+  (define (m i) (-(* 2 i) 1))
+  (hof / - n m k))
+
+(define (sub x y)
+  (sub-single x y ))
+
+(define (sub-single x y )
+  (if (and (is-single-digit x) (is-single-digit y))
+      (- (convert z x) y)
+      (convert (sub-single (quotient x 10) (quotient y 10) z) (sub-single (remainder x 10) (remainder y 10) z))))

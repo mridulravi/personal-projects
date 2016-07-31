@@ -1,0 +1,51 @@
+#lang racket
+
+;; Question 2
+
+(define N 100)
+
+(define (make-point x y)
+  (cons x y))
+
+(define (x-of point)
+  (car point))
+
+(define (y-of point)
+  (cdr point))
+
+; Generates square region with (0,0) as center and (-s,-s) and (s,s) as diagonal end-points
+(define (square-maker s)
+  (lambda (p) (and  (<= (abs (x-of p)) (/ s 2)) (<= (abs (y-of p)) (/ s 2)))))
+
+; Generates circular region of radius r with center at (0,0)
+(define (circle-maker r) 
+  (lambda (p) (<= (+ (sqr (x-of p)) (sqr (y-of p))) (sqr r))))
+
+(define (intersection r1 r2)
+  (lambda (p) (and (r1 p) (r2 p))))
+
+(define (translate region position)
+  (define (translate-back point)
+    (make-point (- (x-of point) (x-of position))
+                (- (y-of point) (y-of position))))
+  (lambda (p) (region  (translate-back p))))
+
+; Write your implementation below this
+; Write function which generates floating-point random number between -n and n
+(define (random-number n)
+  (if (= n 0)
+      0
+      (let (( p (random n)))
+        (if (> p (/ n 2))
+            (* (random) n)
+            (-(* (random) n))))))
+
+; Write function which returns a random point within region r
+(define (random-point r)
+  (r (random)))
+    
+
+; Write function to calculate area in given region r
+(define (calc-area r)
+  0)
+

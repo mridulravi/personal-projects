@@ -1,0 +1,728 @@
+#lang racket
+(define n 4)
+(define m 8)
+(define k 4)
+(define l 3)
+
+(define (len l)
+  (if (null? l) 0
+      (+ 1 (len (cdr l)))))
+
+(define (reverse l)
+  (if (null? l) l
+      (append (reverse (cdr l)) (list (car l)))))
+
+
+(define (b2u-n a)
+  (if (null? a)
+      0
+      (+ (* (car a) (expt 2 (- (len a) 1))) 
+         (b2u-n (cdr a)))))
+
+(define (u2b-n x)
+  (if (and (<= x (- (expt 2 n) 1)) 
+           (>= x 0))
+      (u2b-n-helper2 (reverse (u2b-n-helper1 x)))
+      (display "Overflow")))
+
+(define (u2b-n-helper1 x)
+  (cond ((= 1 x) '(1))
+        ((= 0 x) '(0))
+        (else (append (list (remainder x 2)) 
+                      (u2b-n-helper1 (quotient x 2))))))
+
+(define (u2b-n-helper2 l)
+  (if (= n (len l))
+      l
+      (u2b-n-helper2(append '(0) l))))
+
+(define (b2s-n-h a)
+  (if (null? a)
+      0
+      (+ (* (cadr a) (expt 2 (- (len (cdr a)) 1)))  
+         (b2u-n (cddr a)))))
+
+(define (b2s-n a)
+  (- (b2s-n-h a) (*(car a) (expt 2 (- (len a) 1)))))
+
+(define (s2b-n x)
+  (cond [(and (<= x (- (expt 2 (- n 1)) 1)) (>= x 0)) (u2b-n x)]
+        [(and (>= x (- (- (expt 2 (- n 1)) 1))) (<= x -1)) 
+         (s2b-n-h1 x)]
+        [else (display "Overflow")]))
+
+(define (s2b-n-h1 x)
+ (s2b-n-h2 (reverse (u2b-n-helper1 (+ x (expt 2 (- n 1)))))))
+
+(define (s2b-n-h2 l)
+  (if (= (- n 1) (len l))
+      (append '(1) l)
+      (s2b-n-h2 (append '(0) l))))
+
+(define (n2m a)
+      (n2m-h (car a) a))
+
+(define (n2m-h k l)
+  (if (= (- m (len l)) 0)
+      l
+      (n2m-h k (append (list k) l))))
+
+(define (truth-table-add f1 f2 f3)
+  (cond [(and (= f1 0) (= f2 0) (= f3 0)) (cons 0 0)]
+        [(and (= f1 0) (= f2 0) (= f3 1)) (cons 0 1)]
+        [(and (= f1 0) (= f2 1) (= f3 0)) (cons 0 1)]
+        [(and (= f1 0) (= f2 1) (= f3 1)) (cons 1 0)]
+        [(and (= f1 1) (= f2 0) (= f3 0)) (cons 0 1)]
+        [(and (= f1 1) (= f2 0) (= f3 1)) (cons 1 0)]
+        [(and (= f1 1) (= f2 1) (= f3 0)) (cons 1 0)]
+        [(and (= f1 1) (= f2 1) (= f3 1)) (cons 1 1)]))
+
+(define (u-add a b)
+  (let ((ar (reverse a))
+        (br (reverse b)))
+    (u-add-h ar br 0)))
+
+(define (u-add-h1 l1 l2 c)
+  (if (null? l1)
+      (list c)
+      (append
+       (list (cdr (truth-table-add (car l1) (car l2) c)))
+       (u-add-h1 (cdr l1) (cdr l2) (car (truth-table-add 
+                                         (car l1) 
+                                         (car l2) 
+                                         c))))))
+
+(define (u-add-h l1 l2 c)
+  (cdr (reverse (u-add-h1 l1 l2 c))))
+
+(define (ones-compliment a)
+  (cond 
+      [(null? a) '()]
+      [(= (car a) 0) (append '(1) 
+                             (ones-compliment (cdr a)))]
+      [(= (car a) 1) (append '(0) 
+                             (ones-compliment (cdr a)))]))
+
+(define (twos-compliment a)
+  (u-add (add-1-only a)
+         (ones-compliment a)))
+
+(define (add-1-only a)
+  (if (= (len a) 1)
+      '(1)
+      (append '(0) (add-1-only (cdr a)))))
+
+
+(define (u-sub a b)
+  (u-add a (twos-compliment b)))
+
+(define (u-mult a b)
+    (u-mult-add (u-mult-h1 a (reverse b))))
+
+(define (u-mult-h k l m)
+  (if (= m 1)
+      (n2m-u (shift-l k l))
+      (n2m-u (shift-l k n-0-list))))         
+
+(define (u-mult-h1 a b)
+  (if (null? b)
+      '()
+      (cons (u-mult-h (- n (len b)) a (car b)) 
+            (u-mult-h1 a (cdr b)))))
+
+(define (u-mult-add l)
+  (if (= (len l) 1)
+      (car l)
+      (u-mult-add (cons (u-add (car l) (cadr l)) 
+                        (cddr l)))))
+
+(define (n2m-u a)
+  (if (= (- m (len a)) 0)
+      a
+      (n2m-u (append (list 0) a))))
+
+(define (shift-l k l)
+  (if (= k 0)
+      l
+      (shift-l (- k 1) (append l (list 0)))))
+
+(define (n-0-list-h k)
+  (if (= k 0)
+      '()
+      (append (list 0) (n-0-list-h (- k 1)))))
+
+(define n-0-list
+  (n-0-list-h n))
+
+(define (n-1-list-h k)
+  (if (= k 0)
+      '()
+      (append (list 1) (n-1-list-h (- k 1)))))
+
+(define n-1-list
+  (n-0-list-h n))
+
+(define (s-mult a b)
+  (s-mult-add (s-mult-h1 a (reverse b))))
+
+(define (s-mult-h k l m)
+  (if (= m 1)
+      (n2m (shift-l k l))
+      (n2m (shift-l k n-0-list))))         
+
+(define (s-mult-h1 a b)
+  (if (null? b)
+      '()
+      (cons (s-mult-h (- n (len b)) a (car b)) 
+            (s-mult-h1 a (cdr b)))))
+
+(define (s-mult-add l)
+  (cond
+    [(= (len l) 2) (u-add (car l) (twos-compliment 
+                                   (cadr l)))]
+    [else (s-mult-add (cons (u-add (car l) (cadr l)) 
+                            (cddr l)))]))
+
+      
+(define (fix2d a)
+  (fix2d-h (- n 1) a))
+
+(define (fix2d-h k l)
+  (if (null? l)
+      0.0
+      (+ (* (expt 2 k) (car l)) (fix2d-h (- k 1) 
+                                         (cdr l))))) 
+
+(define (take k l)
+  (if (= k 0)
+      '()
+      (cons (car l) (take (- k 1) (cdr l)))))
+
+(define (drop k l)
+  (if (= k 0)
+      l
+      (drop (- k 1) (cdr l))))
+
+(define (d2fix x)
+  (let* ((whole (inexact->exact (floor x)))
+         (bitwhole (u2b-n whole))
+         (fractional (- x whole))
+         (bitfractional (d2fix-h fractional n)))
+    (append bitwhole bitfractional)))
+
+(define (d2fix-h x k)
+  (if (= 0 k)
+      '()
+      (let* ((intx (inexact->exact (floor (* 2 x))))
+            (fracx  (- (* 2 x) intx)))
+      (append (list intx) (d2fix-h fracx (- k 1))))))
+
+(define (float2d a)
+  (let* ((s (car a))
+        (e (expo (cdr a)))
+        (f (flo (cdr a))))
+    (cond 
+      [(not (or (all-0 e) (all-1 e))) 
+       (let ((F (/ (b2u-n f) (expt 2 l)))
+             (E (b2u-n e))
+             (bias (- (expt 2 (- k 1)) 1)))
+         (* (expt (- 1) s)
+            (+ 1 F)
+            (expt 2 (- E bias))
+            1.0))]
+      [(and (all-0 e) (not (all-0 f))) 
+       (let ((F (/ (b2u-n f) (expt 2 l)))
+             (bias (- (expt 2 (- k 1)) 1)))
+         (* (expt (- 1) s)
+            F
+            (expt 2 (- 1 bias))
+            1.0))]
+      [(and (all-0 e) (all-0 f)) (* (expt (- 1) s) 0.0)]
+      [(and (all-1 e) (all-0 f)) (* (expt (- 1) s) +inf.0)]
+      [(and (all-1 e) (not (all-0 f))) +nan.0])))
+      
+
+                                        
+
+(define (expo a)
+  (take k a))
+
+(define (flo a)
+  (drop k a))
+
+(define (all-1 l)
+  (if (null? l)
+      #t
+  (if (= (car l) 1)
+      (all-1 (cdr l))
+      #f)))
+
+(define (all-0 l)
+  (if (null? l)
+      #t
+  (if (= (car l) 0)
+      (all-0 (cdr l))
+      #f)))
+
+(define (u-div a b)
+  (cond ((all-0 b) (display"Divisor can not be zero!"))
+        ((and (all-1 a) (equal? (ones-compliment 
+                                 (range2-h n)) b))
+         (cons a (ones-compliment (range1-h n))))
+        (else (u-div-h a b n-0-list))))
+
+(define (u-div-h a b q)
+  (if (a-gthan-b (n2m-u a) (u-mult (increment q) b))
+      (u-div-h a b (increment q))
+      (cons q (u-sub a (u-mult b q)) )))
+
+(define (s-div a b)
+  (cond [(and (= 0 (car a)) (= 0 (car b))) 
+         (u-div a b)]
+        [(and (= 0 (car a)) (= 1 (car b))) 
+         (cons (twos-compliment 
+                (car 
+                 (u-div a 
+                        (twos-compliment b))))
+               (cdr 
+                (u-div a 
+                       (twos-compliment b))))]
+        [(and (= 1 (car a)) (= 0 (car b))) 
+         (cons (twos-compliment
+                (car 
+                 (u-div 
+                  (twos-compliment a) b)))
+               (twos-compliment 
+                (cdr 
+                 (u-div 
+                  (twos-compliment a) b))))]
+        [(and (= 1 (car a)) (= 1 (car b))) 
+         (cons (car 
+                (u-div 
+                 (twos-compliment a) 
+                 (twos-compliment b)))
+               (twos-compliment 
+                (cdr 
+                 (u-div 
+                  (twos-compliment a) 
+                  (twos-compliment b)))))]))
+
+(define (increment a)
+  (u-add a (ones-compliment (range2-h n))))
+
+(define (dropwhile p l)
+  (cond ((null? l) `())
+        ((p (car l)) (dropwhile p (cdr l)))
+        (else l)))
+
+(define(a-gthan-b a b)
+  (cond 
+        [(and (null? a) (null? b)) #t]
+        [(and (not (null? a)) (null? b)) #t]
+        [(and (null? a) (not (null? b))) #f]
+        [(= (car a) (car b)) (a-gthan-b (cdr a) (cdr b))]
+        [(> (car a) (car b)) #t]
+        [(< (car a) (car b)) #f]))
+
+(define (d2float a)
+  (cond 
+  ((> (abs a) bigrange) 
+   (let* ((x (abs a))
+           (bitwhole (n-1-list-h k))
+           (sign (if (> a 0) (list 0) (list 1)))
+           (fractional (n-0-list-h l)))
+     (append sign bitwhole fractional)))
+   
+  ((and (>= (abs a) 1) (<= (abs a) bigrange))
+  (let* ((x (abs a))
+         (whole (inexact->exact (floor x)))
+         (bitwhole (d2float-h whole))
+         (fractional (- x whole))
+         (bitfractional (d2fix-h fractional n))
+         (normalize (-(len bitwhole) 1))
+         (mantissa (take l (cdr (append bitwhole 
+                                        bitfractional))))
+         (bias (- (expt 2 (- k 1)) 1))
+         (exponent (+ normalize bias))
+         (bitexponent (expo-h (d2float-h exponent)))
+         (sign (if (> a 0) (list 0) (list 1))))                   
+    (append sign bitexponent mantissa)))
+  
+  ((and (< (abs a) 1) (>=(abs a) smallrange))
+  (let* ((x (abs a))
+         (whole (inexact->exact (floor x)))
+         ;(bitwhole (d2float-h whole))
+         (fractional (- x whole))
+         (bitfractional (d2fix-h fractional 10))
+         (mantissa-h (cdr (dropwhile (lambda (x) (= 0 x))
+                                     bitfractional)))
+         (mantissa (take l (cdr (dropwhile (lambda (x)
+                                             (= 0 x))
+                                           bitfractional))))
+         (normalize (- (len mantissa-h) (len bitfractional)))
+         (bias (- (expt 2 (- k 1)) 1))
+         (exponent (+ normalize bias))
+         (bitexponent (expo-h (d2float-h exponent)))
+         (sign (if (> a 0) (list 0) (list 1))))                   
+    (append sign bitexponent mantissa)))
+  
+  ((and (>= (abs a) 0) (<(abs a) smallrange))
+   (let* ((x (abs a))
+           (bitwhole (n-0-list-h k))
+           (sign (if (>= a 0) (list 0) (list 1)))
+           (fractional (inexact->exact (floor (* 512 x))))
+           (bitfractional (u2b-n fractional))
+           (mantissa (drop (- n l) bitfractional)))
+     (append sign bitwhole mantissa)))))
+           
+    
+
+(define (d2float-h x)
+  (reverse (d2float1 x)))
+
+(define (d2float1 x)
+  (cond ((= 1 x) '(1))
+        ((= 0 x) '(0))
+        (else (append (list (remainder x 2)) 
+                      (d2float1 (quotient x 2))))))
+
+(define (expo-h a)
+  (if (= (- k (len a)) 0)
+      a
+      (expo-h (append (list 0) a))))
+
+(define (range1-h i)
+    (if (= i 0)
+        '()
+        (append '(1) (range1-h (- i 1)))))
+
+(define range1
+  (range1-h l))
+
+(define (range2-h i)
+    (if (= i 1)
+        '(0)
+        (append '(1) (range2-h (- i 1)))))
+
+(define range2
+  (range2-h k))
+
+(define bigrange
+  (* (+ (fix2d-h -1 range1) 1)
+     (expt 2 (- (b2u-n range2) 
+                (- (expt 2 (- k 1)) 1)))))
+
+(define smallrange
+  (* (+ (fix2d-h -1 (ones-compliment range1)) 1) 
+     (expt 2 (- (b2u-n (ones-compliment range2)) 
+                (- (expt 2 (- k 1)) 1)))))
+
+(define (mult a b)
+  (let* ((sign1 (car a))
+         (sign2 (car b))
+         (e1 (take k (cdr a)))
+         (e2 (take k (cdr b)))
+         (f1 
+          (if (all-0 e1)
+              (append '(0) (drop k (cdr a)))
+              (append '(1) (drop k (cdr a)))))
+         (f2 
+          (if (all-0 e2)
+              (append '(0) (drop k (cdr b)))
+              (append '(1) (drop k (cdr b)))))
+         (bias (range1-h (- k 1)))
+         (sign (cond 
+                 ((and (= sign1 1) (= sign2 1)) '(0))
+                 ((and (= sign1 1) (= sign2 0)) '(1))
+                 ((and (= sign1 0) (= sign2 1)) '(1))
+                 ((and (= sign1 0) (= sign2 0)) '(0))))
+         (exponent
+          (cond ((and (all-0 e1) (all-0 e2))
+                 (u-sub (u-add range2 range2) 
+                        (append '(0) bias)))
+                ((and (not (all-0 e1)) (all-0 e2))
+                 (u-sub (u-add e1 range2) (append '(0) bias)))
+                ((and (all-0 e1) (not (all-0 e2)))
+                 (u-sub (u-add range2 e2) (append '(0) bias)))
+                (else
+                 (u-sub (u-add e1 e2) (append '(0) bias)))))             
+         (fraction (u-mult f1 f2))
+         (bitexponent (cond 
+                        ((and (= (car fraction) 0) 
+                              (= (cadr fraction) 0)) 
+                         (u-sub exponent (ones-compliment 
+                                          (range2-h k))))
+                        ((and (= (car fraction) 0) 
+                              (not (= (cadr fraction) 0))) 
+                         exponent)
+                        (else                      
+                         (u-add exponent (ones-compliment 
+                                          (range2-h k))))))
+         (bitfraction (cond 
+                        ((and (= (car fraction) 0) 
+                              (= (cadr fraction) 0)) 
+                         (take l (cdr (cddr fraction))))
+                        ((and (= (car fraction) 0) 
+                              (not (= (cadr fraction) 0))) 
+                         (take l (cddr fraction)))
+                        (else                      
+                         (take l (cdr fraction)))))) 
+    (append sign bitexponent bitfraction)))
+
+(define (add a b)
+  (cond ((and (equal? (n-0-list-h k) (take k (cdr a)))
+         (equal? (n-0-list-h k) (take k (cdr b)))) 
+         (addh0 a b))
+        ((and (equal? (n-0-list-h k) (take k (cdr a)))
+         (not (equal? (n-0-list-h k) (take k (cdr b)))))
+         (addh1 b a))
+        ((and (not (equal? (n-0-list-h k) (take k (cdr a))))
+         (equal? (n-0-list-h k) (take k (cdr b)))) 
+         (addh1 a b))      
+        (else
+  (cond ((equal? (n-0-list-h (+ k l)) (cdr a)) b)
+        ((equal? (n-0-list-h (+ k l)) (cdr b)) a)
+        (else
+  (cond ((or (and (= (car a) 0) (= (car b) 0))
+          (and (= (car a) 1) (= (car b) 1)))
+  (let* ((sign1 (list (car a)))
+         (sign2 (list (car b)))
+         (e1 
+          (if (equal? (n-0-list-h k) (take k (cdr a)))
+              (ones-compliment range2)
+              (take k (cdr a))))
+         (e2 
+          (if (equal? (n-0-list-h k) (take k (cdr b)))
+              (ones-compliment range2)
+              (take k (cdr b))))
+         (f1
+          (if (equal? (n-0-list-h k) (take k (cdr a)))
+               (append '(0) (drop k (cdr a)))
+               (append '(1) (drop k (cdr a)))))
+         (f2
+          (if (equal? (n-0-list-h k) (take k (cdr b)))
+               (append '(0) (drop k (cdr b)))
+               (append '(1) (drop k (cdr b)))))
+         (expo-add (if (a-gthan-b e1 e2)
+                       e1
+                       e2))
+         (expo-factor (b2u-n 
+                       (if (a-gthan-b e1 e2)
+                       (u-sub e1 e2)
+                       (u-sub e2 e1))))
+         (mantissa-1 (if (a-gthan-b e1 e2)
+                       f1
+                       f2))
+         (mantissa-2 (take (+ l 1) 
+                           (if (a-gthan-b e1 e2)
+                               (right-shift f2 expo-factor)
+                               (right-shift f1 expo-factor))))
+         (semi-final-m (u-add-h2 
+                        (reverse mantissa-1)
+                        (reverse mantissa-2)
+                       0))
+         (final-answer (if (= 0 (car semi-final-m))
+                           (append expo-add 
+                                   (take l 
+                                         (cddr semi-final-m)))
+                           (append (u-add expo-add 
+                                          (ones-compliment 
+                                           (range2-h k))) 
+                                   (take l 
+                                         (cdr semi-final-m))))))
+    (append sign1 final-answer)))
+        ((and (= (car a) 0) (= (car b) 1))
+         (sub a (append (list 0) (cdr b))))
+        ((and (= (car a) 1) (= (car b) 0))
+         (sub b (append (list 0) (cdr a))))))))))
+         
+
+(define (sub a b)
+  (cond ((and (equal? (n-0-list-h k) (take k (cdr a)))
+         (equal? (n-0-list-h k) (take k (cdr b)))) 
+         (subh0 a b))
+        ((and (equal? (n-0-list-h k) (take k (cdr a)))
+         (not (equal? (n-0-list-h k) (take k (cdr b)))))
+         (subh0 a b))
+        ((and (not (equal? (n-0-list-h k) (take k (cdr a))))
+         (equal? (n-0-list-h k) (take k (cdr b)))) 
+         (subh0 a b))      
+        (else
+  (cond ((or (and (= (car a) 0) (= (car b) 0))
+          (and (= (car a) 1) (= (car b) 1)))
+  (let* ((sign1 (car a))
+         (sign2 (car b))
+         (e1 (take k (cdr a)))
+         (e2 (take k (cdr b)))
+         (f1 (append '(1) (drop k (cdr a))))
+         (f2 (append '(1) (drop k (cdr b))))
+         (expo-add (if (a-gthan-b e1 e2)
+                       e1
+                       e2))
+         (expo-factor (b2u-n 
+                       (if (a-gthan-b e1 e2)
+                       (u-sub e1 e2)
+                       (u-sub e2 e1))))
+         (mantissa-1 (if (a-gthan-b e1 e2)
+                       f1
+                       f2))
+         (mantissa-2 (take (+ l 1) 
+                           (if (a-gthan-b e1 e2)
+                               (right-shift f2 expo-factor)
+                               (right-shift f1 expo-factor))))
+         (semi-final-m1 (u-add-h2 
+                        (reverse mantissa-1)
+                        (reverse (twos-compliment mantissa-2))
+                       0))
+         (semi-final-m (if (= 1 (car semi-final-m1))
+                           (cdr semi-final-m1)
+                           (twos-compliment 
+                            (cdr semi-final-m1))))
+         (semi-final-m2 (dropwhile (lambda (x) (= 0 x)) 
+                                   semi-final-m))
+         (semi-final-m3 (shift-l (- (+ l 1) 
+                                    (len semi-final-m2)) 
+                                 semi-final-m2))
+         (final-answer
+          (if (null? semi-final-m2)
+              (n-0-list-h (+ k l))
+              (append (u-sub expo-add 
+                             (u2b-n (- (+ l 1)
+                                       (len semi-final-m2)))) 
+                      (take l (cdr semi-final-m3)))))
+         (sign (cond
+                 ((and (a-gthan-b f1 f2)  
+                       (equal? e1 e2) 
+                       (= sign1 1)) 
+                  (list 1))
+                 ((and (a-gthan-b f1 f2)  
+                       (equal? e1 e2) 
+                       (= sign1 0)) 
+                  (list 0))
+                 ((and (not (a-gthan-b f1 f2)) 
+                       (equal? e1 e2) (= sign1 1)) 
+                  (list 0))
+                 ((and (not (a-gthan-b f1 f2))  
+                       (equal? e1 e2)
+                       (= sign1 0)) 
+                  (list 1))
+                 ((and (= sign1 0) 
+                       (a-gthan-b e1 e2)) 
+                  (list 0))
+                 ((and (= sign1 0) 
+                       (not (a-gthan-b e1 e2)))
+                  (list 1))
+                 ((and (= sign1 1) 
+                       (a-gthan-b e1 e2)) 
+                  (list 1))
+                 ((and (= sign1 0) 
+                       (not (a-gthan-b e1 e2))) 
+                  (list 0)))))
+   (append sign final-answer)))
+        ((and (= (car a) 0) (= (car b) 1))
+         (add a (append (list 0) (cdr b))))
+        ((and (= (car a) 1) (= (car b) 0))
+         (add a (append (list 1) (cdr b))))))))
+
+(define (subh0 a b)
+(cond ((or (and (= (car a) 0) (= (car b) 0))
+           (and (= (car a) 1) (= (car b) 1)))
+       (let* ((sign1 (car a))
+              (sign2 (car b))
+              (e1 (take k (cdr a)))
+              (e2 (take k (cdr b)))
+              (f1 (drop k (cdr a)))
+              (f2 (drop k (cdr b)))
+              (final (u-add-h2 
+                        (reverse f1)
+                        (reverse (twos-compliment f2))
+                       0))
+              (sign (if (= 1 (car final))
+                        (append (list 0) e1 (cdr final))
+                        (append (list 1) e1 (cdr 
+                                             (twos-compliment 
+                                                  final))))))
+         sign))
+      ((and (= (car a) 0) (= (car b) 1))
+       (add a (append (list 0) (cdr b))))
+      ((and (= (car a) 1) (= (car b) 0))
+       (add a (append (list 1) (cdr b))))))
+      
+
+(define (addh0 a b)
+(cond ((or (and (= (car a) 0) (= (car b) 0))
+           (and (= (car a) 1) (= (car b) 1)))
+       (let* ((sign1 (car a))
+              (sign2 (car b))
+              (e1 (take k (cdr a)))
+              (e2 (take k (cdr b)))
+              (f1 (drop k (cdr a)))
+              (f2 (drop k (cdr b)))
+              (final (u-add-h2 
+                        (reverse f1)
+                        (reverse f2)
+                       0))
+              (sign (append (list sign1) (n-0-list-h (- n 1)) 
+                            final)))
+         sign))
+      ((and (= (car a) 0) (= (car b) 1))
+       (sub a (append (list 0) (cdr b))))
+      ((and (= (car a) 1) (= (car b) 0))
+       (sub a (append (list 1) (cdr b))))))
+
+(define (addh1 a b)
+(cond ((or (and (= (car a) 0) (= (car b) 0))
+           (and (= (car a) 1) (= (car b) 1)))
+       (let* ((sign1 (car a))
+              (sign2 (car b))
+              (e1 (take k (cdr a)))
+              (e2 (append (take (- k 1) (cdr b)) '(1))) 
+              (f1 (append '(1) (drop k (cdr a))))
+              (f2 (append '(0) (drop k (cdr b))))
+              (expo-add (if (a-gthan-b e1 e2)
+                       e1
+                       e2))
+              (expo-factor (b2u-n 
+                       (if (a-gthan-b e1 e2)
+                       (u-sub e1 e2)
+                       (u-sub e2 e1))))
+              (mantissa-1 (if (a-gthan-b e1 e2)
+                       f1
+                       f2))
+              (mantissa-2 (take (+ l 1) 
+                           (if (a-gthan-b e1 e2)
+                               (right-shift f2 expo-factor)
+                               (right-shift f1 expo-factor))))
+              (semi-final-m1 (u-add-h2 
+                        (reverse mantissa-1)
+                        (reverse mantissa-2)
+                       0))
+              (sign (append (list sign1) expo-add 
+                            (take l
+                                  (cddr semi-final-m1)))))
+         sign))
+      ((and (= (car a) 0) (= (car b) 1))
+       (sub a (append (list 0) (cdr b))))
+      ((and (= (car a) 1) (= (car b) 0))
+       (sub a (append (list 1) (cdr b))))))
+         
+
+(define (u-add-h2 l1 l2 c)
+  (reverse (u-add-h1 l1 l2 c)))
+  
+(define (right-shift l factor)
+  (if (= 0 factor)
+      l
+      (append'(0) (right-shift l (- factor 1)))))
+
+(define (divide a b)
+  (let* ((sign1 (car a))
+         (sign2 (car b))
+         (sign (cond 
+                 ((and (= sign1 1) (= sign2 1)) '(0))
+                 ((and (= sign1 1) (= sign2 0)) '(1))
+                 ((and (= sign1 0) (= sign2 1)) '(1))
+                 ((and (= sign1 0) (= sign2 0)) '(0)))))
+         (if (equal? (cdr a) (cdr b))
+                    (append sign '(0 1 1 1 0 0 0 ))
+                    (append sign '(0 0 0 0 0 0 0 )))))
