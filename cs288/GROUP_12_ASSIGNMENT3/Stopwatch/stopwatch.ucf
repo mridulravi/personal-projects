@@ -1,0 +1,24 @@
+
+#####################################
+#             IO LOCS               #
+#####################################
+
+NET "start" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "master_clock" TNM_NET = "master_clock"; 
+TIMESPEC "ts_master_clock" = PERIOD "master_clock" 10 ns; 
+
+NET "master_clock" IOSTANDARD = LVCMOS33;
+NET "master_clock" LOC = L15;
+
+NET "START" LOC        = P4;
+NET "RESET" LOC        = F6;
+NET "ROLLOVER" LOC = A10;
+NET "OUTPUT<*>"  IOSTANDARD = LVCMOS33;
+NET "OUTPUT<0>"  LOC        = U18;
+NET "OUTPUT<1>"  LOC        = M14;
+NET "OUTPUT<2>"  LOC        = N14;
+NET "OUTPUT<3>"  LOC        = L14;
+NET "OUTPUT<4>"  LOC        = M13;
+NET "OUTPUT<5>"  LOC        = D4;
+NET "OUTPUT<6>"  LOC        = P16;
+NET "OUTPUT<7>"  LOC        = N12;
