@@ -1,0 +1,19 @@
+Team:
+#####
+
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+
+General Instructions:
+######################
+
+1) Compile the file using "g++ lab2.cpp"
+2) Run it using "./a.out"
+3) We have provided an extra instruction "exit" which will terminate all the child processes along with the parent process
+4) All the possible commands are:-
+	add_email <email_id>
+	search_email <email_id>
+	delete_email <email_id>
+	delete_domain <domain_name>
+	Quit
+	exit

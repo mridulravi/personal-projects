@@ -1,0 +1,10 @@
+send 1 yo
+send 0 yo
+send 1 yo
+send 0 yo
+send 1 yo
+send 1 yo
+receive
+receive
+receive
+send 2 uo
