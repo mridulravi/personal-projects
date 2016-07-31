@@ -1,0 +1,21 @@
+ver2ssq: Version 2 of Single server queue implementation (ver0 and ver 1 were simpler)
+
+Read comments to understand code.
+
+Best to read in the following order:
+
+main
+QueueingSystem: header, then cpp
+Request: header, then cpp
+Event: header, then cpp
+Simulation: header, then cpp
+declarations: header only
+
+
+In addition, make file, which will create a "qsim" executable.
+
+Also there is a queuesim.in file which is the trace input, at the end
+of it I have created the simulation trace by hand, for
+debugging. Current code SEEMS correct. 
+
+

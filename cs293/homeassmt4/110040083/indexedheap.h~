@@ -1,0 +1,152 @@
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+//#include <Event.h>
+using namespace std;
+
+template <typename Comparable>
+
+class BinaryHeap
+{
+  public: 
+	explicit BinaryHeap ( int capacity = 100 );
+	explicit BinaryHeap ( const vector<Comparable> & indices, const vector<int> & position);
+	//vector<int> keys;
+	vector<int> position;
+	bool isEmpty() const;
+	const Comparable & findmin() const;
+
+	void insert(const Comparable & x);
+	void deleteMin();
+	void deleteMin(Comparable & minItem);
+	void makeEmpty();
+	bool isEmpty();
+	void display();
+  private:
+	int currentSize;
+	vector<Comparable> array;
+	void buildHeap();
+	void percolateDown ( int hole);
+};
+
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::insert(const Comparable & x)
+{	//cout << array.size();
+	if(currentSize == array.size() - 1)
+		array.resize(array.size()*2);
+	//cout << currentSize;
+	int hole = ++currentSize;
+	position[x]=hole;
+	//keys[x]=key;
+	//cout << currentSize;
+	//cout << hole;
+	for(;hole >1 && x < array[hole/2]; hole/=2)
+		array[hole]=array[hole/2];
+	array[hole] = x;
+}
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::deleteMin()
+{
+	if (isEmpty())
+	     exit(1);
+	
+	array[1] = array[currentSize--];
+	BinaryHeap::percolateDown(1);
+}
+
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::deleteMin(Comparable & minItem)
+{
+	if (BinaryHeap::isEmpty())
+		exit(1);
+	minItem = array [1];
+	array[1] = array[currentSize--];
+	BinaryHeap::percolateDown(1);
+}
+
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::percolateDown (int hole)
+{
+	int child;
+	Comparable tmp = array [hole];
+	//cout << "++++++ "<<array [hole]<< " -----"<<endl;
+	for (; hole*2 <= currentSize; hole = child)
+	{
+		child = hole*2;
+		if (child != currentSize && array [child+1] <array[child])
+			child++;
+		if (array[child] < tmp)
+			array[hole]=array[child];
+		else
+			break;
+	}
+	array [hole] = tmp;
+}
+
+
+template <typename Comparable>
+BinaryHeap<Comparable>::BinaryHeap (const vector<Comparable> & indices)
+   : array(indices.size() + 10), currentSize ( indices.size())
+{	//cout << currentSize;cout << "++++++ "<<" -----"<<endl;
+	for (int i = 0; i < indices.size(); i++) 
+		position[i] = -1;
+
+	for (int i = 0; i < indices.size(); i++)
+		array[i+1] = indices [i];
+	BinaryHeap::buildHeap(); 
+}
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::buildHeap()
+{	//cout << currentSize;
+	for ( int j=currentSize/2 ; j>0 ; j--)
+		BinaryHeap::percolateDown(j);
+}
+
+template <typename Comparable>
+bool BinaryHeap<Comparable>::isEmpty()
+{
+	if (currentSize == 0)
+		return true;
+	else
+		return false; 
+}
+
+
+template <typename Comparable>
+BinaryHeap<Comparable>::BinaryHeap (int t)
+{
+	//capacity = 100;
+	//BinaryHeap::buildHeap(); 
+	//cout << "++++++ "<< " -----"<<endl;
+}
+
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::display ()
+{
+	for (int k = 1; k <= currentSize; k++)
+		cout<<array[k]<<"  ";
+}
+
+
+template <typename Comparable>
+const Comparable & BinaryHeap<Comparable>::findmin() const
+{	
+	//if (BinaryHeap::isEmpty())
+		//exit(1);
+	//else
+		return array[1];
+}
+
+
+template <typename Comparable>
+void BinaryHeap<Comparable>::makeEmpty()
+{
+	array.clear();
+	currentSize=0;
+}

@@ -1,0 +1,10 @@
+Number of requests arrived (including dropped):
+Number of requests serviced:
+Number of requests dropped:
+Average waiting time:
+Average service time:
+90%ile of waiting time:
+Maximum waiting time:
+Max queue length reached:
+Average operating speed of the server:
+90%ile of speed:

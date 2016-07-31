@@ -1,0 +1,282 @@
+/**********
+Implements the methods of the Simulation class. Simulation comprises
+of the main event processing loop, and the handling of the events.
+ *********/
+
+#include "Event.h"
+#include "Simulation.h"
+#include "QueueingSystem.h"
+#include "declarations.h"
+//#include "Server.h"
+using namespace std;
+
+void Simulation::run(QueueingSystem q){
+  Event nextEvent;
+  cout << endl;
+  //Process events until no more events in the event list
+  while (!eventList.empty()) {
+
+    //Pop next event 
+    nextEvent = eventList.top();
+    eventList.pop();
+
+    //Advance simulation clock to time of this event
+    simTime = nextEvent.getTime();
+    cout << simTime;
+
+	/*****Printing the Event trace on screen here onwards******/
+
+    if (nextEvent.getType() == ARRIVAL)  			
+    {
+	cout << " ARRIVAL ";	
+    }
+    else if (nextEvent.getType() == DEPARTURE) 
+    {
+	cout << " DEPARTURE ";
+    }
+    else if (nextEvent.getType() == PROBE) 
+    {
+	cout << " PROBE ";
+    }
+   if(sys.Buffersize() != 0)
+	cout <<" ( "<<sys.nextReq().getArrivalTime()<<" , "<<sys.nextReq().getServiceTime()<<" ) ";
+   else
+	cout <<" ( INF , INF ) ";
+   cout<< "  "<< sys.Buffersize() ;
+	if(!eventList.empty())
+	{
+		if (eventList.top().getType() == ARRIVAL)		
+		cout <<" ARRIVAL "<<endl;
+		else if (eventList.top().getType() == DEPARTURE)		
+		cout <<" DEPARTURE "<<endl;
+		else if (eventList.top().getType() == PROBE)
+		cout <<" PROBE "<<endl;
+	}
+	else
+		cout <<" NONE "<<endl;
+ 
+    //Event handling switch. Call the correct event handler  based on event type.
+    if (nextEvent.getType() == ARRIVAL)  
+    {	
+	arrival_event_handler(nextEvent);
+    }
+    else if (nextEvent.getType() == DEPARTURE) 
+    {
+	departure_event_handler(nextEvent);
+    }
+    else if (nextEvent.getType() == PROBE && temp != -1) 
+    {
+	probe_event_handler(nextEvent);
+    }
+  }
+
+  //Simulation loop over. 
+  sort (waitTimeVector.begin(), waitTimeVector.end());				//waitTimeVector sorted to get 90% of waiting time
+  sort (speedvector.begin(), speedvector.end());				//speedvector sorted to get 90% of speed
+
+  //Metrics being printed.
+  cout << "Number of requests arrived (including dropped): "<< customersArrived << endl;
+  cout << "Number of requests serviced: "<< customersDeparted << endl;
+  cout << "Number of requests dropped: "<< customersDropped << endl;
+  cout << "Average waiting time: " << q.setAvgWaitingTime(sumWaitTimes/customersDeparted) << endl;   					
+  cout << "Average service time: " <<q.setAvgResponseTime(sumRespTimes/customersDeparted) -
+				  q.setAvgWaitingTime(sumWaitTimes/customersDeparted) << endl;
+  cout << "90%ile of waiting time: "<< waitTimeVector[ceil(0.9*waitTimeVector.size())-1]<<endl;
+  cout << "Maximum waiting time: " << MaxWaitTime << endl;
+  cout << "Max queue length reached: " << MaxBufReached << endl;
+  cout << "90%ile of speed: "<< speedvector[ceil(0.9*speedvector.size())-1]<<endl;
+  ReqOut.close();
+  SerOut.close();
+}
+
+
+
+
+
+/*****
+Arrival event handler first creates request object from the event
+information. Then checks if queueing system is busy. If busy,
+request must be enqueued, else, processing can start
+immediately. Arrival event handler also looks up the next arrival and
+creates the next arrival event.
+*****/
+
+void Simulation::arrival_event_handler(Event e) {
+  
+  //Process the arrival. First create request object from event time,
+  //which is the request arrival time, which allows us to get the
+  //service time from the map that was created earlier
+
+  Request req(reqID,e.getTime(),serviceTime[e.getTime()]); 
+  reqID++;
+   if (sys.Buffersize() < Buffer_Size)					// if queuelength is < max permissible length
+   {	
+	sys.enqueue(req);						// put request into buffer	
+	SvrIt = ServerList.begin();					// scan through the server list
+	while(SvrIt != ServerList.end())
+	{	
+		if(SvrIt->busy == 0)					//if idle server found
+		{
+			Request* tempReq;
+			
+			Request tempReq2=sys.dequeue();			// remove request from buffer
+			tempReq = &tempReq2;
+			SvrIt->reqInService=tempReq;			// set it as request in service
+			SvrIt->busy = 1;				// set server state to busy
+			sumRespTimes += serviceTime[e.getTime()];	// Response time = service time, as waiting time = 0
+			waitTimeVector.push_back (0);			// since waiting time is zero, 0 is pushed into waitTimeVector
+			// Printing the request trace
+			ReqOut  <<	 tempReq2.getID()			//Request _#   
+				<<"  "<< tempReq2.getArrivalTime()		//arrival_time
+				<<"  "<< simTime				//processing_start_time
+				<<"  "<< simTime+tempReq2.getServiceTime()	//processing_end_time
+				<<"  "<< simTime-tempReq2.getArrivalTime()	//waiting_time
+				<<"  "<< tempReq2.getServiceTime()<<endl;	//service_time	
+			temp = simTime+tempReq2.getServiceTime();
+			if (temp >= Maxtemp) Maxtemp = temp;			// used in probe event handler	
+
+			// Schedule the departure of this request as its processing has started
+			Event serviceEvent(0,DEPARTURE,simTime+(*tempReq).getServiceTime(),SvrIt->ID);
+			eventList.push(serviceEvent);
+			
+			break; 
+		}
+		else
+		{SvrIt++;}
+	}
+   }
+   else 								// if queuelength is > max permissible length
+	{customersDropped++;}						// then request is dropped
+
+  if (sys.Buffersize() >= MaxBufReached)				// calculation of Max queue length reached
+	MaxBufReached = sys.Buffersize() ;
+
+  //Schedule next arrival - read next arrival and service times, put into event list.
+  double a, s;
+  cin >> a >> s;
+  LastArrival = a;
+  if (a != -1) {
+    Event  arrivalEvent(0,ARRIVAL,a,0);			// serverID is alloted to an event only at departure scheduling
+    eventList.push(arrivalEvent);			// at arrival it is set to 0
+    serviceTime[a] = s/serverSpeed;
+    customersArrived++;    				// customer has arrived, so update the metrics
+  }  
+}
+
+
+
+
+
+/*******
+Departure event handler needs to deque and update performance metric
+accummulators. If buffer is not empty, next request is dequed from the buffer.
+Departure event for the this request should be created and
+added to event list
+**********/
+void Simulation::departure_event_handler(Event e) {
+
+  //Update counters, metrics
+  customersDeparted++;
+
+ if (sys.Buffersize()!=0)			// if some request is there in the buffer
+{
+   Request* tempReq ;				
+   Request tempReq2 = sys.dequeue();		// dequeue the request
+   tempReq = &tempReq2;			        
+   if (sys.Buffersize() >= MaxBufReached)
+	MaxBufReached = sys.Buffersize() ;	// calculation of Max queue length reached
+ 
+				
+   SvrIt = ServerList.begin();			// scan through the server list
+   while(SvrIt != ServerList.end())
+   {
+	if (SvrIt->ID == e.getServerNo()) 		// server where departure occurs found
+	{
+		SvrIt->busy = 1;			// server state remains busy
+		SvrIt->reqInService=tempReq;		// request dequed is set as req in service
+
+		// Printing the request trace
+		ReqOut  <<       tempReq2.getID()			//Request _#  
+			<<"  "<< tempReq2.getArrivalTime()		//arrival_time
+			<<"  "<< simTime				//processing_start_time
+			<<"  "<< simTime+tempReq2.getServiceTime()	//processing_end_time
+			<<"  "<< simTime-tempReq2.getArrivalTime()	//waiting_time
+			<<"  "<< tempReq2.getServiceTime()<<endl;	//service_time	
+		temp = simTime+tempReq2.getServiceTime();
+		if (temp >= Maxtemp) Maxtemp = temp;			// used in probe event handler	
+
+	/* Response Time = waiting time + service time
+	                 = (processing_start_time - arrival time) + service time */
+		sumRespTimes += e.getTime()- (*(SvrIt->reqInService)).getArrivalTime()
+					   + (*(SvrIt->reqInService)).getServiceTime();
+		sumWaitTimes += e.getTime()- (*(SvrIt->reqInService)).getArrivalTime();
+
+	/* Waiting Time  = (processing_start_time - arrival time)  */
+		waitTimeVector.push_back (e.getTime()- (*(SvrIt->reqInService)).getArrivalTime());
+	
+	// calculation of maximum waiting time
+		if ((e.getTime()- (*(SvrIt->reqInService)).getArrivalTime()) >= MaxWaitTime)
+			MaxWaitTime = (e.getTime()- (*(SvrIt->reqInService)).getArrivalTime()) ;	
+		break;
+	}
+	else {SvrIt++;}
+   }  
+   //This request's departure needs to be scheduled, i.e. created and added to
+   //event list
+   Event serviceEvent(0,DEPARTURE,simTime+(*tempReq).getServiceTime(),e.getServerNo());  //create event 
+   eventList.push(serviceEvent); 							 //add to event list	
+   		
+}
+
+else if (sys.Buffersize() == 0)						// if no more request in buffer
+{
+   if (sys.Buffersize() >= MaxBufReached)				// calculation of Max queue length reached
+	MaxBufReached = sys.Buffersize() ;
+ 
+   SvrIt = ServerList.begin();
+   while(SvrIt != ServerList.end())
+   {
+	if (SvrIt->ID == e.getServerNo()) 				// server where departure occurs found
+	{
+		SvrIt->busy = 0;					// set server state to idle
+		SvrIt->reqInService=NULL;				// and req in service to null
+		break;
+	}
+	else {SvrIt++;}
+   }   	
+}
+
+} 
+
+
+
+
+/*********
+Probe event handler
+**********/
+
+void Simulation::probe_event_handler(Event e) {
+   SerOut << ProbeNumber <<"  "<<sys.Buffersize()<<"  "<<serverSpeed<<"  ";		// printing server.log
+   if (sys.Buffersize() > Jhigh)							// server speed operations
+   {
+	serverSpeed+=S;
+	if (serverSpeed > max_speed)
+		serverSpeed-=S;
+   }
+   else if (sys.Buffersize() < Jlow)
+   {	serverSpeed-=S;
+	if (serverSpeed < min_speed)
+		serverSpeed+=S;
+   }
+   SerOut << serverSpeed <<endl;
+   speedvector.push_back(serverSpeed);
+   ProbeNumber++;
+   //Next probe event needs to be scheduled, i.e. created and added to
+   //event list
+   
+   if (simTime < Maxtemp|| LastArrival!=-1)
+   {
+	Event serviceEvent(0,PROBE,simTime+P,0);  						 //create event 
+   	eventList.push(serviceEvent); 								 //add to event list
+   }							 	
+}

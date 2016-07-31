@@ -1,0 +1,19 @@
+sim_time  curr_event  next_req(a,s)  num_waiting  next_event
+0.3774  ARRIVAL     (INF,INF)   0   NONE
+0.687021  ARRIVAL     (INF,INF)   0   DEPARTURE
+0.742542  ARRIVAL     (0.687021,0.395359)   1   DEPARTURE
+0.973445  ARRIVAL     (0.687021,0.395359)   2   DEPARTURE
+1.30712  DEPARTURE   (0.687021,0.395359)   3   NONE
+1.70248  DEPARTURE   (0.742542,2.73296)   2   NONE
+4.43544  DEPARTURE   (0.973445,2.84492)   1   NONE
+7.28036  DEPARTURE   (INF,INF)   0   NONE
+Number of requests arrived (including dropped):4
+Number of requests serviced:4
+Number of requests dropped:0
+Average waiting time:1.26051
+Average service time:1.72574
+90%ile of waiting time:3.46199
+Maximum waiting time:3.46199
+Max queue length reached:3
+Average operating speed of the server:1
+90%ile of speed:1
