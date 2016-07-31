@@ -1,0 +1,78 @@
+<start>: I need an extension because <plea>  . 	
+<plea>: <dubious-excuse>	
+<plea>: <dubious-excuse>  , oh, and then <plea>	
+<plea>: <dubious-excuse>  , and  and then if I recall correctly <plea>	
+<plea>: <dubious-excuse>  , and  right about then <plea>	
+<plea>: <dubious-excuse>  , and  just then <plea>	
+<plea>: <dubious-excuse>  , and  then, just when my mojo was getting back on its feet, <plea>	
+<plea>: <dubious-excuse>  , and  if you can believe it, <plea>	
+<plea>: <dubious-excuse>  , and  I'm sure you've heard this before, but <plea>	
+<plea>: <dubious-excuse>  , and,  well I a little embarassed about this, but <plea>	
+<plea>: <dubious-excuse>	
+<plea>: <dubious-excuse>	
+<plea>: <dubious-excuse>	
+<plea>: <dubious-excuse>  , and  then <plea>	
+<plea>: <dubious-excuse>  , and  on top of that <plea>	
+<plea>: <dubious-excuse>  , and  as if that wasn't enough <plea>	
+<plea>: <dubious-excuse>  , and  then get this, <plea>	
+<plea>: <dubious-excuse>  , and  just then <plea>	
+<plea>: <dubious-excuse>	
+<something>: disk	
+<something>: motivation	
+<something>: dreams	
+<something>: printout	
+<something>: module specification	
+<something>: computer	
+<something>: Mac	
+<something>: notes	
+<something>: book	
+<something>: sense of purpose	
+<something>: mind	
+<something>: backpack	
+<lots-of-work>: <impressive-number> midterms	
+<lots-of-work>: <impressive-number> programs in <impressive-number> different langauges	
+<lots-of-work>: to finish my doctoral thesis	
+<lots-of-work>: <impressive-number> midterms and <impressive-number> papers	
+<dubious-excuse>: my disk got erased	
+<dubious-excuse>: I had recurring dreams about my <something>	
+<dubious-excuse>: my <something> was enshrowded in a mysterious fog for three days and then vanished	
+<dubious-excuse>: my <something> was set alight and thrown off the roof	
+<dubious-excuse>: my <something> was confiscated by res-ed	
+<dubious-excuse>: my <something> had a problem of a private nature	
+<dubious-excuse>: I didn't know I was in this class	
+<dubious-excuse>: my roommate ate my <something>	
+<dubious-excuse>: I thought I already graduated	
+<dubious-excuse>: my dorm burned down	
+<dubious-excuse>: I spent all weekend hung-over	
+<dubious-excuse>: I had <lots-of-work>	
+<dubious-excuse>: I had <lots-of-work>	
+<dubious-excuse>: well, it's all a haze	
+<dubious-excuse>: I had to go to <athletic-event>	
+<dubious-excuse>: I had to practice for <athletic-event>	
+<dubious-excuse>: I had to worry about <athletic-event>	
+<dubious-excuse>: I lost a lot of money on <athletic-event>	
+<dubious-excuse>: I forgot how to write	
+<dubious-excuse>: all my pencils broke	
+<dubious-excuse>: the bookstore was out of erasers	
+<dubious-excuse>: I used up all my paper	
+<dubious-excuse>: I had to go to this really worthwhile event	
+<dubious-excuse>: I had to make up a lot of documentation for the Navy in a big hurry	
+<dubious-excuse>: I got stuck in a blizzard at Tahoe	
+<dubious-excuse>: I skied into a tree	
+<dubious-excuse>: my karma wasn't good	
+<dubious-excuse>: I just didn't feel like working	
+<dubious-excuse>: it was just too nice outside	
+<dubious-excuse>: the programming language was inadequately abstract	
+<dubious-excuse>: I had to do laundry	
+<dubious-excuse>: I lost my <something>	
+<dubious-excuse>: my dog ate my <something>	
+<impressive-number>: 4	
+<impressive-number>: like, a bunch,	
+<impressive-number>: mega	
+<impressive-number>: tons of	
+<impressive-number>: like, a billion	
+<impressive-number>: 7	
+<athletic-event>: an alligator wrestling meet	
+<athletic-event>: the four-square semi-finals	
+<athletic-event>: the Winter Olympics	
+<athletic-event>: an intramural monster truck meet	
