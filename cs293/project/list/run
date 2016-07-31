@@ -1,0 +1,6 @@
+rm Makefile
+rm list.pro
+rm list
+/usr/local/qt4/bin/qmake -project
+/usr/local/qt4/bin/qmake
+make

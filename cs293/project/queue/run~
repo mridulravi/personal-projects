@@ -1,0 +1,5 @@
+rm Makefile
+rm test2.pro
+qmake -project
+qmake
+make

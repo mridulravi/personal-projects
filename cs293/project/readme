@@ -1,0 +1,41 @@
+1)HUFFMAN CODING--In huffman coding we have 2 programs first one is huffman_write.cpp,second is huffman_read.cpp
+	-->compile both the programs separately
+	-->huffman_write is for compresing a text file, it will ask fot the file name which is to be compressed.
+	-->the file needs to be present in the same directory as the executable
+	-->compile it as g++ -o encoder huffman_write.cpp
+	-->run as ./encoder
+		
+	-->huffman_read will give the original file back from the compressed file
+	-->the compressed files need to be present in the same directory as the executable
+	-->compile it as g++ -o decode huffman_read.cpp
+	-->run as ./decoder
+
+2)TRIE 1--compile it as g++ -o trie *.cpp
+	-->run as ./trie
+
+3)TRIE 2--compile it as g++ -o trie2 -std=c++0x trie2.cpp ,since i have used unordered_map inside the function
+	-->run as ./trie2
+
+4)BST--for compiling 
+	qmake -project
+	qmake
+	make
+	-->run as ./bst
+
+5)LIST-- for compiling
+	qmake -project
+	qmake
+	make
+	-->run as ./list
+
+6)QUEUE--for compiling
+	qmake -project
+	qmake
+	make
+	-->run as ./queue
+
+7)STACK--for compiling
+	qmake -project
+	qmake
+	make	
+	-->run as ./stack

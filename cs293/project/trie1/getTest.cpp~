@@ -1,0 +1,23 @@
+// getline with strings
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main () {
+  string str;
+  cout << "Please enter full name: ";
+  getline (cin,str);
+  cout << "Thank you, " << str << ".\n";
+  str.erase(str.size()-1,1);
+cout << "Thank you, " << str <<"\b"<< ".\n";
+return 0;
+  /*char s;
+  cin>>s;
+	while (s != '0')
+	{
+		cout<<s;
+		cin>>s;
+	}	
+	return 0;*/
+
+}

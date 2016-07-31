@@ -1,0 +1,164 @@
+
+#include <QStack>
+#include <QtGui>
+#include <iostream>
+#include <QTextStream>
+#include <sstream>
+#include <string>
+#include <QQueue>
+#include <QStack>
+#include <QVector>
+#include "renderarea.h"
+
+ RenderArea::RenderArea(QWidget *parent)
+     : QWidget(parent)
+ {
+     //shape = Polygon;
+     antialiased = false;
+     transformed = false;
+     pixmap.load(":/images/qt-logo.png");
+	 N = 10;count=1;
+     setBackgroundRole(QPalette::Base);
+     setAutoFillBackground(true);
+ }
+
+ QSize RenderArea::minimumSizeHint() const
+ {
+     return QSize(100, 100);
+ }
+
+ QSize RenderArea::sizeHint() const
+ {
+     return QSize(400, 200);
+ }
+
+ void RenderArea::setShape(Shape shape)
+ {
+     this->shape = shape;
+     update();
+ }
+
+ void RenderArea::setPen(const QPen &pen)
+ {
+     this->pen = pen;
+     update();
+ }
+
+ void RenderArea::setBrush(const QBrush &brush)
+ {
+     this->brush = brush;
+     update();
+ }
+
+ void RenderArea::setAntialiased(bool antialiased)
+ {
+     this->antialiased = antialiased;
+     update();
+ }
+
+ void RenderArea::setTransformed(bool transformed)
+ {
+     this->transformed = transformed;
+     update();
+ }
+
+ void RenderArea::paintEvent(QPaintEvent *)
+ {
+
+     std::cout<<N<<" <--"<<std::endl;
+
+     std::cout<<N<<"-->"<<std::endl;
+     QPainterPath path;
+     path.moveTo(20, 80);
+     path.lineTo(20, 30);
+     path.cubicTo(80, 0, 50, 50, 80, 80);
+	
+     QPainter painter(this);
+     painter.setPen(pen);
+     painter.setBrush(brush);
+
+             painter.save();
+
+
+             switch (shape) {
+
+             case Pop:
+		while(!queue1.isEmpty())
+		{
+			myvector.push_back(queue1.dequeue());
+		}
+		myvector.pop_back();
+		while(!myvector.isEmpty())
+		{
+		 queue1.enqueue(myvector.front());
+		 myvector.pop_front();
+		}
+		if (count==1) 
+			{N=N-60;
+			count++;}
+		else 
+			{
+			N=N-60;
+			count++;
+			}
+              
+		for (i=10;i<N;i+=60)
+                {
+		painter.drawRect(i, 20, 33, 40);
+		QPointF baseline(i, 50);
+		QFont font("Times", 30);
+		QPainterPath path2;
+		QString ui;
+                std::string ls;
+
+		std::ostringstream convert;   // stream used for the conversion
+		int be = queue1.dequeue();
+		convert << be;      // insert the textual representation of 'Number' in the characters in the stream
+		queue2.enqueue(be);
+		ls = convert.str(); // set 'Result' to the contents of the stream
+		ui= QString::fromStdString(ls);
+		path2.addText(baseline, font, ui);
+
+		painter.drawPath(path2);
+
+    		painter.drawLine(5.0, 10.0, 1500.0, 10.0);
+		painter.drawLine(5.0, 70.0, 1500.0, 70.0);
+		painter.drawLine(5.0, 10.0, 5.0, 70.0);
+                }queue1=queue2;
+		while(!queue2.isEmpty())
+		queue2.dequeue();
+                 break;
+             case Push:
+		//N=N+60;
+   		queue1.enqueue(te);
+		for (i=10;i<=N;i+=60)
+                {painter.drawRect(i, 20, 33, 40);
+		QPointF baseline(i, 50);
+		QFont font("Times", 30);
+		QPainterPath path2;
+		QString ui;
+                std::string ls;
+
+		std::ostringstream convert;   // stream used for the conversion
+		int be = queue1.dequeue();
+		convert << be;      // insert the textual representation of 'Number' in the characters in the stream
+		queue2.enqueue(be);
+		ls = convert.str(); // set 'Result' to the contents of the stream
+		ui= QString::fromStdString(ls);
+		path2.addText(baseline, font, ui);
+		painter.drawPath(path2);
+
+    		painter.drawLine(5.0, 10.0, 1500.0, 10.0);
+		painter.drawLine(5.0, 70.0, 1500.0, 70.0);
+		painter.drawLine(5.0, 10.0, 5.0, 70.0);
+
+		}queue1=queue2;
+		while(!queue2.isEmpty())
+		queue2.dequeue();
+
+		 N=N+60;
+		 count=1;
+                 break;
+             }
+             painter.restore();
+ }

@@ -1,0 +1,65 @@
+#include <string>
+
+/*A node in TRIE contains an element, pointers to 26 nodes corresponding to each of its children
+  and a flag which is set to 1 if any word ends at this node,otherwise 0 */
+struct TreeNode 				
+{
+	char element;
+	bool flag;
+	TreeNode *aPtr;
+	TreeNode *bPtr;
+	TreeNode *cPtr;
+	TreeNode *dPtr;
+	TreeNode *ePtr;
+	TreeNode *fPtr;
+	TreeNode *gPtr;
+	TreeNode *hPtr;
+	TreeNode *iPtr;
+	TreeNode *jPtr;
+	TreeNode *kPtr;
+	TreeNode *lPtr;
+	TreeNode *mPtr;
+	TreeNode *nPtr;
+	TreeNode *oPtr;
+	TreeNode *pPtr;
+	TreeNode *qPtr;
+	TreeNode *rPtr;
+	TreeNode *sPtr;
+	TreeNode *tPtr;
+	TreeNode *uPtr;
+	TreeNode *vPtr;
+	TreeNode *wPtr;
+	TreeNode *xPtr;
+	TreeNode *yPtr;
+	TreeNode *zPtr;
+	
+};
+
+class trie{
+
+public:
+	trie();							/** Default Constructor : Consructs an empty TRIE **/
+
+	TreeNode& root();					/** Returns a reference to the root of the tree **/
+
+	TreeNode* insert(TreeNode *tmpPtr,char e);	        /** Insert a character e into the TRIE, 
+								tmpPtr is current position in the TRIE 
+								after which we want to insert and returns
+								a reference to the node inserted, when end
+								of word is reached then returns to root **/	
+	
+	TreeNode* searchFor(TreeNode *srchPtr,char q);	        /** Search for a character q into the TRIE, 
+								srchPtr is the current position in TRIE after 
+								which we want to search **/	
+
+	void preorder(std::string enterdStr, TreeNode *PrePtr);	/** Prints out all words having enterdStr as prefix,
+	 							PrePtr points to last character in enterdStr **/
+	
+	TreeNode* setNULL(TreeNode *ToBeSet, TreeNode *elePtr, char ele);  /** called by insert, description in trie.cpp **/
+
+	TreeNode* setSearch(TreeNode *ToBeSearched,TreeNode *srchele);	   /** called by searchFor, description in trie.cpp **/
+
+private:
+	TreeNode *home;						/** Root of the tree is called home in our code **/
+	
+};
