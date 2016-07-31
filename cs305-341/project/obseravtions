@@ -1,0 +1,82 @@
+http://www.cs.virginia.edu/~evans/cs216/guides/x86.html			
+// link for x86 instruction set
+
+-->Linux passes its arguments to the system call on the registers, and uses a software interrupt to jump into kernel mode.
+
+-->For the EAX, EBX, ECX, and EDX registers, subsections may be used. For example, the least significant 2 bytes of EAX can be treated as a 16-bit register called AX. The least significant byte of AX can be used as a single 8-bit register called AL, while the most significant byte of AX can be used as a single 8-bit register called AH.
+
+
+1) int 0x80:-It passes control to interrupt vector 0x80
+INT is an assembly language instruction for x86 processors that generates a software interrupt. It takes the interrupt number formatted as a byte value.[1]
+
+When written in assembly language, the instruction is written like this:
+
+    INT X
+
+where X is the software interrupt that should be generated (0-255).
+
+An interrupt vector is the memory address of an interrupt handler, or an index into an array called an interrupt vector table that contains the memory addresses of interrupt handlers. When an interrupt is generated, the Operating System saves its execution state via a context switch, and begins execution of the interrupt handler at the interrupt vector.
+
+link :- http://stackoverflow.com/questions/1817577/what-does-int-0x80-mean-in-assembly-code
+
+//  the interrupt handler which has to be executed is passed as an argument in %eax(in 32 bits OS)(%eax is the index in the syscall table)
+
+Eg:-
+	%eax =1
+	%ebx = 0
+	int 0x80
+
+	// these instructions means that call the interrupt handler, then since eax==1, which means that execute the handler which is at index 1 in syscall table(which is exit). ebx stores the argument for exit, in this case it is 0 which means that exit with exit status 0
+
+
+2) JNL              Jump If Not Less                    Flags: not altered
+
+link for tabular description of jump instructions:-
+http://www.unixwiz.net/techtips/x86-jumps.html
+
+3) testl - The meaning of 'test' is to AND the arguments together, and check the result for zero. 
+eg:- testl  %edx,%edx		// So this code tests if EDX is zero or not. 'je' will jump if zero.
+
+The TEST instruction is the same as the AND instruction except that it does not store the result. It only modifies the flags. It modifies the following flags: sign, parity, zero, carry (always 0) and overflow (always 0).
+
+testl %eax, %eax
+jz    zeroLabel     ; jump if EAX is zero
+js    negLabel      ; jump if EAX is negative
+jns   posLabel      ; jump if EAX is positive
+
+Hope this helps.
+
+
+4) cmp - Compare the values of the two specified operands, setting the condition codes in the machine status word appropriately. This instruction is equivalent to the sub instruction, except the result of the subtraction is discarded instead of replacing the first operand. 
+
+--> e in %eax etc registers stands for extended which means that it is being used as 32 bit register
+
+--> pop %ebx means that pop the element from the top of the stack and store it in %ebx register
+
+
+################Very Imp observation################
+http://stackoverflow.com/questions/8542888/difference-between-declaring-shellcode-as-a-char-array-and-char
+--> char shellcode[] does not work but char * shellcode works
+
+When you declare it as a char[], the memory is on the stack. When you declare it as a char* and assign it a string literal, the memory is in the executable image itself. Linux doesn't like you executing code on the stack, but is fine with you executing memory in that part of the executable image. That is because it is trying to avoid a certain type of stack overflow attack where people can overflow the stack with some arbitrary instructions and then execute them.
+
+In your first case:
+
+char shellcode[] =
+This puts the string literal on the stack as a local array. The stack and heap memory usually does not have execute permissions (for obvious reasons of security).
+
+In your second case:
+
+char* shellcode = 
+The string lives in static memory - typically in the same region as the rest of the program binary - which is executable.
+
+
+--> const char shellcode[] works##############
+The const keyword causes the compiler to place it in the const section (warning! this is an implementation detail!), which is in the same segment as the text section. 
+
+###################################################
+Where are variables stored in c
+http://stackoverflow.com/questions/14588767/where-in-memory-are-my-variables-stored-in-c
+-- very good answers given, go through them once
+
+

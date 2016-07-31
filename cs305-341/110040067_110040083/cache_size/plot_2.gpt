@@ -1,0 +1,7 @@
+set term png
+set key left box
+set title 'log(Array size) v/s Time per access'
+set ylabel 'Time(in us)'
+set xlabel 'log (Array size) (base 2), in KB' 
+set datafile separator " "
+plot "cache_results_2" using 2:4 smooth unique w linespoints title ""

@@ -1,0 +1,8 @@
+set term png
+set key left box
+set title 'Time per access v/s strides'
+set ylabel 'Time(in us)'
+set xlabel 'Strides (in Bytes)'
+set yrange [0.01:0.015]
+set datafile separator " "
+plot "block_results" using 1:3 smooth unique w linespoints title ""

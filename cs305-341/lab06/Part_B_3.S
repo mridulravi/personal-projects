@@ -1,0 +1,14 @@
+		.data		
+		
+		.text
+		.global	main
+main:
+		add 	r1, r1, r1
+		add 	r1, r1, r2
+		add 	r1, r1, r3
+		lw 	r1, 0(r0)
+		sll	r1, r1, 2
+		;sw 	0(r7), r5 
+
+Finish:		;*** end
+		trap		0	

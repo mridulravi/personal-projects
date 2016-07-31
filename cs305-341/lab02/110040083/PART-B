@@ -1,0 +1,84 @@
+Various pseudo-instructions implementation:
+
+1. move : This is implemented as a Add Unsigned(addu).
+          For eg. in line 17 of my code : move $t5, $v0
+	              is implemented as : addu $13, $0, $2
+          Essentially what is does is it adds zero(0x00000000) to value stored at $v0($2) and stores the result in $t5($13). 
+	  So, the result is : value at $v0 is copied to $t5 
+
+2. li : This is implemented as a Add Immediate Unsigned(addiu)
+	  For eg. in line 68 of my code : li $v0, 4
+		      is implemented as : addiu $2, $0, 0x00000004
+	 Here again it adds zero(0x00000000) to four(0x00000004) and result is stored at $v0($2).
+         Effectively, 0x00000004 is loaded in register $v0.
+
+3. la : This is implemented as a Load upper immediate(lui) followed by an Bitwise or immediate(ori).
+	In lui the immediate value is shifted left 16 bits and stored in the register. The lower 16 bits are zeroes.
+	  For eg. in line 98 of my code : la $a1, remarray
+		      is implemented as : lui $1, 0x00001001
+					  ori $5, $1, 0x00001388
+	 First when 0x00001001 on left shifting 16 bits gives 0x10010000 which is stored at $1.
+	 Then bitwise or is done between 0x10010000 and 0x00001388(which is hex of decimal 5000) and result which is 0x10011388
+	 is stored in $a1($5)
+         Effectively, 0x10011388 which is adderess of remarray is loaded in register $a1.
+
+
+
+
+5 different MIPS instructions conversion to machine code:
+
+In line 92:
+addi $a2, $a2, 4
+MNEMONIC I
+Opcode = 6 = 001000
+rs = 6 = 00110
+rt = 6 = 00110
+immediate = 0000 0000 0000 0100
+Machine Code = 0010 0000 1100 0110 0000 0000 0000 0100 = 0x20c60004
+
+
+In line 45:
+lw $t2,($t4)
+MNEMONIC I
+Opcode = 23 = 100011
+rs = 6 = 01100
+rt = 6 = 01010
+immediate = offset = 0000 0000 0000 0000
+Machine Code = 1001 1101 1000 1010 0000 0000 0000 0000 = 0x8d8a0000
+
+In line 86:
+beq $t9,$a0,dupli
+MNEMONIC I
+Opcode = 4 = 000100
+rs = 25 = 11001
+rt = 4 = 00100
+immediate = 0000 0000 0000 0011
+Machine Code = 0001 0011 0010 0100 0000 0000 0000 0011 = 0x13240003
+
+In line 89:
+sw $a0, ($a1)
+MNEMONIC I
+Opcode = 2b = 101011
+rs = 5 = 00101
+rt = 4 = 00100
+immediate = offset = 0000 0000 0000 0000
+Machine Code = 1010 1100 1010 0100 0000 0000 0000 0000 = 0xaca40000
+
+In line 40:
+add $t9,$t0,$t9
+MNEMONIC R
+Opcode = 0 = 000000
+rs = 8 = 01000
+rt = 25 = 11001
+rd = 25 = 11001
+shamt = 00000
+funct = 100000
+Machine Code = 0000 0001 0001 1001 1100 1000 0010 0000 = 0x0119c820
+
+
+
+   
+
+
+
+

@@ -1,0 +1,362 @@
+Team:-
+
+1) Abhishek Gupta	110040067
+2) Mridul Ravi Jain	110040083
+
+#######################################################################################################
+Goal of the Experiment:-
+########################
+
+Determine the block size of the cache
+
+#######################################################################################################
+Relevant Files:-
+#######
+We used two approaches for doing this, code for first one is in block.cpp. The results for it is in block_results and the graph is in block.png
+
+The second approach is in block_2.cpp. The results for it is in block_results_2 and the graph is in block_2.png
+
+We have also submitted the plotting scripts, they are plot1.gpt and plot2.gpt
+
+Experiment Done:-
+#################
+	
+	block.cpp:-
+	#########
+	
+	1) We create an array of sufficiently large size, such that it does not completely fit in the cache.
+	2) We populate the array with some values.
+	3) We now access the elements of the array various times with different stride sizes. If the stride size corresponds to cache size(or greater than it), then each element which we will access will be in a different block and hence time per access will be more.
+	
+	
+	block_2.cpp:-
+	##########
+	
+	1) We create an array and populate it, it is small so that whole of it can reside in L1 cache.
+	2) We now access it multiple times, so that the whole of array is in cache.
+	3) We now access the first element and then flush that line. We now access the element with offset as stride. If this element is in the same line as zeroth element, then that block will have to be again fetched and the time taken will be high, but if the element is in other block(line), then that block will be already present in the cache and hence time taken will be less. Hence this will determine the line size.
+	
+#######################################################################################################
+Results Obtained:-
+		
+	For block.cpp:-
+	##############
+		
+	Stride size(in B) --- time per access (in us)
+		
+	4 --- 0.0108236
+	8 --- 0.0108236
+	16 --- 0.0108507
+	32 --- 0.0108507
+	64 --- 0.0112847
+	128 --- 0.0112847
+	256 --- 0.0112847
+	
+	The graph corresponding this result is in block.png
+	
+	
+	For block_2.cpp:-
+	
+	4 --- 0.10969
+	8 --- 0.10977
+	12 --- 0.10896
+	16 --- 0.10796
+	20 --- 0.10962
+	24 --- 0.10932
+	28 --- 0.10977
+	32 --- 0.10956
+	36 --- 0.10808
+	40 --- 0.10947
+	44 --- 0.11001
+	48 --- 0.10918
+	52 --- 0.10923
+	56 --- 0.10828
+	60 --- 0.11023
+	64 --- 0.02789
+	68 --- 0.0283
+	72 --- 0.02812
+	76 --- 0.02819
+	80 --- 0.02846
+	84 --- 0.02792
+	88 --- 0.02863
+	92 --- 0.02808
+	96 --- 0.0279
+	100 --- 0.02817
+	104 --- 0.02831
+	108 --- 0.02791
+	112 --- 0.02795
+	116 --- 0.02805
+	120 --- 0.02762
+	124 --- 0.02778
+	128 --- 0.02799
+	132 --- 0.02819
+	136 --- 0.02825
+	140 --- 0.02828
+	144 --- 0.0279
+	148 --- 0.0282
+	152 --- 0.02861
+	156 --- 0.02795
+	160 --- 0.02782
+	164 --- 0.0286
+	168 --- 0.02842
+	172 --- 0.02781
+	176 --- 0.02773
+	180 --- 0.02806
+	184 --- 0.02805
+	188 --- 0.02837
+	192 --- 0.02798
+	196 --- 0.0283
+	200 --- 0.02849
+	204 --- 0.02792
+	208 --- 0.0282
+	212 --- 0.02841
+	216 --- 0.0283
+	220 --- 0.02827
+	224 --- 0.02841
+	228 --- 0.02798
+	232 --- 0.02829
+	236 --- 0.02776
+	240 --- 0.0277
+	244 --- 0.0279
+	248 --- 0.02865
+	252 --- 0.02781
+	256 --- 0.0278
+	260 --- 0.02797
+	264 --- 0.02847
+	268 --- 0.02794
+	272 --- 0.02803
+	276 --- 0.02769
+	280 --- 0.02819
+	284 --- 0.02806
+	288 --- 0.02776
+	292 --- 0.0286
+	296 --- 0.02839
+	300 --- 0.02788
+	304 --- 0.02832
+	308 --- 0.02763
+	312 --- 0.02833
+	316 --- 0.02828
+	320 --- 0.02838
+	324 --- 0.0282
+	328 --- 0.02804
+	332 --- 0.02799
+	336 --- 0.02804
+	340 --- 0.02823
+	344 --- 0.02821
+	348 --- 0.02768
+	352 --- 0.02817
+	356 --- 0.0281
+	360 --- 0.02801
+	364 --- 0.02845
+	368 --- 0.02828
+	372 --- 0.02832
+	376 --- 0.02832
+	380 --- 0.02806
+	384 --- 0.02825
+	388 --- 0.0282
+	392 --- 0.02835
+	396 --- 0.02837
+	400 --- 0.02796
+	
+	The graph corressponding to this is in block_2.png
+
+#######################################################################################################	
+Challenges:-
+##########
+Our second approach always gives correct answer but the first approach, i.e. code in block.cpp, sometimes gives wrong answers(maybe this is because of the fact that other processes are also running which affects the data present in the cache)
+
+#######################################################################################################	
+Compiler Optimizations:-
+#########################
+
+For the 1st approach, we are turning off the compiler optimizations, i.e. we are compiling using -O0 flag
+
+For the 2nd approach we do not need to turn off any optimization. It does not matter whether optimizations are on or off.	
+
+#########################################################################################################
+
+The effect of noise due to the OS and other apps:-
+###################################################
+
+For the first method:-
+Other apps and OS also occupies some part of the cache and hence they affect our program, so we try to run our program with as few processes running as possible.
+
+For the first method:-
+Since here we do need the cache to be completely filled by our array, only 2 blocks of array suffices. Hence noise due to OS and other apps have no effect on the running of our program.
+
+#######################################################################################################	
+Hardware Prefetching:-
+####################
+
+No we did not turn the hardware prefetching off.
+	
+#######################################################################################################	
+Resuts on other machines:-
+#########################
+
+	For block.cpp:-
+
+	4 --- 0.0053304
+	8 --- 0.00531684
+	16 --- 0.00537109
+	32 --- 0.00542535
+	64 --- 0.00585938
+	128 --- 0.00607639
+	256 --- 0.00607639
+
+	From this data we conclude that block size is 64 Bytes
+
+
+	For block_2.cpp:-
+
+	4 --- 0.07508
+	8 --- 0.07495
+	12 --- 0.07427
+	16 --- 0.07512
+	20 --- 0.07487
+	24 --- 0.07456
+	28 --- 0.07426
+	32 --- 0.07398
+	36 --- 0.07436
+	40 --- 0.07464
+	44 --- 0.07455
+	48 --- 0.07448
+	52 --- 0.07454
+	56 --- 0.07456
+	60 --- 0.07477
+	64 --- 0.0223
+	68 --- 0.02219
+	72 --- 0.02214
+	76 --- 0.02187
+	80 --- 0.02242
+	84 --- 0.02268
+	88 --- 0.02264
+	92 --- 0.02268
+	96 --- 0.02216
+	100 --- 0.02172
+	104 --- 0.02146
+	108 --- 0.0217
+	112 --- 0.02121
+	116 --- 0.02188
+	120 --- 0.02174
+	124 --- 0.02133
+	128 --- 0.02205
+	132 --- 0.02087
+	136 --- 0.02168
+	140 --- 0.02176
+	144 --- 0.0218
+	148 --- 0.02191
+	152 --- 0.02149
+	156 --- 0.02141
+	160 --- 0.02182
+	164 --- 0.02194
+	168 --- 0.02163
+	172 --- 0.02164
+	176 --- 0.02134
+	180 --- 0.0219
+	184 --- 0.0224
+	188 --- 0.02191
+	192 --- 0.02165
+	196 --- 0.02155
+	200 --- 0.02176
+	204 --- 0.02193
+	208 --- 0.02161
+	212 --- 0.0215
+	216 --- 0.02103
+	220 --- 0.0218
+	224 --- 0.02229
+	228 --- 0.022
+	232 --- 0.02107
+	236 --- 0.02102
+	240 --- 0.02168
+	244 --- 0.02208
+	248 --- 0.02201
+	252 --- 0.02129
+	256 --- 0.02083
+	260 --- 0.02183
+	264 --- 0.02185
+	268 --- 0.02161
+	272 --- 0.02162
+	276 --- 0.02105
+	280 --- 0.02159
+	284 --- 0.02227
+	288 --- 0.02231
+	292 --- 0.02188
+	296 --- 0.02111
+	300 --- 0.02122
+	304 --- 0.02169
+	308 --- 0.02192
+	312 --- 0.02108
+	316 --- 0.02146
+	320 --- 0.02135
+	324 --- 0.02209
+	328 --- 0.02187
+	332 --- 0.02132
+	336 --- 0.02125
+	340 --- 0.02129
+	344 --- 0.02156
+	348 --- 0.02206
+	352 --- 0.02166
+	356 --- 0.02112
+	360 --- 0.02127
+	364 --- 0.02182
+	368 --- 0.02204
+	372 --- 0.02177
+	376 --- 0.02122
+	380 --- 0.02116
+	384 --- 0.02199
+	388 --- 0.02189
+	392 --- 0.0218
+	396 --- 0.02125
+	400 --- 0.02097
+
+	From this data we conclude that block size is 64 Bytes
+
+
+#########################################################################################################
+
+Conclusions Drawn:-
+
+	Using block.cpp:-
+	###############
+We observe that the average access time per element increases when the size of stride becomes 64 Bytes. Hence the size of the block is 64 Bytes(because if the stride size corresponds to cache size(or greater than it), then each element which we will access will be in a different block and hence time per access will be more.)
+
+We also note that there is no increase in value in case from 64 to 128 and from 128 to 256, this is because when stride size is more than block size, then each access will be from different block itself(in all those cases).
+
+
+	Using block_2.cpp:-
+	##################
+	
+We know that if we try to access an element whose block is already there in cache, then the time taken to access that element will be less, whereas if the block has to be fetched then the time taken will be more.
+
+What we are doing is, we access a[0] and then we flush that block and then access a[strides]. If strides*4 is less than block size than that element will be in the same block and hence we will again need to fetch that block and hence the time taken will be more whereas if that element is in next block, then the time taken to access that element will be less(because initially we accessed the array so many times that the whole array should be in cache)
+
+We observe a sudden decrease in time when size is 64 Bytes, hence the block size is 64 Bytes.
+
+#######################################################################################################
+
+Output of lscpu for verifiation:-
+##############################
+
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                4
+On-line CPU(s) list:   0-3
+Thread(s) per core:    2
+Core(s) per socket:    2
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 42
+Stepping:              7
+CPU MHz:               800.000
+BogoMIPS:              4988.64
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              3072K
+NUMA node0 CPU(s):     0-3
+

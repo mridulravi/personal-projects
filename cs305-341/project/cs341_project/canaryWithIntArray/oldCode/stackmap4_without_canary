@@ -1,0 +1,29 @@
+	.file	"stackmap4.c"
+	.text
+	.globl	fun1
+	.type	fun1, @function
+fun1:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$16, %esp
+	leave
+	ret
+	.size	fun1, .-fun1
+	.globl	main
+	.type	main, @function
+main:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$24, %esp
+	movl	$5, -4(%ebp)
+	movl	$1, -8(%ebp)
+	movl	-8(%ebp), %eax
+	movl	%eax, 4(%esp)
+	movl	-4(%ebp), %eax
+	movl	%eax, (%esp)
+	call	fun1
+	leave
+	ret
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3"
+	.section	.note.GNU-stack,"",@progbits

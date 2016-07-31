@@ -1,0 +1,7 @@
+set term png
+set key left box
+set title 'Time per access v/s step_size'
+set ylabel 'Time(in us)'
+set xlabel 'Step_size'
+set datafile separator " "
+plot "result_associativity_L1" using 2:4 smooth unique w linespoints title ""

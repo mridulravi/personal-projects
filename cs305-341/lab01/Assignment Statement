@@ -1,0 +1,22 @@
+There are two parts to this lab session.
+
+PART 1: Required Commands are given alongside
+
+Number of cores                     		grep "^core id" /proc/cpuinfo | sort -u | wc -l
+Processor clock rate                		lscpu | grep "MHz"
+Number of cache levels              		lscpu | grep "cache"
+Capacity of cache at each level     		lscpu | grep "cache"
+Design parameters of each cache                 sudo dmidecode -t cache
+Amount of main memory               		cat /proc/meminfo
+Physical address size               		grep physical /proc/cpuinfo
+Capacity of hard disk               		df -H
+
+PART 2: 
+	Untar the 110040083_lab1.tgz and cd to 110040083_lab1.
+	To compile the program:     g++ PART_2.cpp -lX11 -lpthread
+	To run the program: 	    ./a.out
+
+PART 3:
+	To compile the program:     g++ PART_3.cpp
+	To run the program: 	    ./a.out
+

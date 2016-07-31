@@ -1,0 +1,23 @@
+1) intel instruction set
+	a) comparison b/w x86 & x86-64 : 64 bit rax, rsp, rbp   ; 32 bit eax, esp, ebp
+	b) registers : % , constant : $
+	
+		
+2) how the stack looks like, what happens when a fxn is called
+	a) sp, bp .... 
+	
+3) canary defense :- xor .... , __stack_check_fail function called, used when a char array is declared but not when an int or int array is declared
+
+
+
+studied:
+
+1) to limit no. of opcodes, same opcodes is used for 8, 16 and 32 bit instructions
+2) what call, leave, ret instructions do
+3) q : 64 bit, l : 32 bit ; w : 16 ; b:8
+4) disabling cfi directives,  canary ... 
+
+------------------------------------------------------
+
+1) sp subtr. not shown in x86-64
+2) when canary is disabled, order in which local variables are alloted is reversed.

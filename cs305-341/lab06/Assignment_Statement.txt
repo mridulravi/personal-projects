@@ -1,0 +1,17 @@
+(a) "Introduction to WinDLX"
+
+(i) Write a short program to demonstrate stalls. Make sure forwarding is disabled in WinDLX (from Configuration menu in the menu bar)
+
+(ii) Run the same program with forwarding enabled. Observe the difference between number of stalls in both cases. (use the statistics feature to count stalls). If forwarding didn't help to reduce number of stalls, try to create example where it does help.
+
+(iii) Operations performed on integers take single cycle per stage. Operations on floating point numbers might need multiple cycles. Using a program of around 10 lines, try to increase the number of stalls in the program as much as you can. Don't use loops to just multiple stalls of an instruction, write a loopless program.
+
+(b) "Forwarding"
+
+There can be different types of forwarding in a pipeline. Give a sample program for each of these:
+
+(i) EX to EX
+
+(ii) MEM to EX
+
+(iii) MEM to ID

@@ -1,0 +1,162 @@
+Team:-
+
+1) Abhishek Gupta	110040067
+2) Mridul Ravi Jain	110040083
+
+
+#######################################################################################################
+
+Goal of the Experiment:-
+########################
+Determine the size of the cache L1, L2 and L3
+
+
+#######################################################################################################	
+
+Relevant files:-
+##############
+
+The code is in cache.cpp. The results are in cache_results_1 and cache_results_2. The results in cache_results_1 are array size(in KB) v/s time per access(in u/s), whereas the results in cache_results_2 are log(array size) v/s time per access, (time in us, base of log is 2 and array size is in KB)
+
+The graph corressponding to cache_results_1 is in cache_1.png
+The graph corressponding to cache_results_2 is in cache_2.png
+
+
+#######################################################################################################	
+
+Experiment Done:-
+#################
+
+	1) We make integer arrays of different sizes(n = 256, 512, 1024, ...)  	//(so the size they take is 256*4 B,512*4 B, ...)
+	2) We then populate them and then access them 100000 times and take the average time per access.
+	3) We plot a graph between 
+			---> array size(in KB) v/s time per access (in us) 
+			---> log(array size), (array size in KB, base of log is 2) v/s time per access
+			
+#######################################################################################################
+
+Results Obtained-
+
+	For 1st case(array size v/s time per access):-
+	
+		size: 1 KB------------time: 0.00973875
+		size: 2 KB------------time: 0.00396313
+		size: 4 KB------------time: 0.00370234
+		size: 8 KB------------time: 0.00337086
+		size: 16 KB------------time: 0.00320914
+		size: 32 KB------------time: 0.00313377
+		size: 64 KB------------time: 0.00560382
+		size: 128 KB------------time: 0.00565366
+		size: 256 KB------------time: 0.00622723
+		size: 512 KB------------time: 0.00753734
+		size: 1024 KB------------time: 0.00753007
+		size: 2048 KB------------time: 0.0078434
+		size: 3072 KB------------time: 0.00956518
+		size: 4096 KB------------time: 0.0116553
+		
+		
+		The graph corressponding to this result is in cache_1.png
+		
+	For 2nd case( log(array size) v/s time per access):-
+	
+		size: 0 KB------------time: 0.00973875
+		size: 1 KB------------time: 0.00396313
+		size: 2 KB------------time: 0.00370234
+		size: 3 KB------------time: 0.00337086
+		size: 4 KB------------time: 0.00320914
+		size: 5 KB------------time: 0.00313377
+		size: 6 KB------------time: 0.00560382
+		size: 7 KB------------time: 0.00565366
+		size: 8 KB------------time: 0.00622723
+		size: 9 KB------------time: 0.00753734
+		size: 10 KB------------time: 0.00753007
+		size: 11 KB------------time: 0.0078434
+		size: 11.584 KB------------time: 0.00956518
+		size: 12 KB------------time: 0.0116553
+
+		The graph corressponding to this result is in cache_2.png
+		
+		
+#######################################################################################################
+
+Challenges:-
+###########
+Sometimes the results do not come as exepected, that is sometimes it shows the size of L3 as 2048 Bytes, i.e, jump from 2048 to 3072 is more. This is due to the effect of other processes also occupying cache. 
+		
+		
+#######################################################################################################
+
+The effect of noise due to OS and other apps:-
+##############################################
+If there are many processes running, then they also occupies the cache. Hence sometimes show cache size which is lower than the original size.
+
+
+#######################################################################################################
+
+Results on other machines:-
+###########################
+
+	We ran our program on osl machine and the results are (array size v/s time per access)
+
+	size: 1 KB------------time: 0.00600438
+	size: 2 KB------------time: 0.00324187
+	size: 4 KB------------time: 0.00279484
+	size: 8 KB------------time: 0.00259609
+	size: 16 KB------------time: 0.00249461
+	size: 32 KB------------time: 0.00244336
+	size: 64 KB------------time: 0.00439851
+	size: 128 KB------------time: 0.00442408
+	size: 256 KB------------time: 0.00498728
+	size: 512 KB------------time: 0.00552084
+	size: 1024 KB------------time: 0.0055129
+	size: 2048 KB------------time: 0.00551952
+	size: 3072 KB------------time: 0.00553779
+	size: 4096 KB------------time: 0.0056557
+	size: 5120 KB------------time: 0.00579311
+	size: 6144 KB------------time: 0.00606208
+	size: 7168 KB------------time: 0.0063617
+
+	From this result we conclude that size of L1 D cache is 32 KB, L2 is 256 KB, L3 is 6144 KB on that machine.
+
+#######################################################################################################
+
+Conclusions drawn:-
+##################
+
+We know that if our cache is x bytes and if our array size is smaller than x bytes, then if we access the array many times then it will be brought in the cache and hence the access time will be less, but if the array size is such that it is greater than cache size, then at any instant complete array cannot be present in the cache and some part of it will lie in the lower level of memory, and hence need to be brought from there for accessing it. Hence the access time will be higher.
+
+We observe a jump in time per access on increasing array size from 32 KB to 64 KB and 256 KB to 512 KB.
+Hence the size of L1 data cache is 32 KB and the size of L2 cache is 256 KB.
+
+There is a jump in time per access on increasing array size from 2048 to 3072 KB and from 3072 to 4096 KB.
+Since the jump is greter from 3072 to 4096 KB, hence we deduce that the size of L3 cache is 3MB(3072 KB).
+
+Sometimes it also happens that if the cache size is 256 KB, then there is a major jump from 128 to 256 KB. This may arise from the fact that some other processes might also be using the cache and hence the whole 256 KB will not be available for our array. So even if the array size is 256KB, then also some part ot it will not be present in the array and hence need to be brought from lower level of memory, which will increase the access time.
+
+#######################################################################################################
+
+Output of lscpu for verifiation:-
+##############################
+
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                4
+On-line CPU(s) list:   0-3
+Thread(s) per core:    2
+Core(s) per socket:    2
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 42
+Stepping:              7
+CPU MHz:               800.000
+BogoMIPS:              4988.64
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              3072K
+NUMA node0 CPU(s):     0-3
+

@@ -1,0 +1,236 @@
+Team:-
+
+1) Abhishek Gupta	110040067
+2) Mridul Ravi Jain	110040083
+
+#######################################################################################################
+Goal of the Experiment:-
+########################
+
+Determine the associativity of L1 Data cache, L2, L3 cache
+
+#######################################################################################################
+Relevant Files:-
+#######
+We have made 3 folders, 1 for each L1, L2 and L3
+Each folder has the code(in c++), plot(graph), result and plotting script
+
+Experiment Done:-
+#################
+	
+For L1:-
+#########
+1) We know that the size of L1 Data cache on our machine is 32KB and the block size is 64B, therefore the no of blocks is 32*1024/64 = 512.
+2) Suppose the associativity is k, then we have 512/k sets and each set will have k blocks.
+3) Now consider our array(integer array, sufficiently large that it does not fit in L1) in terms of blocks, i.e. 1st block contains elements from a[0] to a[15], 2nd block contains elements from a[16] to a[31] and so on. The array is so large that it has more than 512 blocks.
+4) Now suppose that our 1st block of array is in 1st set(it doesn't matter whether we assume that it is on 1st or nth set), so our 2nd block will be in 2nd set, ......., (512/k)th block will be in (512/k)th set, ((512/k) + 1)th block will be in 1st set, and so on.
+5) Now we introduce a variable called step, which will take value from 1 and will double its value after each iteration.
+6) Now we access the first 512 blocks(i.e. array elements from index 0 to 512*16) of the array repeatedly, such that L1 gets completely filled with these blocks.
+7) Now we access 20 elements of the array, separated by step no. of blocks.
+8) If the step size is equal to (512/k), then all the accesses will be to the same set, and hence there will be (20 - k) misses, which will be very high (only if step = 2*512/k or i*512/k, then the misses will be more)
+9) So we measure the time taken for accessing these 20 elements for different values of the step. For each step size also, we do it many times and take the average, so as to filter out the effect of noise etc.
+10) By using the output data, we determine the value of step size, for which the jump in average time per access is maximum, let that value be s.
+11) Then our associaticy is 512/s
+
+
+For L2:-
+########
+
+Here also the approach is same as in case of L1, only some statistical data changes depending on the value of L2.
+
+1) We know that the size of L2 cache on our machine is 256KB and the block size is 64B, therefore the no of blocks is 256*1024/64 = 4096.
+2) Suppose the associativity is k, then we have 4096/k sets and each set will have k blocks.
+3) Now consider our array(integer array, sufficiently large that it does not fit in L2) in terms of blocks, i.e. 1st block contains elements from a[0] to a[15], 2nd block contains elements from a[16] to a[31] and so on. The array is so large that it has more than 4096 blocks.
+4) Now suppose that our 1st block of array is in 1st set(it doesn't matter whether we assume that it is on 1st or nth set), so our 2nd block will be in 2nd set, ......., (4096/k)th block will be in (4096/k)th set, ((4096/k) + 1)th block will be in 1st set, and so on.
+5) Now we introduce a variable called step, which will take value from 1 and will double its value after each iteration.
+6) Now we access the first 4096 blocks(i.e. array elements from index 0 to 4096*16) of the array repeatedly(in reverse order), such that L1 gets completely filled with blocks from 1 to 512(i.e. with array elements having index from 0 to 512*16) and L2 gets completely filled with blocks from 1 to 4096(i.e. with array elements having index from 0 to 4096*16)
+7) Now we access 40 elements of the array starting fom 513th line(i.e. index 512*16), separated by step no. of blocks. We are stating with 513th line because the first 512 lines will be present in L1 and we want to acces elements which are in L2 and not in L1. We will access these elements in order to get L2 miss.
+8) If the step size is equal to (4096/k), then all the accesses will be to the same set, and hence there will be (40 - k) misses, which will be very high (only if step = 2*4096/k or i*4096/k, then the misses will be more)
+9) So we measure the time taken for accessing these 40 elements for different values of the step. For each step size also, we do it many times and take the average, so as to filter out the effect of noise etc.
+10) By using the output data, we determine the value of step size, for which the jump in average time per access is maximum, let that value be s.
+11) Then our associaticy is 4096/s.
+
+
+For L3:-
+########
+
+Here also the approach is same as in case of L1 & L2, only some statistical data changes depending on the value of L3.
+
+1) We know that the size of L3 cache on our machine is 3MB and the block size is 64B, therefore the no of blocks is 3*1024*1024/64 = 48*1024 = 49152.
+2) Suppose the associativity is k, then we have 49152/k sets and each set will have k blocks.
+3) Now consider our array(integer array, sufficiently large that it does not fit in L3) in terms of blocks, i.e. 1st block contains elements from a[0] to a[15], 2nd block contains elements from a[16] to a[31] and so on. The array is so large that it has more than 49152 blocks.
+4) Now suppose that our 1st block of array is in 1st set(it doesn't matter whether we assume that it is on 1st or nth set), so our 2nd block will be in 2nd set, ......., (49152/k)th block will be in (49152/k)th set, ((49152/k) + 1)th block will be in 1st set, and so on.
+5) Now we introduce a variable called step, which will take value from 1024 and its value will increase by 1024 after each iteration.
+6) Now we access the first 49152 blocks(i.e. array elements from index 0 to 49152*16) of the array repeatedly(in reverse order), such that L1 gets completely filled with blocks from 1 to 512(i.e. with array elements having index from 0 to 512*16), L2 gets completely filled with blocks from 1 to 4096(i.e. with array elements having index from 0 to 4096*16) and L3 gets completely filled with blocks from 1 to 49152(i.e. with array elements having index from 0 to 49152*16)
+7) Now we access 20 elements of the array starting fom 4097th line(i.e. index 4096*16(=64*1024) ), separated by step no. of blocks. We are stating with 4097th line because the first 512 lines will be present in L1, first 4096 lines will be present in L2 and we want to access elements which are in L3 and not in L1 and L2. We will access these elements in order to get L3 miss.
+8) If the step size is equal to (49152/k), then all the accesses will be to the same set, and hence there will be misses, which will be very high.
+9) So we measure the time taken for accessing these 20 elements for different values of the step. For each step size also, we do it many times and take the average, so as to filter out the effect of noise etc.
+10) By using the output data, we determine the value of step size, let that value be s.
+11) Then our associativity is 49152/s.
+	
+#######################################################################################################
+Results Obtained:-
+		
+1) For L1 data cache associativity is 8, because step is equal to 64 and no of blocks = 512.
+	Therefore associativity = 512/64 = 8		
+
+		step---- 1 time_per_access----- 0.0051
+		step---- 2 time_per_access----- 0.00515
+		step---- 4 time_per_access----- 0.0055
+		step---- 8 time_per_access----- 0.00605
+		step---- 16 time_per_access----- 0.0057
+		step---- 32 time_per_access----- 0.00585
+		step---- 64 time_per_access----- 0.00805
+		step---- 128 time_per_access----- 0.0082
+
+
+2) For L2 associativity is 8, because step is equal to 512 and no of blocks = 4096.
+	Therefore associativity = 4096/512 = 8		
+
+		step---- 1 time_per_access----- 0.00545
+		step---- 2 time_per_access----- 0.0057
+		step---- 4 time_per_access----- 0.00485
+		step---- 8 time_per_access----- 0.0057
+		step---- 16 time_per_access----- 0.00425
+		step---- 32 time_per_access----- 0.00515
+		step---- 64 time_per_access----- 0.0076
+		step---- 128 time_per_access----- 0.00845
+		step---- 256 time_per_access----- 0.00795
+		step---- 512 time_per_access----- 0.0098
+		step---- 1024 time_per_access----- 0.01545
+
+
+3) For L3 associativity is 8, because step is equal to 4*1024 and no of blocks = 49152.
+	Therefore associativity = 49152/(4*1024) = 12		
+
+		step(in multiples of 1024)---- 1 time_per_access----- 0.016
+		step(in multiples of 1024)---- 2 time_per_access----- 0.02225
+		step(in multiples of 1024)---- 3 time_per_access----- 0.02675
+		step(in multiples of 1024)---- 4 time_per_access----- 0.03575
+		step(in multiples of 1024)---- 5 time_per_access----- 0.03575
+		step(in multiples of 1024)---- 6 time_per_access----- 0.0355
+		step(in multiples of 1024)---- 7 time_per_access----- 0.035
+		step(in multiples of 1024)---- 8 time_per_access----- 0.0355
+
+
+#######################################################################################################	
+Challenges:-
+##########
+Sometimes the results we get are not correct, maybe this is because of the effect that other processes are also running which affects the data present in the cache.
+
+#######################################################################################################	
+Compiler Optimizations:-
+#########################
+
+We are turning off compiler optimizations by using -O0 flag while compiling.
+For eg:- if our code is in associativity_L1.cpp, then we compile it using g++ -O0 associativity_L1.cpp	
+
+#######################################################################################################	
+Hardware Prefetching:-
+####################
+
+No we did not turn the hardware prefetching off.
+	
+#######################################################################################################	
+Resuts on other machines:-
+#########################
+We ran it via ssh on osl-32 also, the results are as follows:-
+
+For L1:-
+#######
+
+	step---- 1 time_per_access----- 0.0032
+	step---- 2 time_per_access----- 0.0035
+	step---- 4 time_per_access----- 0.0029
+	step---- 8 time_per_access----- 0.00395
+	step---- 16 time_per_access----- 0.00385
+	step---- 32 time_per_access----- 0.00435
+	step---- 64 time_per_access----- 0.006
+	step---- 128 time_per_access----- 0.0055
+
+
+For L2:-
+#######
+
+	step---- 1 time_per_access----- 0.00285
+	step---- 2 time_per_access----- 0.0036
+	step---- 4 time_per_access----- 0.00385
+	step---- 8 time_per_access----- 0.0035
+	step---- 16 time_per_access----- 0.00345
+	step---- 32 time_per_access----- 0.004
+	step---- 64 time_per_access----- 0.0061
+	step---- 128 time_per_access----- 0.0057
+	step---- 256 time_per_access----- 0.0068
+	step---- 512 time_per_access----- 0.0081
+	step---- 1024 time_per_access----- 0.0142
+
+
+For L3:-
+#######
+(Since the size of L3 is different on the OSL machine, it is 6MB, therefore we have to increase the no of times our loop was running)
+Here the value of the step size is 8*1024, therefore the associativity is 96*1024/(8*1024) = 12.
+
+	step(in multiples of 1024)---- 1 time_per_access----- 0.0105
+	step(in multiples of 1024)---- 2 time_per_access----- 0.01
+	step(in multiples of 1024)---- 3 time_per_access----- 0.00975
+	step(in multiples of 1024)---- 4 time_per_access----- 0.0145
+	step(in multiples of 1024)---- 5 time_per_access----- 0.01675
+	step(in multiples of 1024)---- 6 time_per_access----- 0.014
+	step(in multiples of 1024)---- 7 time_per_access----- 0.01475
+	step(in multiples of 1024)---- 8 time_per_access----- 0.01725
+	step(in multiples of 1024)---- 9 time_per_access----- 0.01425
+	step(in multiples of 1024)---- 10 time_per_access----- 0.0155
+	step(in multiples of 1024)---- 11 time_per_access----- 0.011
+
+
+#########################################################################################################
+
+The effect of noise due to the OS and other apps:-
+###################################################
+
+Other apps and OS also occupies some part of the cache and hence they affect our program, so we try to run our program with as few processes running as possible.
+
+##########################################################################################################
+
+Conclusions Drawn:-
+##################
+
+The associativity of L1 on our machine is 8.
+	The jump in step from 32 to 64 is maximum, hence the step size, s, is 64. Now the no of blocks in L1 is 512. Therefore associativity is 512/64 = 8.
+
+
+The associativity of L2 on our machine is 8.
+	There is a significant jump from 256 to 512, and hence we consider 512 as our step size. Now the no of blocks in L2 is 4096. Therefore associativity is 4096/512 = 8.
+	Note that the jump was higher from 512 to 1024 but we did not consider that as our value, because we have previously explained(in experiment part) that if our associativity is k, then there will be misses when step size is 4096/k, but the misses will be even more if the step size is i*4096/k, i>=2.
+	 
+	 
+The associativity of L3 on our machine is 12.
+	There is a significant jump from 3*1024 to 4*1024(also the value is max. at step_size = 4*1024). hence the value of step size is 4*1024. Therefore the associativity is 49152/(4*1024) = 12.
+	
+#######################################################################################################
+
+Output of lscpu for verifiation:-
+##############################
+
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                4
+On-line CPU(s) list:   0-3
+Thread(s) per core:    2
+Core(s) per socket:    2
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 42
+Stepping:              7
+CPU MHz:               800.000
+BogoMIPS:              4988.64
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              3072K
+NUMA node0 CPU(s):     0-3	
+

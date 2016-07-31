@@ -1,0 +1,14 @@
+	.file	"stackmap_test1.c"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+	pushl	%ebp
+	movl	%esp, %ebp
+	subl	$16, %esp
+	movl	$10, -4(%ebp)
+	leave
+	ret
+	.size	main, .-main
+	.ident	"GCC: (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3"
+	.section	.note.GNU-stack,"",@progbits

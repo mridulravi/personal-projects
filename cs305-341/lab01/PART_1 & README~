@@ -1,0 +1,170 @@
+There are two parts to this lab session.
+
+PART 1: Required Commands are given alongside
+
+Number of cores                     					grep "core id" /proc/cpuinfo | sort -u | wc -l
+Output : 	2
+
+Processor clock rate                					lscpu | grep "MHz"
+Output: 	CPU MHz:               800.000
+
+Number of cache levels & Capacity of cache at each level  		lscpu | grep "cache"
+Output: 
+		L1d cache:             32K
+		L1i cache:             32K
+		L2 cache:              256K
+		L3 cache:              3072K
+
+Design parameters of each cache                 			sudo dmidecode -t cache
+Output:
+
+# dmidecode 2.11
+SMBIOS 2.7 present.
+
+Handle 0x0019, DMI type 7, 19 bytes
+Cache Information
+	Socket Designation: L1 Cache
+	Configuration: Enabled, Not Socketed, Level 1
+	Operational Mode: Write Through
+	Location: Internal
+	Installed Size: 32 kB
+	Maximum Size: 32 kB
+	Supported SRAM Types:
+		Unknown
+	Installed SRAM Type: Unknown
+	Speed: Unknown
+	Error Correction Type: Parity
+	System Type: Data
+	Associativity: 8-way Set-associative
+
+Handle 0x001A, DMI type 7, 19 bytes
+Cache Information
+	Socket Designation: L1 Cache
+	Configuration: Enabled, Not Socketed, Level 1
+	Operational Mode: Write Through
+	Location: Internal
+	Installed Size: 32 kB
+	Maximum Size: 32 kB
+	Supported SRAM Types:
+		Unknown
+	Installed SRAM Type: Unknown
+	Speed: Unknown
+	Error Correction Type: Parity
+	System Type: Instruction
+	Associativity: 8-way Set-associative
+
+Handle 0x001B, DMI type 7, 19 bytes
+Cache Information
+	Socket Designation: L2 Cache
+	Configuration: Enabled, Not Socketed, Level 2
+	Operational Mode: Write Through
+	Location: Internal
+	Installed Size: 256 kB
+	Maximum Size: 256 kB
+	Supported SRAM Types:
+		Unknown
+	Installed SRAM Type: Unknown
+	Speed: Unknown
+	Error Correction Type: Multi-bit ECC
+	System Type: Unified
+	Associativity: 8-way Set-associative
+
+Handle 0x001C, DMI type 7, 19 bytes
+Cache Information
+	Socket Designation: L3 Cache
+	Configuration: Enabled, Not Socketed, Level 3
+	Operational Mode: Write Back
+	Location: Internal
+	Installed Size: 3072 kB
+	Maximum Size: 3072 kB
+	Supported SRAM Types:
+		Unknown
+	Installed SRAM Type: Unknown
+	Speed: Unknown
+	Error Correction Type: Multi-bit ECC
+	System Type: Unified
+	Associativity: 12-way Set-associative
+
+
+Amount of main memory               		cat /proc/meminfo
+Output:
+
+MemTotal:        3947624 kB
+MemFree:          186180 kB
+Buffers:         1218112 kB
+Cached:          1556828 kB
+SwapCached:            0 kB
+Active:           996200 kB
+Inactive:        2564224 kB
+Active(anon):     776984 kB
+Inactive(anon):   198192 kB
+Active(file):     219216 kB
+Inactive(file):  2366032 kB
+Unevictable:        1484 kB
+Mlocked:               0 kB
+SwapTotal:        262140 kB
+SwapFree:         262140 kB
+Dirty:               176 kB
+Writeback:             0 kB
+AnonPages:        786976 kB
+Mapped:           121916 kB
+Shmem:            188208 kB
+Slab:              94280 kB
+SReclaimable:      67604 kB
+SUnreclaim:        26676 kB
+KernelStack:        3080 kB
+PageTables:        25360 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     2235952 kB
+Committed_AS:    3061152 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      562396 kB
+VmallocChunk:   34359168736 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       69632 kB
+DirectMap2M:     4032512 kB
+
+Physical address size               		grep physical /proc/cpuinfo
+Output: 
+physical id	: 0
+address sizes	: 36 bits physical, 48 bits virtual
+physical id	: 0
+address sizes	: 36 bits physical, 48 bits virtual
+physical id	: 0
+address sizes	: 36 bits physical, 48 bits virtual
+physical id	: 0
+address sizes	: 36 bits physical, 48 bits virtual
+
+
+Capacity of hard disk               		df -H
+Output: 
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop0       25G   11G   13G  47% /
+udev            2.1G  4.1k  2.1G   1% /dev
+tmpfs           809M  906k  808M   1% /run
+none            5.3M     0  5.3M   0% /run/lock
+none            2.1G  160k  2.1G   1% /run/shm
+/dev/sda2       480G  434G   46G  91% /host
+
+
+
+
+
+PART 2: 
+	Untar the 110040083_lab1.tgz and cd to 110040083_lab1.
+	To compile the program:     g++ PART_2.cpp -lX11 -lpthread
+	To run the program: 	    ./a.out
+
+
+
+PART 3:
+	To compile the program:     g++ PART_3.cpp -lX11 -lpthread
+	To run the program: 	    ./a.out

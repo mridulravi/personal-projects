@@ -1,0 +1,19 @@
+Elliptic Curve Cryptography (ECC) – an asymmetric key cryptographic scheme - has gained wide acceptance 
+in the recent past. Operations on finite fields (an algebraic structure) are used in ECC operations such
+ as encryption, decryption, signature generation/verification and authentication. To accelerate these 
+time-consuming operations, developers sometimes program them in assembly language. 
+
+Two fields of particular interest are prime fields and binary fields.
+The goal of this lab assignment is to implement “addition” and “multiplication” in binary fields 
+(recall the lecture in class on these) on a MIPS simulator.
+
+PART A :
+The program should prompt the user to enter the following:
+n (the logarithm of the size of the binary field (to base 2))
+Two field elements (each in hex)
+The operation – whether + or *
+The irreducible polynomial (in hex) if the operation is *
+The program should output the result in hex.
+Assume that the size of the field is at most 2^16.
+
+PART B (to be given in the lab on 07-07-13 )
