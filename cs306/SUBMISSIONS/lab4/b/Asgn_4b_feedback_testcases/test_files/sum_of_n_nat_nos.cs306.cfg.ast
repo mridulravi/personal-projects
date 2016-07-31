@@ -1,0 +1,47 @@
+Program:
+   Procedure: main
+      Basic_Block 2
+         Asgn:
+            LHS (Name : n1)
+            RHS (Num : 21.00)
+         Asgn:
+            LHS (Name : c)
+            RHS (
+         FN CALL: sum_of_n1_no(
+            Name : n1))
+         RETURN <NOTHING>
+   Procedure: sum_of_n1_no
+      Basic_Block 2
+         Asgn:
+            LHS (Name : t)
+            RHS (Num : 0)
+         Asgn:
+            LHS (Name : i)
+            RHS (Num : 1)
+         Goto statement:
+            Successor: 4
+      Basic_Block 3
+         Asgn:
+            LHS (Name : t)
+            RHS (
+            Arith: PLUS
+               LHS (Name : t)
+               RHS (Name : i))
+         Asgn:
+            LHS (Name : i)
+            RHS (
+            Arith: PLUS
+               LHS (Name : i)
+               RHS (Num : 1))
+      Basic_Block 4
+         If_Else statement:
+            Condition: NE
+               LHS (
+            Condition: LE
+               LHS (Name : i)
+               RHS (Name : n))
+               RHS (Num : 0)
+            True Successor: 3
+            False Successor: 5
+      Basic_Block 5
+         RETURN Name : t

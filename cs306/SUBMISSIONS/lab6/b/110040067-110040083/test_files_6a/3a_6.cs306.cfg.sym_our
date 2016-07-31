@@ -1,0 +1,18 @@
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: p Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: z Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: y Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: x Type: FLOAT Entity Type: VAR (No offset assigned yet)
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: p Type: INT Entity Type: VAR Start Offset: 0 End Offset: 4
+   Name: z Type: FLOAT Entity Type: VAR Start Offset: 4 End Offset: 12
+   Name: y Type: FLOAT Entity Type: VAR Start Offset: 12 End Offset: 20
+   Name: x Type: FLOAT Entity Type: VAR Start Offset: 20 End Offset: 28

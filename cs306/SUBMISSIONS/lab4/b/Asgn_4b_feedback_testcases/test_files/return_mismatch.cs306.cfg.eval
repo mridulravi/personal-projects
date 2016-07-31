@@ -1,0 +1,24 @@
+Evaluating Program
+   Global Variables (before evaluating):
+   Evaluating Procedure << main >>
+      Local Variables (before evaluating):
+         x : undefined
+      Basic Block: 2
+   Evaluating Procedure << f1 >>
+      Local Variables (before evaluating):
+         a : 3
+      Basic Block: 2
+         RETURN Name : a
+      Local Variables (after evaluating) Function: << f1 >>
+         a : 3
+         return : 3
+         Asgn:
+            LHS (Name : x)
+            RHS (
+         FN CALL: f1(
+            Num : 3))
+         x : 3.00
+         RETURN <NOTHING>
+      Local Variables (after evaluating) Function: << main >>
+         x : 3.00
+   Global Variables (after evaluating):

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+option=$1
+
+for files in test_files/*cs306.cfg
+do
+	echo "Generating $option for $files"
+	./cfglp64 -$option $files
+done
+

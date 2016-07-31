@@ -1,0 +1,63 @@
+Program:
+   Procedure: add
+      Basic_Block 2
+         RETURN 
+            Arith: PLUS
+               LHS (
+            Arith: PLUS
+               LHS (Name : a)
+               RHS (Name : b))
+               RHS (Name : c)
+   Procedure: main
+      Basic_Block 2
+         Asgn:
+            LHS (Name : a)
+            RHS (Num : 1)
+         Asgn:
+            LHS (Name : b)
+            RHS (Num : 2)
+         Asgn:
+            LHS (Name : c)
+            RHS (Num : 3)
+         If_Else statement:
+            Condition: GT
+               LHS (Name : a)
+               RHS (Name : b)
+            True Successor: 3
+            False Successor: 6
+      Basic_Block 3
+         If_Else statement:
+            Condition: GT
+               LHS (Name : b)
+               RHS (Name : c)
+            True Successor: 4
+            False Successor: 5
+      Basic_Block 4
+         Asgn:
+            LHS (Name : d)
+            RHS (
+         FN CALL: add(
+            Name : a
+            Name : b
+            Name : c))
+         Goto statement:
+            Successor: 6
+      Basic_Block 5
+         Asgn:
+            LHS (Name : d)
+            RHS (
+         FN CALL: sub(
+            Name : c
+            Name : b
+            Name : a))
+      Basic_Block 6
+         RETURN <NOTHING>
+   Procedure: sub
+      Basic_Block 2
+         RETURN 
+            Arith: MINUS
+               LHS (
+            Arith: MINUS
+               LHS (Name : a)
+               RHS (Name : b))
+               RHS (Name : c)

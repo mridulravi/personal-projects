@@ -1,0 +1,69 @@
+  Procedure: main
+  Intermediate Code Statements
+
+label2:
+ load:	v0 <- i1
+ mtc1:	f2 <- v0
+ load.d:	f4 <- f1
+ add.d:	f6 <- f2 , f4
+ load.d:	f2 <- f1
+ load.d:	f4 <- f2
+ mul.d:	f8 <- f2 , f4
+ load:	v0 <- i2
+ mtc1:	f2 <- v0
+ mul.d:	f4 <- f8 , f2
+ load:	v0 <- i4
+ mtc1:	f2 <- v0
+ div.d:	f8 <- f4 , f2
+ load.d:	f2 <- f4
+ mul.d:	f4 <- f8 , f2
+ sub.d:	f2 <- f6 , f4
+ mfc1:	v0 <- f2
+ store:	a <- v0
+ load:	t0 <- i1
+ load:	t1 <- i2
+ div:	t2 <- t0 , t1
+ mtc1:	f2 <- t2
+ load.d:	f4 <- f2
+ div.d:	f6 <- f2 , f4
+ load.d:	f2 <- f1
+ mul.d:	f4 <- f6 , f2
+ load:	t0 <- i3
+ mtc1:	f2 <- t0
+ mul.d:	f6 <- f4 , f2
+ load:	t0 <- i3
+ mtc1:	f2 <- t0
+ add.d:	f4 <- f6 , f2
+ load.d:	f2 <- f2
+ sub.d:	f6 <- f4 , f2
+ mfc1:	t0 <- f6
+ store:	b <- t0
+ load:	t1 <- i1
+ mtc1:	f2 <- t1
+ load.d:	f4 <- f1
+ div.d:	f6 <- f2 , f4
+ load:	t1 <- i3
+ mtc1:	f2 <- t1
+ load.d:	f4 <- f3
+ mul.d:	f8 <- f2 , f4
+ load:	t1 <- i2
+ mtc1:	f2 <- t1
+ add.d:	f4 <- f8 , f2
+ load.d:	f2 <- f1
+ sub.d:	f8 <- f4 , f2
+ div.d:	f2 <- f6 , f8
+ mfc1:	t1 <- f2
+ store:	c <- t1
+ load:	t2 <- i3
+ mtc1:	f2 <- t2
+ load.d:	f4 <- f2
+ mul.d:	f6 <- f2 , f4
+ load.d:	f2 <- f3
+ sub.d:	f4 <- f6 , f2
+ load.d:	f2 <- f4
+ add.d:	f6 <- f4 , f2
+ load:	t2 <- i2
+ mtc1:	f2 <- t2
+ sub.d:	f4 <- f6 , f2
+ mfc1:	t2 <- f4
+ store:	d <- t2

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for files in test_files/*.cfg
+do
+	./cfglp64 -eval $files
+done

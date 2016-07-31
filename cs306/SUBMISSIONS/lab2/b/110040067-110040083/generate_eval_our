@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for files in test_files/*.cfg
+do
+	
+	newFile="$files.our_eval"
+	./cfglp -eval -d $files >$newFile
+done

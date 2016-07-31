@@ -1,0 +1,241 @@
+    executable_statement_list: assignment_statement_list
+    						 | assignment_statement_list if_goto_else_goto
+    						 | assignment_statement_list goto_stmt
+                             | assignment_statement_list RETURN
+                             ;
+                             
+    assignment_statement_list: /* empty */
+                             | assignment_statement_list
+                               assignment_statement
+                             ;
+                             
+        assignment_statement : variable '=' variable ';'
+                             | variable '=' constant ';'
+                             | variable '=' comparision ';'
+                             ;
+                             
+                    variable : NAME
+                             ;
+                             
+                    constant : INTEGER_NUMBER 
+                             ;
+                             
+                 comparision : variable operator comparision 
+                             | constant operator comparision 
+                             | variable operator variable
+                             | variable operator constant
+                             | constant operator variable
+                             | constant operator constant
+                             ;
+                             
+           if_else_goto_else : IF '(' comparision ')' goto_stmt ELSE goto_stmt
+                             ;
+                             
+           		   goto_stmt : GOTO '<' NAME INTEGER_NUMBER '>' ';'
+                             ;
+                             
+                    operator : '==' | '>=' | '<=' | '!=' | '>' | '<'
+                    		 ;
+                             
+                             
+                            
+//////////////////////////////
+scanner.ll
+..............
+
+if		{
+			store_token_name("IF");
+			return Parser::IF; 
+		}
+
+else		{ 
+			store_token_name("ELSE");
+			return Parser::ELSE; 
+		}
+		
+goto		{ 
+			store_token_name("GOTO");
+			return Parser::GOTO; 
+		}
+		
+[:{}();=!]	{
+			store_token_name("META CHAR");
+			return matched()[0];
+		}
+
+
+//////////////////////////////////////////////////////////////////////////
+////////////////////            LEVEL-2  			//////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+scanner.ll
+(in adddition to level-1; maintain the order as below)
+
+float	{
+			store_token_name("META CHAR");
+			return Parser::FLOAT;
+		}
+		
+double	{
+			store_token_name("META CHAR");
+			return Parser::DOUBLE;
+		}
+
+[-]?[[:digit:]]+"."[[:digit:]]+
+		{	//Always a optional "-" followed by 1 or more digits followed
+			//by a "." followed by exactly 2 digits 		
+			store_token_name("FNUM");
+			
+			ParserBase::STYPE__ * val = getSval();
+			val->float_value = atof(matched().c_str());
+
+			return Parser::FLOAT_NUMBER; 
+		}
+
+[-+*/]	{
+			store_token_name("ARITHOP");
+			return matched()[0];
+		}
+
+
+////////////////
+parser.yy
+(in adddition to level-1; maintain the order as below)
+
+%token DOUBLE
+%token FLOAT
+%token <float_value> FLOAT_NUMBER 
+
+declaration_statement:
+	INTEGER NAME ';'
+|	FLOAT NAME ';'
+;
+
+inner_comp:
+	inner_comp GE expression
+|	inner_comp GT expression
+| 	inner_comp LT expression
+|	inner_comp LE expression
+|	expresssion
+;
+
+expression:
+	expression '+' sub_expr
+|	expression '-' sub_expr
+|	sub_expr
+;
+
+sub_expr:
+	sub_expr '*' single_term
+|	sub_expr '/' single_term
+|	single_term
+;
+
+single_term:
+	variable
+|	constant
+|	'-'variable
+|	'(' FLOAT ')' expression
+|	'(' FLOAT ')' '(' expression ')'
+|	'(' INTEGER ')' expression
+|	'(' INTEGER ')' '(' expression ')'
+|	'(' DOUBLE ')' expression
+|	'(' DOUBLE ')' '(' expression ')'
+;
+
+
+constant:
+	INTEGER_NUMBER
+|	FLOAT_NUMBER
+;
+
+///////////////////////////////////////////////////
+Level-3 Interpreter
+.................................................
+scanner.ll to remain the same
+
+
+.................................................
+parser.yy
+
+
+program: declaration_statement_list
+		 functions_declaration_list
+		 functions_list;
+
+declaration_statement_list:/*empty*/ 
+						 | declaration_statement_list
+                           declaration_statement
+                         ;
+                         
+functions_declaration_list:/*empty*/ 
+						 | functions_declaration_list
+                           function_declaration
+                         ;
+
+
+function_declaration: return_type NAME '(' parameters_list ')' ';'
+					| return_type NAME '(' ')' ';'
+					;
+					  
+parameters_list: parameter
+			   | parameters_list ',' parameter
+			   ;
+			   
+parameter: 	INTEGER NAME 
+		 |	FLOAT NAME 
+		 ;
+		 
+return_type: INTEGER 
+		   | FLOAT
+		   | VOID ;
+
+functions_list: functions_list function 
+			  | function
+			  ;
+			  
+function: return_type function_name function_body
+		| function_name function_body;
+		;
+		
+function_name: NAME '(' parameters_list ')'
+			 | NAME '(' ')'
+             ;
+
+function_body: '{'
+                    declaration_statement_list
+                    basic_block_list
+               '}'
+             | '{'
+                    basic_block_list
+               '}'
+             ;
+             
+executable_statement_list: function_call_stmt
+						 | assignment_statement_list
+						 | assignment_statement_list if_goto_else_goto
+						 | assignment_statement_list goto_stmt
+                         | assignment_statement_list RETURN
+                         ;
+                         
+function_call_stmt: NAME '(' ')' ';'
+				  | NAME '(' passed_arguments_list ')' ';' 
+				  
+passed_arguments_list: comparison
+			   		 | passed_arguments_list ',' comparison
+			   		 ;
+			   		 
+single_term: function_call
+			......
+			.....
+			....
+			....
+			
+			
+functions_call: NAME '(' ')'
+			  | NAME '(' passed_arguments_list ')' 			
+                                          
+RETURN to be replaced by ----->
+
+return_stmt: RETURN
+		   | RETURN comparison;            

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for files in test_files/*.cfg
+do
+	myFile="$files.our_toks"
+	sirFile="$files.toks"
+	echo "Checking $sirFile"
+	diff -bB $myFile $sirFile
+	diff -bB $sirFile $myFile
+done

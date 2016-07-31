@@ -1,0 +1,19 @@
+  Procedure: main
+  Intermediate Code Statements
+
+label2:
+ iLoad:	v0 <- 5
+ store:	a <- v0
+ uminus:	t0 <- v0
+ store:	b <- t0
+ iLoad:	t1 <- 2
+ add:	t2 <- v0 , t1
+ store:	d <- t2
+ add:	t1 <- v0 , t0
+ store:	c <- t1
+ sub:	t3 <- v0 , t0
+ store:	c <- t3
+ mul:	t1 <- v0 , t0
+ store:	c <- t1
+ div:	t3 <- v0 , t0
+ store:	c <- t3

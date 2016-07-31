@@ -1,0 +1,30 @@
+  Procedure: main
+  Intermediate Code Statements
+
+label2:    	
+	iLoad:    	v0 <- 1
+	store:    	a <- v0
+	iLoad:    	v0 <- 2
+	store:    	b <- v0
+	iLoad:    	v0 <- 3
+	store:    	c <- v0
+	load:    	v0 <- a
+	load:    	t0 <- b
+	add:    	t1 <- v0 , t0
+	mtc1:    	f2 <- t1
+	store.d:    	d <- f2
+	load:    	v0 <- a
+	load:    	t0 <- b
+	sub:    	t1 <- v0 , t0
+	mtc1:    	f2 <- t1
+	store.d:    	d <- f2
+	load:    	v0 <- b
+	load:    	t0 <- c
+	mul:    	t1 <- v0 , t0
+	mtc1:    	f2 <- t1
+	store.d:    	d <- f2
+	load:    	v0 <- b
+	load:    	t0 <- c
+	div:    	t1 <- v0 , t0
+	mtc1:    	f2 <- t1
+	store.d:    	d <- f2

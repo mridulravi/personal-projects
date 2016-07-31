@@ -1,0 +1,86 @@
+
+	.text 			# The .text assembler directive indicates
+	.globl main		# The following is the code (as oppose to data)
+main:				# .globl makes main know to the 
+				# outside of the program.
+# Prologue begins 
+	sw $fp, 0($sp)		# Save the frame pointer
+	sub $fp, $sp, 4		# Update the frame pointer
+
+	sub $sp, $sp, 68		# Make space for the locals
+# Prologue ends
+
+
+label2:    	
+	lw $v0, -60($fp)
+	mtc1 $f2, $v0
+	l.d $f4, -40($fp)
+	add.d $f6, $f2, $f4
+	l.d $f2, -40($fp)
+	l.d $f4, -32($fp)
+	mul.d $f8, $f2, $f4
+	lw $v0, -56($fp)
+	mtc1 $f2, $v0
+	mul.d $f4, $f8, $f2
+	lw $v0, -48($fp)
+	mtc1 $f2, $v0
+	div.d $f8, $f4, $f2
+	l.d $f2, -16($fp)
+	mul.d $f4, $f8, $f2
+	sub.d $f2, $f6, $f4
+	mfc1 $v0, $f2
+	sw $v0, -12($fp)
+	lw $v0, -60($fp)
+	lw $t0, -56($fp)
+	div $t1, $v0, $t0
+	mtc1 $f2, $t1
+	l.d $f4, -32($fp)
+	div.d $f6, $f2, $f4
+	l.d $f2, -40($fp)
+	mul.d $f4, $f6, $f2
+	lw $v0, -52($fp)
+	mtc1 $f2, $v0
+	mul.d $f6, $f4, $f2
+	lw $v0, -52($fp)
+	mtc1 $f2, $v0
+	add.d $f4, $f6, $f2
+	l.d $f2, -32($fp)
+	sub.d $f6, $f4, $f2
+	mfc1 $v0, $f6
+	sw $v0, -8($fp)
+	lw $v0, -60($fp)
+	mtc1 $f2, $v0
+	l.d $f4, -40($fp)
+	div.d $f6, $f2, $f4
+	lw $v0, -52($fp)
+	mtc1 $f2, $v0
+	l.d $f4, -24($fp)
+	mul.d $f8, $f2, $f4
+	lw $v0, -56($fp)
+	mtc1 $f2, $v0
+	add.d $f4, $f8, $f2
+	l.d $f2, -40($fp)
+	sub.d $f8, $f4, $f2
+	div.d $f2, $f6, $f8
+	mfc1 $v0, $f2
+	sw $v0, -4($fp)
+	lw $v0, -52($fp)
+	mtc1 $f2, $v0
+	l.d $f4, -32($fp)
+	mul.d $f6, $f2, $f4
+	l.d $f2, -24($fp)
+	sub.d $f4, $f6, $f2
+	l.d $f2, -16($fp)
+	add.d $f6, $f4, $f2
+	lw $v0, -56($fp)
+	mtc1 $f2, $v0
+	sub.d $f4, $f6, $f2
+	mfc1 $v0, $f4
+	sw $v0, 0($fp)
+
+# Epilogue Begins
+	add $sp, $sp, 68
+	lw $fp, 0($sp)  
+	jr        $31		# Jump back to the operating system.
+# Epilogue Ends
+

@@ -1,0 +1,24 @@
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: f3 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f2 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f1 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: i3 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i2 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i1 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: iftmp0 Type: INT Entity Type: VAR (No offset assigned yet)
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: f3 Type: FLOAT Entity Type: VAR Start Offset: 0 End Offset: 8
+   Name: f2 Type: FLOAT Entity Type: VAR Start Offset: 8 End Offset: 16
+   Name: f1 Type: FLOAT Entity Type: VAR Start Offset: 16 End Offset: 24
+   Name: i3 Type: INT Entity Type: VAR Start Offset: 24 End Offset: 28
+   Name: i2 Type: INT Entity Type: VAR Start Offset: 28 End Offset: 32
+   Name: i1 Type: INT Entity Type: VAR Start Offset: 32 End Offset: 36
+   Name: iftmp0 Type: INT Entity Type: VAR Start Offset: 36 End Offset: 40

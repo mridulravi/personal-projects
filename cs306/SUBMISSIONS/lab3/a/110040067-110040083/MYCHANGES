@@ -1,0 +1,33 @@
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+#############################
+
+Assignment 3(a)
+
+This is our first submission for a Level-2 Parser. Primarily we have made changes in parseer.yy and scaner.ll files. Our program acceepts syntactically valid programs;  they may be semantically invalid (eg. undeclared variables, redeclarations of variables, using procedure names as variables, mixing floating and integer values etc.).
+
+ 
+Changes we made are as follows:
+
+1) Deleted the entire actions code in the parser.yy file.
+2) Added new token specifications for:
+     a. FLOAT_NUMBER
+     b. FLOAT
+     c. DOUBLE
+   in scanner.ll
+
+3) Modified the Level-1 grammer to Level-2 grammar. Some of the production rules of Level-1 grammer were retained, 
+   some were modified and some new production rules were added. 
+
+	We modified the production rules for
+	 a. single_term
+	 b. variable
+	 c. constant
+	 
+	And added some additional production rules for
+	 a. expression
+	 b. sub_expr
+	 c. data_type
+
+   Since we are currently implementing only the parser so actions have been specified for newly added grammar rules in 
+   the parser script.

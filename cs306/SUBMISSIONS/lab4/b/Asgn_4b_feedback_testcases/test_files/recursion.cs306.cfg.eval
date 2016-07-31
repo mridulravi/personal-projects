@@ -1,0 +1,123 @@
+Evaluating Program
+   Global Variables (before evaluating):
+   Evaluating Procedure << main >>
+      Local Variables (before evaluating):
+         a : undefined
+         b : undefined
+         c : undefined
+      Basic Block: 2
+         Asgn:
+            LHS (Name : a)
+            RHS (Num : 3)
+         a : 3
+         Asgn:
+            LHS (Name : b)
+            RHS (Num : 5)
+         b : 5
+   Evaluating Procedure << fn >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         c : 3
+         d : 5
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : c)
+               RHS (Num : 1)
+            True Successor: 3
+            False Successor: 4
+         Condition False : Goto (BB 4)
+      Basic Block: 4
+   Evaluating Procedure << fn >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         c : 2
+         d : 5
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : c)
+               RHS (Num : 1)
+            True Successor: 3
+            False Successor: 4
+         Condition False : Goto (BB 4)
+      Basic Block: 4
+   Evaluating Procedure << fn >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         c : 1
+         d : 5
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : c)
+               RHS (Num : 1)
+            True Successor: 3
+            False Successor: 4
+         Condition True : Goto (BB 3)
+      Basic Block: 3
+         Asgn:
+            LHS (Name : D1234)
+            RHS (Name : d)
+         D1234 : 5
+         Goto statement:
+            Successor: 5
+         GOTO (BB 5)
+      Basic Block: 5
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fn >>
+         D1234 : 5
+         c : 1
+         d : 5
+         return : 5
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: PLUS
+               LHS (
+         FN CALL: fn(
+            Arith: PLUS
+               LHS (Name : c)
+               RHS (Num : -1)
+            Name : d))
+               RHS (Name : d))
+         D1234 : 10
+      Basic Block: 5
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fn >>
+         D1234 : 10
+         c : 2
+         d : 5
+         return : 10
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: PLUS
+               LHS (
+         FN CALL: fn(
+            Arith: PLUS
+               LHS (Name : c)
+               RHS (Num : -1)
+            Name : d))
+               RHS (Name : d))
+         D1234 : 15
+      Basic Block: 5
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fn >>
+         D1234 : 15
+         c : 3
+         d : 5
+         return : 15
+         Asgn:
+            LHS (Name : c)
+            RHS (
+         FN CALL: fn(
+            Name : a
+            Name : b))
+         c : 15
+         RETURN <NOTHING>
+      Local Variables (after evaluating) Function: << main >>
+         a : 3
+         b : 5
+         c : 15
+   Global Variables (after evaluating):

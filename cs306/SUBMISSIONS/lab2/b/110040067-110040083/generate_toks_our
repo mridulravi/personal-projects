@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for files in test_files/*.cfg
+do
+	
+	newFile="$files.our_toks"
+	./cfglp -tokens -d $files >$newFile
+done

@@ -1,0 +1,40 @@
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+#############################
+
+Assignment 4(a)
+
+This is our first submission for a Level-3 Parser. Primarily we have made changes in parseer.yy and scaner.ll files. Our program acceepts syntactically valid programs;  they may be semantically invalid (eg. undeclared variables, redeclarations of variables, using procedure names as variables, mixing floating and integer values etc.).
+
+ 
+Changes we made(On level-2 grammer) are as follows:
+
+1) Deleted the entire actions code in the parser.yy file.
+2) Added new token specifications for
+
+	a. ,		(COMMA) 
+	b. void 	
+	
+	in scanner.ll
+
+3) Modified the Level-2 grammer to Level-3 grammer. Some of the production rules of Level-2 grammer were retained, some were modified and some new production rules were added. 
+
+	We modified the production rules for
+	a. program
+	b. assignment_statement_list
+	c. single_term
+	 
+	And added some additional production rules for
+	a. functions_declaration_list
+	b. function_declaration
+	c. parameters_list
+	d. parameter
+	e. functions_list
+	f. function
+	g. function_name
+	h. function_body
+	i. function_call_stmt
+	j. function_call
+	k. passed_arguments_list
+	l. return_stmt
+

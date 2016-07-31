@@ -1,0 +1,74 @@
+
+Production Rules
+(rule precedences determined from %prec or 1st terminal between parentheses):
+1: W (ALPHABET) ->  ALPHABET
+2: W (FALSE) ->  FALSE
+3: W ('(') ->  '(' W IMPLIES W ')'
+4: W_$ ->  W
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: ALPHABET
+   258: IMPLIES
+   259: FALSE
+    40: '('
+    41: ')'
+
+
+Grammar States: 
+State 0:
+4: W_$ ->  . W 
+  0:   On W to state 1
+  1:   On ALPHABET to state 2
+  2:   On FALSE to state 3
+  3:   On '(' to state 4
+
+
+State 1:
+4: W_$ -> W  . 
+
+
+State 2:
+1: W -> ALPHABET  . 
+  Reduce by 1: W -> ALPHABET  . 
+
+
+State 3:
+2: W -> FALSE  . 
+  Reduce by 2: W -> FALSE  . 
+
+
+State 4:
+3: W -> '('  . W IMPLIES W ')' 
+  0:   On W to state 5
+  1:   On ALPHABET to state 2
+  2:   On FALSE to state 3
+  3:   On '(' to state 4
+
+
+State 5:
+3: W -> '(' W  . IMPLIES W ')' 
+  0:   On IMPLIES to state 6
+
+
+State 6:
+3: W -> '(' W IMPLIES  . W ')' 
+  0:   On W to state 7
+  1:   On ALPHABET to state 2
+  2:   On FALSE to state 3
+  3:   On '(' to state 4
+
+
+State 7:
+3: W -> '(' W IMPLIES W  . ')' 
+  0:   On ')' to state 8
+
+
+State 8:
+3: W -> '(' W IMPLIES W ')'  . 
+  Reduce by 3: W -> '(' W IMPLIES W ')'  . 
+
+
+

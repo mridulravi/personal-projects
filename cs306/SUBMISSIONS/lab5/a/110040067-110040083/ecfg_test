@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for files in test_files/*.ecfg
+do
+	
+	#newFile="$files.output"
+	echo "Our icode for $files"
+	./cfglp -icode -d $files
+	echo "Sir icode for $files"
+	./cfglp64 -icode -d $files
+	echo "////////////////////////////////////////"
+done

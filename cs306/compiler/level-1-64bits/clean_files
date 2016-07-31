@@ -1,0 +1,15 @@
+#!/bin/bash
+
+options=$1
+
+for files in test_files/*.$options
+do
+	echo "Removing $files"
+	rm $files
+done
+
+for files in test_files/*."$options"_our
+do
+	echo "Removing $files"
+	rm $files
+done

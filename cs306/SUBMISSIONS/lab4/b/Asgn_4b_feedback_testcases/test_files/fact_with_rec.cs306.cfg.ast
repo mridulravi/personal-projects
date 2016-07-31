@@ -1,0 +1,47 @@
+Program:
+   Procedure: fact
+      Basic_Block 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+      Basic_Block 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+      Basic_Block 4
+         Asgn:
+            LHS (Name : D1234)
+            RHS (Num : 1.00)
+         Goto statement:
+            Successor: 6
+      Basic_Block 5
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+      Basic_Block 6
+         RETURN Name : D1234
+   Procedure: main
+      Basic_Block 2
+         Asgn:
+            LHS (Name : a)
+            RHS (Num : 10.00)
+         Asgn:
+            LHS (Name : c)
+            RHS (
+         FN CALL: fact(
+            Name : a))
+         RETURN Num : 0

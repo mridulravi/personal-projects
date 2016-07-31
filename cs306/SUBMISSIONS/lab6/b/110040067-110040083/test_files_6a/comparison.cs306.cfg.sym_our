@@ -1,0 +1,30 @@
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: f4 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f3 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f2 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f1 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: i4 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i3 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i2 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i1 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: iftmp0 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: iftmp1 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: f4 Type: FLOAT Entity Type: VAR Start Offset: 0 End Offset: 8
+   Name: f3 Type: FLOAT Entity Type: VAR Start Offset: 8 End Offset: 16
+   Name: f2 Type: FLOAT Entity Type: VAR Start Offset: 16 End Offset: 24
+   Name: f1 Type: FLOAT Entity Type: VAR Start Offset: 24 End Offset: 32
+   Name: i4 Type: INT Entity Type: VAR Start Offset: 32 End Offset: 36
+   Name: i3 Type: INT Entity Type: VAR Start Offset: 36 End Offset: 40
+   Name: i2 Type: INT Entity Type: VAR Start Offset: 40 End Offset: 44
+   Name: i1 Type: INT Entity Type: VAR Start Offset: 44 End Offset: 48
+   Name: iftmp0 Type: INT Entity Type: VAR Start Offset: 48 End Offset: 52
+   Name: iftmp1 Type: FLOAT Entity Type: VAR Start Offset: 52 End Offset: 60

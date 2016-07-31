@@ -1,0 +1,839 @@
+
+Production Rules
+(rule precedences determined from %prec or 1st terminal between parentheses):
+1: program ->  optional_declaration_list procedure_definition
+2: optional_declaration_list ->  <empty>
+3: optional_declaration_list ->  variable_declaration_list
+4: procedure_definition (NAME) ->  NAME '(' ')' #0001 '{' optional_variable_declaration_list #0002 basic_block_list '}'
+5: #0001 ->  <empty>
+6: #0002 ->  <empty>
+7: optional_variable_declaration_list ->  <empty>
+8: optional_variable_declaration_list ->  variable_declaration_list
+9: variable_declaration_list ->  variable_declaration
+10: variable_declaration_list ->  variable_declaration_list variable_declaration
+11: variable_declaration (';') ->  declaration ';'
+12: declaration (INTEGER) ->  INTEGER NAME
+13: declaration (FLOAT) ->  FLOAT NAME
+14: basic_block_list ->  basic_block_list basic_block
+15: basic_block_list ->  basic_block
+16: basic_block (BBNUM) ->  BBNUM ':' executable_statement_list
+17: executable_statement_list ->  assignment_statement_list
+18: executable_statement_list (RETURN) ->  assignment_statement_list RETURN ';'
+19: executable_statement_list ->  assignment_statement_list if_goto_else_goto
+20: executable_statement_list ->  assignment_statement_list goto_stmt
+21: assignment_statement_list ->  <empty>
+22: assignment_statement_list ->  assignment_statement_list assignment_statement
+23: assignment_statement (ASSIGN) ->  variable ASSIGN comparison ';'
+24: variable (NAME) ->  NAME
+25: constant (INTEGER_NUMBER) ->  INTEGER_NUMBER
+26: constant (FLOAT_NUMBER) ->  FLOAT_NUMBER
+27: comparison (NE) ->  comparison NE inner_comp
+28: comparison (EQ) ->  comparison EQ inner_comp
+29: comparison ->  inner_comp
+30: inner_comp (GE) ->  inner_comp GE expression
+31: inner_comp (GT) ->  inner_comp GT expression
+32: inner_comp (LE) ->  inner_comp LE expression
+33: inner_comp (LT) ->  inner_comp LT expression
+34: inner_comp ->  expression
+35: expression ('+') ->  expression '+' sub_expr
+36: expression ('-') ->  expression '-' sub_expr
+37: expression ->  sub_expr
+38: sub_expr ('*') ->  sub_expr '*' single_term
+39: sub_expr ('/') ->  sub_expr '/' single_term
+40: sub_expr ->  single_term
+41: single_term ->  variable
+42: single_term ('-') ->  '-' variable
+43: single_term ->  constant
+44: single_term ('(') ->  '(' data_type ')' single_term
+45: single_term ('-') ->  '-' '(' data_type ')' single_term
+46: single_term ('(') ->  '(' comparison ')'
+47: single_term ('-') ->  '-' '(' comparison ')'
+48: data_type (INTEGER) ->  INTEGER
+49: data_type (FLOAT) ->  FLOAT
+50: data_type (DOUBLE) ->  DOUBLE
+51: if_goto_else_goto (IF) ->  IF '(' comparison ')' goto_stmt ELSE goto_stmt
+52: goto_stmt (GOTO) ->  GOTO BBNUM ';'
+53: program_$ ->  program
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: INTEGER_NUMBER
+   258: BBNUM
+   259: FLOAT_NUMBER
+   260: NAME
+   261: RETURN
+   262: INTEGER
+   263: FLOAT
+   264: DOUBLE
+   265: IF
+   266: ELSE
+   267: GOTO
+   268: ASSIGN
+   269: EQ
+   270: NE
+   271: LT
+   272: LE
+   273: GE
+   274: GT
+    40: '('
+    41: ')'
+   123: '{'
+   125: '}'
+    59: ';'
+    58: ':'
+    43: '+'
+    45: '-'
+    42: '*'
+    47: '/'
+
+
+Grammar States: 
+State 0:
+53: program_$ ->  . program 
+  0:   On program to state 1
+  1:   On optional_declaration_list to state 2
+  2:   On variable_declaration_list to state 3
+  3:   On variable_declaration to state 4
+  4:   On declaration to state 5
+  5:   On INTEGER to state 6
+  6:   On FLOAT to state 7
+  Reduce by 2: optional_declaration_list ->  . 
+
+
+State 1:
+53: program_$ -> program  . 
+
+
+State 2:
+1: program -> optional_declaration_list  . procedure_definition 
+  0:   On procedure_definition to state 8
+  1:   On NAME to state 9
+
+
+State 3:
+3: optional_declaration_list -> variable_declaration_list  . 
+10: variable_declaration_list -> variable_declaration_list  . variable_declaration 
+  0:   On variable_declaration to state 10
+  1:   On declaration to state 5
+  2:   On INTEGER to state 6
+  3:   On FLOAT to state 7
+  Reduce by 3: optional_declaration_list -> variable_declaration_list  . 
+
+
+State 4:
+9: variable_declaration_list -> variable_declaration  . 
+  Reduce by 9: variable_declaration_list -> variable_declaration  . 
+
+
+State 5:
+11: variable_declaration -> declaration  . ';' 
+  0:   On ';' to state 11
+
+
+State 6:
+12: declaration -> INTEGER  . NAME 
+  0:   On NAME to state 12
+
+
+State 7:
+13: declaration -> FLOAT  . NAME 
+  0:   On NAME to state 13
+
+
+State 8:
+1: program -> optional_declaration_list procedure_definition  . 
+  Reduce by 1: program -> optional_declaration_list procedure_definition  . 
+
+
+State 9:
+4: procedure_definition -> NAME  . '(' ')' #0001 '{' optional_variable_declaration_list #0002 basic_block_list '}' 
+  0:   On '(' to state 14
+
+
+State 10:
+10: variable_declaration_list -> variable_declaration_list variable_declaration  . 
+  Reduce by 10: variable_declaration_list -> variable_declaration_list variable_declaration  . 
+
+
+State 11:
+11: variable_declaration -> declaration ';'  . 
+  Reduce by 11: variable_declaration -> declaration ';'  . 
+
+
+State 12:
+12: declaration -> INTEGER NAME  . 
+  Reduce by 12: declaration -> INTEGER NAME  . 
+
+
+State 13:
+13: declaration -> FLOAT NAME  . 
+  Reduce by 13: declaration -> FLOAT NAME  . 
+
+
+State 14:
+4: procedure_definition -> NAME '('  . ')' #0001 '{' optional_variable_declaration_list #0002 basic_block_list '}' 
+  0:   On ')' to state 15
+
+
+State 15:
+4: procedure_definition -> NAME '(' ')'  . #0001 '{' optional_variable_declaration_list #0002 basic_block_list '}' 
+  0:   On #0001 to state 16
+  Reduce by 5: #0001 ->  . 
+
+
+State 16:
+4: procedure_definition -> NAME '(' ')' #0001  . '{' optional_variable_declaration_list #0002 basic_block_list '}' 
+  0:   On '{' to state 17
+
+
+State 17:
+4: procedure_definition -> NAME '(' ')' #0001 '{'  . optional_variable_declaration_list #0002 basic_block_list '}' 
+  0:   On optional_variable_declaration_list to state 18
+  1:   On variable_declaration_list to state 19
+  2:   On variable_declaration to state 4
+  3:   On declaration to state 5
+  4:   On INTEGER to state 6
+  5:   On FLOAT to state 7
+  Reduce by 7: optional_variable_declaration_list ->  . 
+
+
+State 18:
+4: procedure_definition -> NAME '(' ')' #0001 '{' optional_variable_declaration_list  . #0002 basic_block_list '}' 
+  0:   On #0002 to state 20
+  Reduce by 6: #0002 ->  . 
+
+
+State 19:
+8: optional_variable_declaration_list -> variable_declaration_list  . 
+10: variable_declaration_list -> variable_declaration_list  . variable_declaration 
+  0:   On variable_declaration to state 10
+  1:   On declaration to state 5
+  2:   On INTEGER to state 6
+  3:   On FLOAT to state 7
+  Reduce by 8: optional_variable_declaration_list -> variable_declaration_list  . 
+
+
+State 20:
+4: procedure_definition -> NAME '(' ')' #0001 '{' optional_variable_declaration_list #0002  . basic_block_list '}' 
+  0:   On basic_block_list to state 21
+  1:   On basic_block to state 22
+  2:   On BBNUM to state 23
+
+
+State 21:
+4: procedure_definition -> NAME '(' ')' #0001 '{' optional_variable_declaration_list #0002 basic_block_list  . '}' 
+14: basic_block_list -> basic_block_list  . basic_block 
+  0:   On '}' to state 24
+  1:   On basic_block to state 25
+  2:   On BBNUM to state 23
+
+
+State 22:
+15: basic_block_list -> basic_block  . 
+  Reduce by 15: basic_block_list -> basic_block  . 
+
+
+State 23:
+16: basic_block -> BBNUM  . ':' executable_statement_list 
+  0:   On ':' to state 26
+
+
+State 24:
+4: procedure_definition -> NAME '(' ')' #0001 '{' optional_variable_declaration_list #0002 basic_block_list '}'  . 
+  Reduce by 4: procedure_definition -> NAME '(' ')' #0001 '{' optional_variable_declaration_list #0002 basic_block_list '}'  . 
+
+
+State 25:
+14: basic_block_list -> basic_block_list basic_block  . 
+  Reduce by 14: basic_block_list -> basic_block_list basic_block  . 
+
+
+State 26:
+16: basic_block -> BBNUM ':'  . executable_statement_list 
+  0:   On executable_statement_list to state 27
+  1:   On assignment_statement_list to state 28
+  Reduce by 21: assignment_statement_list ->  . 
+
+
+State 27:
+16: basic_block -> BBNUM ':' executable_statement_list  . 
+  Reduce by 16: basic_block -> BBNUM ':' executable_statement_list  . 
+
+
+State 28:
+17: executable_statement_list -> assignment_statement_list  . 
+18: executable_statement_list -> assignment_statement_list  . RETURN ';' 
+19: executable_statement_list -> assignment_statement_list  . if_goto_else_goto 
+20: executable_statement_list -> assignment_statement_list  . goto_stmt 
+22: assignment_statement_list -> assignment_statement_list  . assignment_statement 
+  0:   On RETURN to state 29
+  1:   On if_goto_else_goto to state 30
+  2:   On goto_stmt to state 31
+  3:   On assignment_statement to state 32
+  4:   On IF to state 33
+  5:   On GOTO to state 34
+  6:   On variable to state 35
+  7:   On NAME to state 36
+  Reduce by 17: executable_statement_list -> assignment_statement_list  . 
+
+
+State 29:
+18: executable_statement_list -> assignment_statement_list RETURN  . ';' 
+  0:   On ';' to state 37
+
+
+State 30:
+19: executable_statement_list -> assignment_statement_list if_goto_else_goto  . 
+  Reduce by 19: executable_statement_list -> assignment_statement_list if_goto_else_goto  . 
+
+
+State 31:
+20: executable_statement_list -> assignment_statement_list goto_stmt  . 
+  Reduce by 20: executable_statement_list -> assignment_statement_list goto_stmt  . 
+
+
+State 32:
+22: assignment_statement_list -> assignment_statement_list assignment_statement  . 
+  Reduce by 22: assignment_statement_list -> assignment_statement_list assignment_statement  . 
+
+
+State 33:
+51: if_goto_else_goto -> IF  . '(' comparison ')' goto_stmt ELSE goto_stmt 
+  0:   On '(' to state 38
+
+
+State 34:
+52: goto_stmt -> GOTO  . BBNUM ';' 
+  0:   On BBNUM to state 39
+
+
+State 35:
+23: assignment_statement -> variable  . ASSIGN comparison ';' 
+  0:   On ASSIGN to state 40
+
+
+State 36:
+24: variable -> NAME  . 
+  Reduce by 24: variable -> NAME  . 
+
+
+State 37:
+18: executable_statement_list -> assignment_statement_list RETURN ';'  . 
+  Reduce by 18: executable_statement_list -> assignment_statement_list RETURN ';'  . 
+
+
+State 38:
+51: if_goto_else_goto -> IF '('  . comparison ')' goto_stmt ELSE goto_stmt 
+  0:   On comparison to state 41
+  1:   On inner_comp to state 42
+  2:   On expression to state 43
+  3:   On sub_expr to state 44
+  4:   On single_term to state 45
+  5:   On variable to state 46
+  6:   On '-' to state 47
+  7:   On constant to state 48
+  8:   On '(' to state 49
+  9:   On NAME to state 36
+  10:   On INTEGER_NUMBER to state 50
+  11:   On FLOAT_NUMBER to state 51
+
+
+State 39:
+52: goto_stmt -> GOTO BBNUM  . ';' 
+  0:   On ';' to state 52
+
+
+State 40:
+23: assignment_statement -> variable ASSIGN  . comparison ';' 
+  0:   On comparison to state 53
+  1:   On inner_comp to state 42
+  2:   On expression to state 43
+  3:   On sub_expr to state 44
+  4:   On single_term to state 45
+  5:   On variable to state 46
+  6:   On '-' to state 47
+  7:   On constant to state 48
+  8:   On '(' to state 49
+  9:   On NAME to state 36
+  10:   On INTEGER_NUMBER to state 50
+  11:   On FLOAT_NUMBER to state 51
+
+
+State 41:
+51: if_goto_else_goto -> IF '(' comparison  . ')' goto_stmt ELSE goto_stmt 
+27: comparison -> comparison  . NE inner_comp 
+28: comparison -> comparison  . EQ inner_comp 
+  0:   On ')' to state 54
+  1:   On NE to state 55
+  2:   On EQ to state 56
+
+
+State 42:
+29: comparison -> inner_comp  . 
+30: inner_comp -> inner_comp  . GE expression 
+31: inner_comp -> inner_comp  . GT expression 
+32: inner_comp -> inner_comp  . LE expression 
+33: inner_comp -> inner_comp  . LT expression 
+  0:   On GE to state 57
+  1:   On GT to state 58
+  2:   On LE to state 59
+  3:   On LT to state 60
+  Reduce by 29: comparison -> inner_comp  . 
+
+
+State 43:
+34: inner_comp -> expression  . 
+35: expression -> expression  . '+' sub_expr 
+36: expression -> expression  . '-' sub_expr 
+  0:   On '+' to state 61
+  1:   On '-' to state 62
+  Reduce by 34: inner_comp -> expression  . 
+
+
+State 44:
+37: expression -> sub_expr  . 
+38: sub_expr -> sub_expr  . '*' single_term 
+39: sub_expr -> sub_expr  . '/' single_term 
+  0:   On '*' to state 63
+  1:   On '/' to state 64
+  Reduce by 37: expression -> sub_expr  . 
+
+
+State 45:
+40: sub_expr -> single_term  . 
+  Reduce by 40: sub_expr -> single_term  . 
+
+
+State 46:
+41: single_term -> variable  . 
+  Reduce by 41: single_term -> variable  . 
+
+
+State 47:
+42: single_term -> '-'  . variable 
+45: single_term -> '-'  . '(' data_type ')' single_term 
+47: single_term -> '-'  . '(' comparison ')' 
+  0:   On variable to state 65
+  1:   On '(' to state 66
+  2:   On NAME to state 36
+
+
+State 48:
+43: single_term -> constant  . 
+  Reduce by 43: single_term -> constant  . 
+
+
+State 49:
+44: single_term -> '('  . data_type ')' single_term 
+46: single_term -> '('  . comparison ')' 
+  0:   On data_type to state 67
+  1:   On comparison to state 68
+  2:   On INTEGER to state 69
+  3:   On FLOAT to state 70
+  4:   On DOUBLE to state 71
+  5:   On inner_comp to state 42
+  6:   On expression to state 43
+  7:   On sub_expr to state 44
+  8:   On single_term to state 45
+  9:   On variable to state 46
+  10:   On '-' to state 47
+  11:   On constant to state 48
+  12:   On '(' to state 49
+  13:   On NAME to state 36
+  14:   On INTEGER_NUMBER to state 50
+  15:   On FLOAT_NUMBER to state 51
+
+
+State 50:
+25: constant -> INTEGER_NUMBER  . 
+  Reduce by 25: constant -> INTEGER_NUMBER  . 
+
+
+State 51:
+26: constant -> FLOAT_NUMBER  . 
+  Reduce by 26: constant -> FLOAT_NUMBER  . 
+
+
+State 52:
+52: goto_stmt -> GOTO BBNUM ';'  . 
+  Reduce by 52: goto_stmt -> GOTO BBNUM ';'  . 
+
+
+State 53:
+23: assignment_statement -> variable ASSIGN comparison  . ';' 
+27: comparison -> comparison  . NE inner_comp 
+28: comparison -> comparison  . EQ inner_comp 
+  0:   On ';' to state 72
+  1:   On NE to state 55
+  2:   On EQ to state 56
+
+
+State 54:
+51: if_goto_else_goto -> IF '(' comparison ')'  . goto_stmt ELSE goto_stmt 
+  0:   On goto_stmt to state 73
+  1:   On GOTO to state 34
+
+
+State 55:
+27: comparison -> comparison NE  . inner_comp 
+  0:   On inner_comp to state 74
+  1:   On expression to state 43
+  2:   On sub_expr to state 44
+  3:   On single_term to state 45
+  4:   On variable to state 46
+  5:   On '-' to state 47
+  6:   On constant to state 48
+  7:   On '(' to state 49
+  8:   On NAME to state 36
+  9:   On INTEGER_NUMBER to state 50
+  10:   On FLOAT_NUMBER to state 51
+
+
+State 56:
+28: comparison -> comparison EQ  . inner_comp 
+  0:   On inner_comp to state 75
+  1:   On expression to state 43
+  2:   On sub_expr to state 44
+  3:   On single_term to state 45
+  4:   On variable to state 46
+  5:   On '-' to state 47
+  6:   On constant to state 48
+  7:   On '(' to state 49
+  8:   On NAME to state 36
+  9:   On INTEGER_NUMBER to state 50
+  10:   On FLOAT_NUMBER to state 51
+
+
+State 57:
+30: inner_comp -> inner_comp GE  . expression 
+  0:   On expression to state 76
+  1:   On sub_expr to state 44
+  2:   On single_term to state 45
+  3:   On variable to state 46
+  4:   On '-' to state 47
+  5:   On constant to state 48
+  6:   On '(' to state 49
+  7:   On NAME to state 36
+  8:   On INTEGER_NUMBER to state 50
+  9:   On FLOAT_NUMBER to state 51
+
+
+State 58:
+31: inner_comp -> inner_comp GT  . expression 
+  0:   On expression to state 77
+  1:   On sub_expr to state 44
+  2:   On single_term to state 45
+  3:   On variable to state 46
+  4:   On '-' to state 47
+  5:   On constant to state 48
+  6:   On '(' to state 49
+  7:   On NAME to state 36
+  8:   On INTEGER_NUMBER to state 50
+  9:   On FLOAT_NUMBER to state 51
+
+
+State 59:
+32: inner_comp -> inner_comp LE  . expression 
+  0:   On expression to state 78
+  1:   On sub_expr to state 44
+  2:   On single_term to state 45
+  3:   On variable to state 46
+  4:   On '-' to state 47
+  5:   On constant to state 48
+  6:   On '(' to state 49
+  7:   On NAME to state 36
+  8:   On INTEGER_NUMBER to state 50
+  9:   On FLOAT_NUMBER to state 51
+
+
+State 60:
+33: inner_comp -> inner_comp LT  . expression 
+  0:   On expression to state 79
+  1:   On sub_expr to state 44
+  2:   On single_term to state 45
+  3:   On variable to state 46
+  4:   On '-' to state 47
+  5:   On constant to state 48
+  6:   On '(' to state 49
+  7:   On NAME to state 36
+  8:   On INTEGER_NUMBER to state 50
+  9:   On FLOAT_NUMBER to state 51
+
+
+State 61:
+35: expression -> expression '+'  . sub_expr 
+  0:   On sub_expr to state 80
+  1:   On single_term to state 45
+  2:   On variable to state 46
+  3:   On '-' to state 47
+  4:   On constant to state 48
+  5:   On '(' to state 49
+  6:   On NAME to state 36
+  7:   On INTEGER_NUMBER to state 50
+  8:   On FLOAT_NUMBER to state 51
+
+
+State 62:
+36: expression -> expression '-'  . sub_expr 
+  0:   On sub_expr to state 81
+  1:   On single_term to state 45
+  2:   On variable to state 46
+  3:   On '-' to state 47
+  4:   On constant to state 48
+  5:   On '(' to state 49
+  6:   On NAME to state 36
+  7:   On INTEGER_NUMBER to state 50
+  8:   On FLOAT_NUMBER to state 51
+
+
+State 63:
+38: sub_expr -> sub_expr '*'  . single_term 
+  0:   On single_term to state 82
+  1:   On variable to state 46
+  2:   On '-' to state 47
+  3:   On constant to state 48
+  4:   On '(' to state 49
+  5:   On NAME to state 36
+  6:   On INTEGER_NUMBER to state 50
+  7:   On FLOAT_NUMBER to state 51
+
+
+State 64:
+39: sub_expr -> sub_expr '/'  . single_term 
+  0:   On single_term to state 83
+  1:   On variable to state 46
+  2:   On '-' to state 47
+  3:   On constant to state 48
+  4:   On '(' to state 49
+  5:   On NAME to state 36
+  6:   On INTEGER_NUMBER to state 50
+  7:   On FLOAT_NUMBER to state 51
+
+
+State 65:
+42: single_term -> '-' variable  . 
+  Reduce by 42: single_term -> '-' variable  . 
+
+
+State 66:
+45: single_term -> '-' '('  . data_type ')' single_term 
+47: single_term -> '-' '('  . comparison ')' 
+  0:   On data_type to state 84
+  1:   On comparison to state 85
+  2:   On INTEGER to state 69
+  3:   On FLOAT to state 70
+  4:   On DOUBLE to state 71
+  5:   On inner_comp to state 42
+  6:   On expression to state 43
+  7:   On sub_expr to state 44
+  8:   On single_term to state 45
+  9:   On variable to state 46
+  10:   On '-' to state 47
+  11:   On constant to state 48
+  12:   On '(' to state 49
+  13:   On NAME to state 36
+  14:   On INTEGER_NUMBER to state 50
+  15:   On FLOAT_NUMBER to state 51
+
+
+State 67:
+44: single_term -> '(' data_type  . ')' single_term 
+  0:   On ')' to state 86
+
+
+State 68:
+46: single_term -> '(' comparison  . ')' 
+27: comparison -> comparison  . NE inner_comp 
+28: comparison -> comparison  . EQ inner_comp 
+  0:   On ')' to state 87
+  1:   On NE to state 55
+  2:   On EQ to state 56
+
+
+State 69:
+48: data_type -> INTEGER  . 
+  Reduce by 48: data_type -> INTEGER  . 
+
+
+State 70:
+49: data_type -> FLOAT  . 
+  Reduce by 49: data_type -> FLOAT  . 
+
+
+State 71:
+50: data_type -> DOUBLE  . 
+  Reduce by 50: data_type -> DOUBLE  . 
+
+
+State 72:
+23: assignment_statement -> variable ASSIGN comparison ';'  . 
+  Reduce by 23: assignment_statement -> variable ASSIGN comparison ';'  . 
+
+
+State 73:
+51: if_goto_else_goto -> IF '(' comparison ')' goto_stmt  . ELSE goto_stmt 
+  0:   On ELSE to state 88
+
+
+State 74:
+27: comparison -> comparison NE inner_comp  . 
+30: inner_comp -> inner_comp  . GE expression 
+31: inner_comp -> inner_comp  . GT expression 
+32: inner_comp -> inner_comp  . LE expression 
+33: inner_comp -> inner_comp  . LT expression 
+  0:   On GE to state 57
+  1:   On GT to state 58
+  2:   On LE to state 59
+  3:   On LT to state 60
+  Reduce by 27: comparison -> comparison NE inner_comp  . 
+
+
+State 75:
+28: comparison -> comparison EQ inner_comp  . 
+30: inner_comp -> inner_comp  . GE expression 
+31: inner_comp -> inner_comp  . GT expression 
+32: inner_comp -> inner_comp  . LE expression 
+33: inner_comp -> inner_comp  . LT expression 
+  0:   On GE to state 57
+  1:   On GT to state 58
+  2:   On LE to state 59
+  3:   On LT to state 60
+  Reduce by 28: comparison -> comparison EQ inner_comp  . 
+
+
+State 76:
+30: inner_comp -> inner_comp GE expression  . 
+35: expression -> expression  . '+' sub_expr 
+36: expression -> expression  . '-' sub_expr 
+  0:   On '+' to state 61
+  1:   On '-' to state 62
+  Reduce by 30: inner_comp -> inner_comp GE expression  . 
+
+
+State 77:
+31: inner_comp -> inner_comp GT expression  . 
+35: expression -> expression  . '+' sub_expr 
+36: expression -> expression  . '-' sub_expr 
+  0:   On '+' to state 61
+  1:   On '-' to state 62
+  Reduce by 31: inner_comp -> inner_comp GT expression  . 
+
+
+State 78:
+32: inner_comp -> inner_comp LE expression  . 
+35: expression -> expression  . '+' sub_expr 
+36: expression -> expression  . '-' sub_expr 
+  0:   On '+' to state 61
+  1:   On '-' to state 62
+  Reduce by 32: inner_comp -> inner_comp LE expression  . 
+
+
+State 79:
+33: inner_comp -> inner_comp LT expression  . 
+35: expression -> expression  . '+' sub_expr 
+36: expression -> expression  . '-' sub_expr 
+  0:   On '+' to state 61
+  1:   On '-' to state 62
+  Reduce by 33: inner_comp -> inner_comp LT expression  . 
+
+
+State 80:
+35: expression -> expression '+' sub_expr  . 
+38: sub_expr -> sub_expr  . '*' single_term 
+39: sub_expr -> sub_expr  . '/' single_term 
+  0:   On '*' to state 63
+  1:   On '/' to state 64
+  Reduce by 35: expression -> expression '+' sub_expr  . 
+
+
+State 81:
+36: expression -> expression '-' sub_expr  . 
+38: sub_expr -> sub_expr  . '*' single_term 
+39: sub_expr -> sub_expr  . '/' single_term 
+  0:   On '*' to state 63
+  1:   On '/' to state 64
+  Reduce by 36: expression -> expression '-' sub_expr  . 
+
+
+State 82:
+38: sub_expr -> sub_expr '*' single_term  . 
+  Reduce by 38: sub_expr -> sub_expr '*' single_term  . 
+
+
+State 83:
+39: sub_expr -> sub_expr '/' single_term  . 
+  Reduce by 39: sub_expr -> sub_expr '/' single_term  . 
+
+
+State 84:
+45: single_term -> '-' '(' data_type  . ')' single_term 
+  0:   On ')' to state 89
+
+
+State 85:
+47: single_term -> '-' '(' comparison  . ')' 
+27: comparison -> comparison  . NE inner_comp 
+28: comparison -> comparison  . EQ inner_comp 
+  0:   On ')' to state 90
+  1:   On NE to state 55
+  2:   On EQ to state 56
+
+
+State 86:
+44: single_term -> '(' data_type ')'  . single_term 
+  0:   On single_term to state 91
+  1:   On variable to state 46
+  2:   On '-' to state 47
+  3:   On constant to state 48
+  4:   On '(' to state 49
+  5:   On NAME to state 36
+  6:   On INTEGER_NUMBER to state 50
+  7:   On FLOAT_NUMBER to state 51
+
+
+State 87:
+46: single_term -> '(' comparison ')'  . 
+  Reduce by 46: single_term -> '(' comparison ')'  . 
+
+
+State 88:
+51: if_goto_else_goto -> IF '(' comparison ')' goto_stmt ELSE  . goto_stmt 
+  0:   On goto_stmt to state 92
+  1:   On GOTO to state 34
+
+
+State 89:
+45: single_term -> '-' '(' data_type ')'  . single_term 
+  0:   On single_term to state 93
+  1:   On variable to state 46
+  2:   On '-' to state 47
+  3:   On constant to state 48
+  4:   On '(' to state 49
+  5:   On NAME to state 36
+  6:   On INTEGER_NUMBER to state 50
+  7:   On FLOAT_NUMBER to state 51
+
+
+State 90:
+47: single_term -> '-' '(' comparison ')'  . 
+  Reduce by 47: single_term -> '-' '(' comparison ')'  . 
+
+
+State 91:
+44: single_term -> '(' data_type ')' single_term  . 
+  Reduce by 44: single_term -> '(' data_type ')' single_term  . 
+
+
+State 92:
+51: if_goto_else_goto -> IF '(' comparison ')' goto_stmt ELSE goto_stmt  . 
+  Reduce by 51: if_goto_else_goto -> IF '(' comparison ')' goto_stmt ELSE goto_stmt  . 
+
+
+State 93:
+45: single_term -> '-' '(' data_type ')' single_term  . 
+  Reduce by 45: single_term -> '-' '(' data_type ')' single_term  . 
+
+
+

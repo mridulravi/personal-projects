@@ -1,0 +1,10 @@
+Program:
+   Procedure: f1
+      Basic_Block 2
+         RETURN <NOTHING>
+   Procedure: main
+      Basic_Block 2
+         FN CALL: f1(
+            Num : 3
+            Num : 4.00)
+         RETURN <NOTHING>

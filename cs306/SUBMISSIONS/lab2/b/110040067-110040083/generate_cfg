@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# for generating cfg
+for files in test_files/*.c
+do
+	temp=$(echo $files | cut -d / -f 2)
+	make -f Makefile.cfg FILE=$temp
+done
+
+rm test_files/NestedLoop.cs306.cfg
+rm test_files/InfiniteLoop.cs306.cfg
+# so these files have been created till now
+
+# now generate tokens for all the cfg files
+#for files in test_files/*.cfg
+#do
+#	./cfglp64 -tokens -d $files >sir.toks
+#	./cfglp -tokens -d $files >ours.toks
+#	diff -b sir.toks ours.toks
+#done

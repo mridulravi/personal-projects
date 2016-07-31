@@ -1,0 +1,26 @@
+  Procedure: main
+  Intermediate Code Statements
+
+label2:    	
+	iLoad.d:    	f2 <- 8.00
+	store.d:    	x <- f2
+	iLoad.d:    	f2 <- 911.01
+	store.d:    	y <- f2
+	iLoad:    	v0 <- 32
+	store:    	p <- v0
+	load.d:    	f2 <- x
+	load.d:    	f4 <- y
+	add.d:    	f6 <- f2 , f4
+	load:    	v0 <- p
+	mtc1:    	f2 <- v0
+	load.d:    	f4 <- x
+	mul.d:    	f8 <- f2 , f4
+	sub.d:    	f2 <- f6 , f8
+	store.d:    	z <- f2
+	load.d:    	f2 <- y
+	load.d:    	f4 <- x
+	div.d:    	f6 <- f2 , f4
+	load.d:    	f2 <- z
+	div.d:    	f4 <- f6 , f2
+	mfc1:    	v0 <- f4
+	store:    	p <- v0

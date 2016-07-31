@@ -1,0 +1,55 @@
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+#############################
+
+Assignment 6(b)
+
+This is our submission for a Level-2 Compiler. We have implemented a complete Compiler 
+(Compilation to intermidiate code(with lra) as well as spim code) for Level-2 grammer. 
+
+Primarily we have made changes in files: 
+1) parseer.yy
+2) scanner.ll 
+3) ast.hh
+4) ast.cc
+5) icode.hh
+6) icode.cc
+7) reg-alloc.cc
+
+We are supporting "-icode", "-spim" and "-lra" flags only
+ 
+Changes we made are as follows:
+
+1) Added new token specifications for:
+     a. double
+     b. float
+     c. arithmetic operators: PLUS, MINUS, MULT, DIV, UMINUS
+   in scanner.ll
+
+2) Modified the Level-1 grammer to Level-2 grammer. Some of the production rules of Level-1 grammer
+   were retained, some were modified and some new production rules were added. 
+
+	We modified rules for 
+	 a. Constant
+	 b. single_term
+
+	And added some additional production rules for
+	 a. expression
+	 b. sub_expr
+	 c. data_type
+   
+3) We have added 4 new classes - Relational_Ast, GoTo_Ast, Conditional_Ast and successor
+		- All these publicy inherit Ast class
+		- Relational_Ast is for relational operators
+		- Conditional_Ast is for if-else statements
+		- GoTo_Ast is for goto statements
+		- successor class is for storing the successor of the block(in case of goto statements and goto of if-else statements)
+	We also added Arithmetic_Ast and Type_Ast classes
+		
+4) We have added classes Arithmetic_IC_Stmt and Convert_IC_Stmt in icode.hh and defined their functions and constructors in icode.cc. We have also added instructions in spim_instruction_table
+
+5) We have also added floating point registers and added a new function get_new_float_register
+
+6) We have changed the compile_and_optimize_ast functions of the Ast classes in ast.cc files
+
+7) We have made changes in optimize_lra function in reg_code.cc

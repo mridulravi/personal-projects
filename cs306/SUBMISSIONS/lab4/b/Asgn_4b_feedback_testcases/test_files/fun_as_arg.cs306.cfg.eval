@@ -1,0 +1,117 @@
+Evaluating Program
+   Global Variables (before evaluating):
+   Evaluating Procedure << main >>
+      Local Variables (before evaluating):
+         x : undefined
+      Basic Block: 2
+   Evaluating Procedure << fun1 >>
+      Local Variables (before evaluating):
+         a : 5
+         b : 2
+         x : undefined
+      Basic Block: 2
+         Asgn:
+            LHS (Name : x)
+            RHS (
+            Arith: MINUS
+               LHS (Name : a)
+               RHS (Name : b))
+         x : 3
+   Evaluating Procedure << fun2 >>
+      Local Variables (before evaluating):
+         a : 3
+      Basic Block: 2
+         RETURN 
+            Arith: MULT
+               LHS (Name : a)
+               RHS (Name : a)
+      Local Variables (after evaluating) Function: << fun2 >>
+         a : 3
+         return : 9
+         RETURN 
+         FN CALL: fun2(
+            Name : x)
+      Local Variables (after evaluating) Function: << fun1 >>
+         a : 5
+         b : 2
+         return : 9
+         x : 3
+   Evaluating Procedure << fun1 >>
+      Local Variables (before evaluating):
+         a : 7
+         b : 3
+         x : undefined
+      Basic Block: 2
+         Asgn:
+            LHS (Name : x)
+            RHS (
+            Arith: MINUS
+               LHS (Name : a)
+               RHS (Name : b))
+         x : 4
+   Evaluating Procedure << fun2 >>
+      Local Variables (before evaluating):
+         a : 4
+      Basic Block: 2
+         RETURN 
+            Arith: MULT
+               LHS (Name : a)
+               RHS (Name : a)
+      Local Variables (after evaluating) Function: << fun2 >>
+         a : 4
+         return : 16
+         RETURN 
+         FN CALL: fun2(
+            Name : x)
+      Local Variables (after evaluating) Function: << fun1 >>
+         a : 7
+         b : 3
+         return : 16
+         x : 4
+   Evaluating Procedure << fun1 >>
+      Local Variables (before evaluating):
+         a : 9
+         b : 16
+         x : undefined
+      Basic Block: 2
+         Asgn:
+            LHS (Name : x)
+            RHS (
+            Arith: MINUS
+               LHS (Name : a)
+               RHS (Name : b))
+         x : -7
+   Evaluating Procedure << fun2 >>
+      Local Variables (before evaluating):
+         a : -7
+      Basic Block: 2
+         RETURN 
+            Arith: MULT
+               LHS (Name : a)
+               RHS (Name : a)
+      Local Variables (after evaluating) Function: << fun2 >>
+         a : -7
+         return : 49
+         RETURN 
+         FN CALL: fun2(
+            Name : x)
+      Local Variables (after evaluating) Function: << fun1 >>
+         a : 9
+         b : 16
+         return : 49
+         x : -7
+         Asgn:
+            LHS (Name : x)
+            RHS (
+         FN CALL: fun1(
+         FN CALL: fun1(
+            Num : 5
+            Num : 2)
+         FN CALL: fun1(
+            Num : 7
+            Num : 3)))
+         x : 49
+         RETURN <NOTHING>
+      Local Variables (after evaluating) Function: << main >>
+         x : 49
+   Global Variables (after evaluating):

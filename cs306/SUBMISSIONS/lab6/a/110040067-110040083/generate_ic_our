@@ -1,0 +1,17 @@
+#!/bin/bash
+
+for files in test_files/*cs306.cfg
+do
+	echo "Generating icode for $files"
+	./cfglp -icode $files
+done
+
+for files in test_files/*.ic
+do
+	mv $files "$files"_our
+done
+
+for files in test_files/*.spim
+do
+	mv $files "$files"_our
+done

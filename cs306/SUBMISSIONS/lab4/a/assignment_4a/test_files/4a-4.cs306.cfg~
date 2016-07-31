@@ -1,0 +1,24 @@
+int a;
+
+int f(int c);
+
+f(int c)
+{
+
+<bb 2>:
+   a = 5;
+   return c;
+
+}
+
+main()
+{
+   int a;
+
+<bb 2>:
+   a = 1
+   a = f(a);
+   return;
+
+}
+

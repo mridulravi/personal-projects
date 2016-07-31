@@ -1,0 +1,30 @@
+	Follow the following steps to execute the scrips:
+	
+	-- untar the assignement_3a.tar.gz
+	
+	-- make your current directory as assignment_3a/
+	 
+	-- copy tar file submitted by students to assignment_3a directory
+	
+	-- run "ass3a.sh" script with tar file of submission as argument
+	
+		..../assignment_3a$ ./ass3a.sh <rollno1-rollno2>.tar.gz
+		
+		Above command will display output of diff command ran over valid inputs
+		and for invalid inputs "PASS" and "FAIL" will be displayed
+		
+		
+----------------------------------------------------------------------------------
+
+	Grading of assignement:
+	
+	-- Assign '1' mark if diff for a valid test case is blank else '0'
+	
+	-- There are no invalid test cases
+	
+	-- If script fails in the starting check if name of directory not same as tar file, if so change name of directory to that 		   of tar file and run again. OR Untared directory contains further sub directories,in that case do the needfull.
+
+-----------------------------------------------------------------------------------
+
+	-- Also find attached the spreadsheet containing the TA-students mapping. I have filled some rows as a sample of 		   evaluation scheme. It is just sample not correct data
+	-- Just fill entries with your name and mail it back to me (Nikhil).

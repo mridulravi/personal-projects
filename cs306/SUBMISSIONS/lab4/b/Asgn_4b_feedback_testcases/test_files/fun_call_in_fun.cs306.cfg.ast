@@ -1,0 +1,34 @@
+Program:
+   Procedure: add
+      Basic_Block 2
+         Asgn:
+            LHS (Name : d)
+            RHS (
+         FN CALL: sub(
+            Name : a1
+            Name : b1))
+         RETURN 
+            Arith: PLUS
+               LHS (Name : a1)
+               RHS (Name : b1)
+   Procedure: main
+      Basic_Block 2
+         Asgn:
+            LHS (Name : a)
+            RHS (Num : 2.50)
+         Asgn:
+            LHS (Name : b)
+            RHS (Num : 3.30)
+         Asgn:
+            LHS (Name : c)
+            RHS (
+         FN CALL: add(
+            Name : a
+            Name : b))
+         RETURN Num : 0
+   Procedure: sub
+      Basic_Block 2
+         RETURN 
+            Arith: MINUS
+               LHS (Name : a1)
+               RHS (Name : b1)

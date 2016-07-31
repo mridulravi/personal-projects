@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for files in test_files/*.cfg
+do
+	myFile="$files.our_ast"
+	sirFile="$files.ast"
+	echo "Checking $sirFile"
+	diff -bB $sirFile $myFile
+	diff -bB $myFile $sirFile
+done

@@ -1,0 +1,54 @@
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+#############################
+
+Assignment 5(b)
+
+This is our final submission for a Level-1 Parser. We have implemented a complete interpreter 
+(including semantic checks and interpretation) for Level-1 grammer. 
+
+Primarily we have made changes in files: 
+1) parseer.yy
+2) scanner.ll 
+3) ast.hh
+4) ast.cc
+5) icode.hh
+6) icode.cc
+7) reg-alloc.cc
+
+Right now we are supporting -icode and -spim flag only
+ 
+Changes we made are as follows:
+
+1) Added new token specifications for:
+     a. if
+     b. else
+     c. goto
+     d. basic block
+     e. relational operators: LE, GE, EQ, NE, LT, GT
+   in scanner.ll
+
+2) Modified the Level-0 grammer to Level-1 grammer. Some of the production rules of Level-0 grammer
+   were retained, some were modified and some new production rules were added. 
+
+	We modified the production rules for
+	 a. executable_statement_list,
+	 b. assignment_statement
+	 c. basic_block
+	 
+	And added some additional production rules for
+	 a. comparison
+	 b. if_goto_else_goto
+	 c. goto_stmt
+	 d. operator
+	 e. single_term
+	 f. inner_comp
+   
+3) We have added 4 new classes - Relational_Ast, GoTo_Ast, Conditional_Ast and successor
+		- All these publicy inherit Ast class
+		- Relational_Ast is for relational operators
+		- Conditional_Ast is for if-else statements
+		- GoTo_Ast is for goto statements
+		- successor class is for storing the successor of the block(in case of goto statements and goto of if-else statements)
+		
+4) We have added classes Relational_IC_Stmt and Control_Flow_IC_Stmt in icode.hh and defined their functions and constructors in icode.cc. We have also added instructions in spim_instruction_table

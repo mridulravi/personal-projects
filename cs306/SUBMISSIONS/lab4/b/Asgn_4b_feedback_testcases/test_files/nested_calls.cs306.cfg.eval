@@ -1,0 +1,51 @@
+Evaluating Program
+   Global Variables (before evaluating):
+   Evaluating Procedure << main >>
+      Local Variables (before evaluating):
+         x : undefined
+      Basic Block: 2
+   Evaluating Procedure << f1 >>
+      Local Variables (before evaluating):
+         a : 3
+      Basic Block: 2
+         RETURN 
+            Arith: MULT
+               LHS (Name : a)
+               RHS (Num : 2)
+      Local Variables (after evaluating) Function: << f1 >>
+         a : 3
+         return : 6
+   Evaluating Procedure << f2 >>
+      Local Variables (before evaluating):
+         b : 6
+      Basic Block: 2
+         RETURN 
+            Arith: MULT
+               LHS (Name : b)
+               RHS (Num : 2)
+      Local Variables (after evaluating) Function: << f2 >>
+         b : 6
+         return : 12
+   Evaluating Procedure << f3 >>
+      Local Variables (before evaluating):
+         c : 12
+      Basic Block: 2
+         RETURN 
+            Arith: MULT
+               LHS (Name : c)
+               RHS (Num : 2)
+      Local Variables (after evaluating) Function: << f3 >>
+         c : 12
+         return : 24
+         Asgn:
+            LHS (Name : x)
+            RHS (
+         FN CALL: f3(
+         FN CALL: f2(
+         FN CALL: f1(
+            Num : 3))))
+         x : 24
+         RETURN <NOTHING>
+      Local Variables (after evaluating) Function: << main >>
+         x : 24
+   Global Variables (after evaluating):

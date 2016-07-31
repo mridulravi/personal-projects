@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for files in test_files/*.ecfg
+do
+	
+	newFile="$files.output"
+	echo "Our tokens for $files"
+	./cfglp -tokens -d $files >$newFile
+	echo "Sir tokens for $files"
+	./cfglp64 -tokens -d $files >$newFile
+	echo "Our ast for $files"
+	./cfglp -ast -d $files >$newFile
+	echo "Sir ast for $files"
+	./cfglp64 -ast -d $files >$newFile
+	echo "Our eval for $files"
+	./cfglp -eval -d $files >$newFile
+	echo "Sir eval for $files"
+	./cfglp64 -eval -d $files >$newFile
+done

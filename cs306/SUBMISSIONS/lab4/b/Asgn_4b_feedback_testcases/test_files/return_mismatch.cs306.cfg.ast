@@ -1,0 +1,12 @@
+Program:
+   Procedure: f1
+      Basic_Block 2
+         RETURN Name : a
+   Procedure: main
+      Basic_Block 2
+         Asgn:
+            LHS (Name : x)
+            RHS (
+         FN CALL: f1(
+            Num : 3))
+         RETURN <NOTHING>

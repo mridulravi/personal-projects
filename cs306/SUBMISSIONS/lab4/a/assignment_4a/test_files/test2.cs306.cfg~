@@ -1,0 +1,53 @@
+
+float div(int a, int b, int e, int f);
+int sub(int a, int b);
+int sum(int a, int b);
+
+div(int a, int b, int e, int f)
+{
+   float m;
+   int d;
+   int c;
+
+<bb 2>:
+   c = sum(a, b);
+   d = sub(d, e);
+   m = (float) (c / d);
+   return m;
+
+}
+
+main()
+{
+   float m;
+   int d;
+   int c;
+   int b;
+   int a;
+
+<bb 2>:
+   a = 10;
+   b = 9;
+   c = 20;
+   d = 21;
+   m = div(a, b, c, d);
+   return;
+
+}
+
+sub(int a, int b)
+{
+
+<bb 2>:
+   return a - b;
+
+}
+
+sum(int a, int b)
+{
+
+<bb 2>:
+   return a + b
+
+}
+

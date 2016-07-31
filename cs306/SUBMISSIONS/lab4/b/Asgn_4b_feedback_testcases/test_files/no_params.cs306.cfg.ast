@@ -1,0 +1,17 @@
+Program:
+   Procedure: f
+      Basic_Block 2
+         Asgn:
+            LHS (Name : a)
+            RHS (Num : 9)
+         RETURN Name : a
+   Procedure: main
+      Basic_Block 2
+         Asgn:
+            LHS (Name : a)
+            RHS (Num : 3)
+         Asgn:
+            LHS (Name : b)
+            RHS (
+         FN CALL: f())
+         RETURN <NOTHING>

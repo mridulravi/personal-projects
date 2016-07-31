@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for files in test_files/*.cfg
+do
+	myFile="$files.our_eval"
+	sirFile="$files.eval"
+	echo "Checking: $sirFile"
+	diff -bB $sirFile $myFile
+	diff -bB $myFile $sirFile
+done

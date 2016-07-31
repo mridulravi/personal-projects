@@ -1,0 +1,399 @@
+Evaluating Program
+   Global Variables (before evaluating):
+   Evaluating Procedure << main >>
+      Local Variables (before evaluating):
+         a : undefined
+         c : undefined
+      Basic Block: 2
+         Asgn:
+            LHS (Name : a)
+            RHS (Num : 10.00)
+         a : 10.00
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 10.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 9.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 8.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 7.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 6.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 5.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 4.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 3.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 2.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition False : Goto (BB 5)
+      Basic Block: 5
+   Evaluating Procedure << fact >>
+      Local Variables (before evaluating):
+         D1234 : undefined
+         f : 1.00
+      Basic Block: 2
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 0.00)
+            True Successor: 4
+            False Successor: 3
+         Condition False : Goto (BB 3)
+      Basic Block: 3
+         If_Else statement:
+            Condition: EQ
+               LHS (Name : f)
+               RHS (Num : 1.00)
+            True Successor: 4
+            False Successor: 5
+         Condition True : Goto (BB 4)
+      Basic Block: 4
+         Asgn:
+            LHS (Name : D1234)
+            RHS (Num : 1.00)
+         D1234 : 1.00
+         Goto statement:
+            Successor: 6
+         GOTO (BB 6)
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 1.00
+         f : 1.00
+         return : 1.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 2.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 2.00
+         f : 2.00
+         return : 2.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 6.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 6.00
+         f : 3.00
+         return : 6.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 24.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 24.00
+         f : 4.00
+         return : 24.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 120.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 120.00
+         f : 5.00
+         return : 120.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 720.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 720.00
+         f : 6.00
+         return : 720.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 5040.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 5040.00
+         f : 7.00
+         return : 5040.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 40320.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 40320.00
+         f : 8.00
+         return : 40320.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 362880.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 362880.00
+         f : 9.00
+         return : 362880.00
+         Asgn:
+            LHS (Name : D1234)
+            RHS (
+            Arith: MULT
+               LHS (
+         FN CALL: fact(
+            Arith: MINUS
+               LHS (Name : f)
+               RHS (Num : 1.00)))
+               RHS (Name : f))
+         D1234 : 3628800.00
+      Basic Block: 6
+         RETURN Name : D1234
+      Local Variables (after evaluating) Function: << fact >>
+         D1234 : 3628800.00
+         f : 10.00
+         return : 3628800.00
+         Asgn:
+            LHS (Name : c)
+            RHS (
+         FN CALL: fact(
+            Name : a))
+         c : 3628800.00
+         RETURN Num : 0
+      Local Variables (after evaluating) Function: << main >>
+         a : 10.00
+         c : 3628800.00
+         return : 0
+   Global Variables (after evaluating):

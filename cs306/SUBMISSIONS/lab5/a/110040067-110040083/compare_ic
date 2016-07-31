@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for files in test_files/*.ic
+do
+	echo "Comparing $files and "$files"_our"
+	diff -bB $files "$files"_our
+	diff -bB "$files"_our $files
+done

@@ -1,0 +1,45 @@
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+#############################
+
+This is our submission for a Level-1 Parser.
+Primarily we have made changes in parseer.yy and scaner.ll files. Our program acceepts syntactically valid programs;  they may be semantically invalid (eg. undeclared variables, redeclarations of variables, using procedure names as variables, mixing floating and integer values etc.). 
+
+Changes we made are as follows:
+
+1) Deleted the entire actions code in the parser.yy file.
+2) Added new token specifications (above level-0)for:
+     a. if
+     b. else
+     c. goto
+     d. basic block
+     e. relational operators: LE, GE, EQ, NE, LT, GT
+     e. double
+     f. float
+     g.	floating point numbers: FNUM
+     h.	[-+*/]
+     
+   in scanner.ll
+
+3) Modified the Level-0 grammer to Level-2 grammer. Some of the production rules of Level-0 grammer
+   were retained, some were modified and some new production rules were added. 
+
+	We modified the production rules for
+	 a. declaration_statement
+	 b. executable_statement_list,
+	 c. assignment_statement
+	 d. basic_block
+	 e.	variable
+	 f.	constant 
+	 
+	And added some additional production rules for
+	 a. comparison
+	 b. if_goto_else_goto
+	 c. goto_stmt
+	 d. operator
+	 e. single_term
+	 f. inner_comp
+	 g. expression
+	 h. sub_expr
+
+   Since we are currently implementing only the parser so actions have not been specified for newly added grammer rules in the parser script.

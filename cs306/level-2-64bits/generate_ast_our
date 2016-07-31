@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for files in test_files/*.cfg
+do
+	newFile="$files.our_ast"
+	./cfglp -ast -d $files >$newFile 
+done

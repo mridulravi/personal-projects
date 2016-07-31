@@ -1,0 +1,34 @@
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: d Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: c Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: b Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: a Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: f4 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f3 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f2 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: f1 Type: FLOAT Entity Type: VAR (No offset assigned yet)
+   Name: i4 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i3 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i2 Type: INT Entity Type: VAR (No offset assigned yet)
+   Name: i1 Type: INT Entity Type: VAR (No offset assigned yet)
+Program:
+
+Global Declarations:
+   Procedure: main, Return Type: void
+   Local Declarartions
+   Name: d Type: INT Entity Type: VAR Start Offset: 0 End Offset: 4
+   Name: c Type: INT Entity Type: VAR Start Offset: 4 End Offset: 8
+   Name: b Type: INT Entity Type: VAR Start Offset: 8 End Offset: 12
+   Name: a Type: INT Entity Type: VAR Start Offset: 12 End Offset: 16
+   Name: f4 Type: FLOAT Entity Type: VAR Start Offset: 16 End Offset: 24
+   Name: f3 Type: FLOAT Entity Type: VAR Start Offset: 24 End Offset: 32
+   Name: f2 Type: FLOAT Entity Type: VAR Start Offset: 32 End Offset: 40
+   Name: f1 Type: FLOAT Entity Type: VAR Start Offset: 40 End Offset: 48
+   Name: i4 Type: INT Entity Type: VAR Start Offset: 48 End Offset: 52
+   Name: i3 Type: INT Entity Type: VAR Start Offset: 52 End Offset: 56
+   Name: i2 Type: INT Entity Type: VAR Start Offset: 56 End Offset: 60
+   Name: i1 Type: INT Entity Type: VAR Start Offset: 60 End Offset: 64

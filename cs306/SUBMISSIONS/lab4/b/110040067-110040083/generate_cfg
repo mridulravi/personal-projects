@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# for generating cfg
+for files in test_files/*.c
+do
+	temp=$(echo $files | cut -d / -f 2)
+	make -f Makefile.cfg FILE=$temp
+done

@@ -1,0 +1,43 @@
+Program:
+   Procedure: main
+
+      Basic_Block 2
+         Asgn:
+            LHS (Name : prev1)
+            RHS (Num : 0.00)
+         Asgn:
+            LHS (Name : prev2)
+            RHS (Num : 1.00)
+         Asgn:
+            LHS (Name : n)
+            RHS (Num : 1.00)
+      Basic_Block 3
+         Asgn:
+            LHS (Name : next)
+            RHS (
+            Arith: PLUS
+               LHS (Name : prev1)
+               RHS (Name : prev2))
+         Asgn:
+            LHS (Name : prev1)
+            RHS (Name : prev2)
+         Asgn:
+            LHS (Name : prev2)
+            RHS (Name : next)
+         Asgn:
+            LHS (Name : n)
+            RHS (
+            Arith: PLUS
+               LHS (Name : n)
+               RHS (Num : 1.00))
+         If_Else statement:
+            Condition: NE
+               LHS (
+            Condition: LT
+               LHS (Name : n)
+               RHS (Num : 5.00))
+               RHS (Num : 0)
+            True Successor: 3
+            False Successor: 4
+      Basic_Block 4
+         Return <NOTHING>

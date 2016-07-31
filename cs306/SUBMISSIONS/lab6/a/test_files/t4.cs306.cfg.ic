@@ -1,0 +1,20 @@
+  Procedure: main
+  Intermediate Code Statements
+
+label2:    	
+	load:    	v0 <- b
+	iLoad:    	t0 <- 0
+	seq:    	t1 <- v0 , t0
+	load:    	v0 <- a
+	slt:    	t0 <- t1 , v0
+	load:    	v0 <- b
+	uminus:    	t1 <- v0
+	slt:    	v0 <- t0 , t1
+	load:    	t0 <- a
+	iLoad:    	t1 <- 0
+	seq:    	t2 <- t0 , t1
+	sgt:    	t0 <- v0 , t2
+	load:    	v0 <- b
+	uminus:    	t1 <- v0
+	sgt:    	v0 <- t0 , t1
+	store:    	a <- v0
