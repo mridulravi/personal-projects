@@ -1,0 +1,174 @@
+By Simple Modus Ponens:
+-----------------------
+(f->A)								// Done, by modus ponen
+
+(A->((A->f)->f))					// Done, by modus ponen
+
+(P->((P->f)->Q))					// Done, by modus ponen
+
+((P->Q)->((Q->f)->(P->f)))			// Done, by modus ponen
+
+(( P -> Q ) -> (((Q->f) -> P ) -> Q ))			// Done, by modus ponen
+
+
+By use of axioms:
+-----------------
+((( P -> (Q->f) )->f) -> ( (P->f) -> Q))			// Without human help
+
+ The entire proof is 
+L0:	(P->Q)					(L0 in proof with reasons)
+L1:	((Q->f)->P)					(L1 in proof with reasons)
+L2:	(Q->f)					(L2 in proof with reasons)
+L3:	P					(L3 in proof with reasons)
+L4:	Q					(L4 in proof with reasons)
+L5:	f					(L5 in proof with reasons)
+
+
+(((P->P) -> f) -> f)								// with human help, 
+													// when asked for human help, press 6 and give (P->P) for it to proved
+
+ The entire proof is 
+L0:	((P->P)->f)					(L0 in proof with reasons)
+L1:	(P->P)					(L1 in proof with reasons)
+L2:	f					(L2 in proof with reasons)
+
+																																
+((A->B)->((B->C)->(((A->C)->f)->f)))				// without human help, using brute force(continue on asking for human help)
+
+
+ The entire proof is 
+L0:	(A->B)					(L0 in proof with reasons)
+L1:	(B->C)					(L1 in proof with reasons)
+L2:	((A->C)->f)					(L2 in proof with reasons)
+L3:	((B->C)->(A->(B->C)))					(L17 in proof with reasons)
+L4:	(A->(B->C))					(L18 in proof with reasons)
+L5:	((A->(B->C))->((A->B)->(A->C)))					(L61 in proof with reasons)
+L6:	((A->B)->(A->C))					(L62 in proof with reasons)
+L7:	(A->C)					(L89 in proof with reasons)
+L8:	f					(L90 in proof with reasons)
+
+
+
+(((f->P)->f)->f)									// with human help, press 5 and then enter P
+
+ The entire proof is 
+L0:	((f->P)->f)					(L0 in proof with reasons)
+L1:	(f->P)					(L1 in proof with reasons)
+L2:	f					(L2 in proof with reasons)
+
+
+(((P -> (Q -> f) ) -> f) -> P )						// with human help, 
+													// first press 5 and then enter (Q->f)
+													// now enter 1 and give A as P, B as f and C (Q->f)
+													
+ The entire proof is 
+L0:	((P->(Q->f))->f)					(L0 in proof with reasons)
+L1:	(P->f)					(L1 in proof with reasons)
+L2:	(f->(Q->f))					(L32 in proof with reasons)
+L3:	((P->f)->((f->(Q->f))->(P->(Q->f))))	Applying transitivity with A as P and B as f and C as (Q->f)
+L4:	((f->(Q->f))->(P->(Q->f)))					(L53 in proof with reasons)
+L5:	(P->(Q->f))					(L54 in proof with reasons)
+L6:	f					(L55 in proof with reasons)
+													
+													
+
+((( P -> (Q->f) )->f) -> (( Q -> (P->f) )->f))		// with human help
+													// first press 6 and enter (P->((P->f)->f))
+													// now press 2 and enter A as Q and B as (P->f)
+													// now presss 1 abd enter A=P, B= ((P->f)->f) and C as (Q->f)
+													// this is (P^Q)->(Q^P)
+													
+ The entire proof is 
+L0:	((P->(Q->f))->f)					(L0 in proof with reasons)
+L1:	(Q->(P->f))					(L1 in proof with reasons)
+L2:	(P->((P->f)->f))					(L6 in proof with reasons)
+L3:	((Q->(P->f))->(((P->f)->f)->(Q->f)))					(L24 in proof with reasons)
+L4:	(((P->f)->f)->(Q->f))					(MP L1 and L3)
+L5:	((P->((P->f)->f))->((((P->f)->f)->(Q->f))->(P->(Q->f))))					 Applying transitivity with A as P and B as ((P->f)->f) and C as (Q->f)
+L6:	((((P->f)->f)->(Q->f))->(P->(Q->f)))					(L46 in proof with reasons)
+L7:	(P->(Q->f))					(L47 in proof with reasons)
+L8:	f					(L48 in proof with reasons)
+													
+Ours:--
+
+1)
+((P->Q)->(((P->f)->Q)->Q))
+	-- proved without human help (with the use of brute force)
+	-- for human help, apply transitivity on P, Q, f
+	
+ The entire proof is 
+L0:	(P->Q)					(L0 in proof with reasons)
+L1:	((P->f)->Q)					(L1 in proof with reasons)
+L2:	(Q->f)					(L2 in proof with reasons)
+L3:	((Q->f)->(P->(Q->f)))					(L19 in proof with reasons)
+L4:	(P->(Q->f))					(L20 in proof with reasons)
+L5:	((P->(Q->f))->((P->Q)->(P->f)))					(L61 in proof with reasons)
+L6:	((P->Q)->(P->f))					(L62 in proof with reasons)
+L7:	(P->f)					(L78 in proof with reasons)
+L8:	Q					(L79 in proof with reasons)
+L9:	f					(L80 in proof with reasons)	
+
+2)
+(((P->(Q->f))->f)->((P->f)->Q))
+	-- proved without human help
+	
+ The entire proof is 
+L0:	((P->(Q->f))->f)					(L0 in proof with reasons)
+L1:	(Q->f)					(L2 in proof with reasons)
+L2:	((Q->f)->(P->(Q->f)))					(L3 in proof with reasons)
+L3:	(P->(Q->f))					(L4 in proof with reasons)
+L4:	f					(L5 in proof with reasons)
+	
+	
+5) De Morgan's first law
+	~(P ^ Q ) -> ~P v ~Q
+	((((P->(Q->f))->f)->f) -> (((P->f)->f) -> (Q->f)))
+	-- without any human help
+	
+The entire proof is 
+L0:	(((P->(Q->f))->f)->f)					(L0 in proof with reasons)
+L1:	((P->f)->f)					(L1 in proof with reasons)
+L2:	Q					(L2 in proof with reasons)
+L3:	((((P->(Q->f))->f)->f)->(P->(Q->f)))					(L3 in proof with reasons)
+L4:	(P->(Q->f))					(L4 in proof with reasons)
+L5:	((P->(Q->f))->((P->Q)->(P->f)))					(L8 in proof with reasons)
+L6:	((P->Q)->(P->f))					(L9 in proof with reasons)
+L7:	(Q->(P->Q))					(L10 in proof with reasons)
+L8:	(P->Q)					(L11 in proof with reasons)
+L9:	(P->f)					(L12 in proof with reasons)
+L10:	f					(L13 in proof with reasons)
+
+	
+
+6) De Morgan's second law
+	~(P v Q) -> ~P ^ ~Q
+    ( (((P->f)->Q)->f) -> (((P->f) -> ((Q->f)->f))->f) )
+	-- with human help
+	-- Axiom3 with A = Q
+	-- Transitivity with A as (P->f), B as ((Q->f)->f) and C as Q
+	
+	 The entire proof is 
+L0:	(((P->f)->Q)->f)					(L0 in proof with reasons)
+L1:	((P->f)->((Q->f)->f))					(L1 in proof with reasons)
+L2:	(((Q->f)->f)->Q)					(L4 in proof with reasons)
+L3:	(((P->f)->((Q->f)->f))->((((Q->f)->f)->Q)->((P->f)->Q)))					(L5 in proof with reasons)
+L4:	((((Q->f)->f)->Q)->((P->f)->Q))					(L6 in proof with reasons)
+L5:	((P->f)->Q)					(L7 in proof with reasons)
+L6:	f					(L8 in proof with reasons)
+
+	
+9) ((P->Q)->(((P->f)->Q)->Q))
+	-- without any human help, after brute force press 8(i.e. continue without giving any help)
+	
+	 The entire proof is 
+L0:	(P->Q)					(L0 in proof with reasons)
+L1:	((P->f)->Q)					(L1 in proof with reasons)
+L2:	(Q->f)					(L2 in proof with reasons)
+L3:	((Q->f)->(P->(Q->f)))					(L19 in proof with reasons)
+L4:	(P->(Q->f))					(L20 in proof with reasons)
+L5:	((P->(Q->f))->((P->Q)->(P->f)))					(L61 in proof with reasons)
+L6:	((P->Q)->(P->f))					(L62 in proof with reasons)
+L7:	(P->f)					(L77 in proof with reasons)
+L8:	Q					(L78 in proof with reasons)
+L9:	f					(L79 in proof with reasons)
+

@@ -1,0 +1,102 @@
+110040083 Mridul Ravi Jain
+110040067 Abhishek Gupta
+
+
+
+#######################################################################################################
+
+                                       EXCERCISE 1 : Warmup 
+
+#######################################################################################################
+
+
+1. For ns-tcp.tcl:
+
+(a) TCP : 1040 Bytes
+    ack : 40 Bytes
+
+(b) FTP feeds TCP.
+
+(c) The queue-size at the intermediate node = 10
+
+(d) For n0-n1 link, Data rate = 1 Mbps
+                    Propagation delay = 50 ms 
+    For n1-n2 link, Data rate = 100 kbps
+                    Propagation delay = 5 ms 
+
+(e) TCP data packets dropped = 17
+    ack data packets dropped = 17
+
+
+2. For ns-simple.tcl
+
+(a) Two types of flows have been set-up as part of the simulation : UDP & TCP.
+
+(b) CBR application feeds UDP whereas FTP application feeds TCP.
+
+(c) By looking at the 'tcl' file, we could determine the data-rate for UDP only.
+    tcl file does not contain the information regarding the data-rate of TCP flow.
+    For UDP data rate is 1000 bytes per 10 ms which is 100 KBps
+
+(d) TCP flow ends at t = 4.082019 seconds (last row corresponding to ack packet flow)
+    UDP flow ends at t = 4.538706 seconds (last row corresponding to cbr packet flow)
+
+(e) Recieving throughput = Amount of data / Time taken to ricieve the data from 1st bit to the last bit
+                       
+    For TCP, recieving throughput = 283320 / (4.051671 - 1.030348) = 97.08 kbps
+    
+    For CBR, recieving throughput = 433000 / (4.538706 - 0.138706) = 98.41 kbps
+
+    Please look at the bash script-1 that performs the calculation and generates this data.
+
+
+
+
+#######################################################################################################
+
+                                       EXCERCISE 2: Metrics
+
+#######################################################################################################
+
+
+1. An interesting observation : For smaller data rates such as 40 kbps and 80 kbps as the source data rate is less, there are no dropped 
+                                packets. Whereas for higher data rates of 120 kbps and 160 kbps, there are many dropped packets. This  
+                                inference has been drwan by lookinf at hte ns2 simulation.
+
+2. We limit the queue at the bottleneck link (link-2) between node "R" and node "D" to 10 packets. 
+
+3. We run the experiment for 20sec.
+
+4. Please have a look at the submitted bash script-2.
+
+#######################################################################################################
+
+                                     REPORT ABOUT THE GRAPHS 
+
+#######################################################################################################
+
+
+1. Offered Load vs percentage packet loss : As Offered Load increases, percentage packet loss also increases. For smaller data rates such as 40 kbps and 80 kbps as the source data rate is less, there are no dropped packets. Whereas for higher data rates of 120 kbps and 160 kbps, there are many dropped packets because bandwidth of the link is less than the Offered Load.
+ 
+
+2. Offered Load vs Average end-to-end delay : For lower Offered Load the Average end-to-end delay is less, as no queueing happens at intermediate nodes. Whereas for high offered load the average end to end delay is high. In fact for 40 kbps, the delay experienced by every
+packet is same and is equal to  the Average end-to-end delay for that case.
+
+
+3. Offered load vs throughput : Throughput increases for data rate upto 100 kbps but after that it remains constant beacause of the bandwidth limitation of link.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

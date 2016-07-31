@@ -1,0 +1,199 @@
+Abhishek Gupta 		110040067
+Mridul Ravi Jain 	110040083 
+
+************************************
+OSL Machine IP address: 10.105.11.31
+************************************
+
+
+###################################################################################################################################
+
+Exercise 1: Adress Resolution Protocol (ARP)
+
+
+• Within subnet
+  `````````````
+1) We first open the terminal write the command "tcpdump -n host 10.105.11.22 -w /tmp/trace1.out"
+2) Next open another tab in terminal and write "ping 10.105.11.22" 
+
+	10.105.11.22 belongs to an osl machine which is within the host subnet. As you can see in the trace file 
+	our source host broadcasts the message "Who has 10.105.11.22 ?" and gets the reply "10.105.11.22  is at 70:54:b2:1b:32:b6"
+	Two arp messages were exchanged in this cases one of them was the broadcast request message and other one was reply arp 
+	message carrying the MAC address of 10.105.11.22. Thus arp entires correspond to remote host IP address which we contacted.
+	
+• Outside subnet
+  ``````````````
+1) We first open the terminal write the command "tcpdump -n host 10.7.130.250 -w /tmp/trace2.out"
+2) Next open another tab in terminal and write "ping 10.7.130.250" 
+
+	10.7.130.250 is outside our host subnet(hostel machine) and the packet goes via router. As host is outside the subnet no arp 
+	messages are generated. No arp entry corresponds to the remote host IP address we contacted.	
+	
+• Non existent host
+  `````````````````
+1) We first open the terminal write the command "tcpdump -n host 10.105.11.252 -w /tmp/trace3.out"
+2) Next open another tab in terminal and write "ping -c 1 10.105.11.252"
+
+	When we try to send a packet to a non existent host within the same subnet we do not get any reply. We limited the ping count 
+	to 1 time (otherwise the arp packets keep on generating), and in this case 3 ARP attempts were made to resolve the 
+	non-existing IP address. Last attempt is made at time 1.999880 sec.
+
+
+
+
+###################################################################################################################################
+
+Exercise 2: Gratuitous ARP
+
+1) To generate the arp traces use commands 
+	For Gratuitous reply "arping -A -c 5 -I eth0 10.105.11.31"
+			     "tcpdump -n host 10.105.11.31 -w /tmp/trace4.out"
+	For Gratuitous request "arping -U -c 5 -I eth0 10.105.11.31"
+			     "tcpdump -n host 10.105.11.31 -w /tmp/trace5.out"
+	
+2) In all Gratuitous ARP packets, destination MAC is broadcast(ff:ff:ff:ff:ff:ff) in Ethernet protocol. This ensures that gratuitous 
+   ARPs reach all hosts within the physical network.
+
+3) Difference between Gratuitous ARP request and reply: 
+   (i)  In request, Target MAC Address in ARP protocol is host's own MAC address whereas in reply,  Target MAC in ARP protocol is
+        broadcast (ff:ff:ff:ff:ff:ff). 
+   (ii) Opcode of reply is 2 and request has opcode 1.
+
+
+
+
+###################################################################################################################################
+
+Exercise 3: IP Fragmentation
+
+1) No fragmentaion: "tcpdump -n host 10.105.11.30 -w /tmp/trace6.out"
+		    "./sendUDP 10.105.11.30 200"
+
+	Total length: 242  bytes (on wire)
+	Identifier: 0x0000
+	Flags: 0x02
+	Fragment offset: 0
+
+2) Fragmentation: "tcpdump -n host 10.105.11.30 -w /tmp/trace7.out"
+		    "./sendUDP 10.105.11.30 2000"
+	
+	• Frame1:
+	
+	Total length: 1514 bytes (on wire)
+	Identifier: 0x1b21
+	Flags: 0x01
+	Fragment offset: 0
+		
+	• Frame2:
+			
+	Total length: 562 bytes (on wire)
+	Identifier: 0x1b21
+	Flags: 0x00
+	Fragment offset: 1480
+	
+	
+	
+###################################################################################################################################
+
+Exercise 4: Dynamic Host Configuration Protocol (DHCP)
+
+1) DHCP has an IP address : 10.129.1.53 and is listening at port 67
+
+2) No relay was involved in in forwarding the DHCP packets because of:
+	(i)  the relay agent IP address is 0.0.0.0 in DHCP discover and DHCP offer.
+	(ii) there is no hop in between the server and system as can be seen in the trace file.
+	 
+3) It replied to IP address:10.129.26.130
+   Reason: It already had this IP address and this time it is asking for a renewal of this IP address. Therefore destination replies
+   with this IP address. And flag is also set to 0x00.
+
+4) Offered IP address:10.129.26.130
+   It is valid for 10 min (figured out by Address Lease Time)
+
+5) Additional information has the client received from the DHCP server
+
+   Subnet Mask: 255.255.128.0
+   Router: 10.129.1.250
+   Domain name: it.iitb.ac.in, cse.iitb.ac.in
+   Domain Name Server: 10.129.1.1
+   IP address lease time: 10 min
+   DHCP Server Identifier: 10.129.1.53
+
+
+	
+###################################################################################################################################
+
+Exercise 5:  Internet Control Message Protocol (ICMP)
+
+• Type 0, code 0 : Echo reply (ping)
+
+	"tcpdump -n host 10.7.130.250 -w /tmp/trace8.out"
+	"ping -c 2 10.7.130.250"
+	
+	Please look at trace file 8.
+
+• Type 3, code 3 : Destination port unreachable
+
+	"tcpdump -n icmp -w /tmp/trace9.out"
+	"tracepath www.cse.iitb.ac.in"
+	
+	Please look at trace file 9.
+
+• Type 8, code 0 : Echo request (ping)
+
+
+	"tcpdump -n host 10.7.130.250 -w /tmp/trace8.out"
+	"ping -c 2 10.7.130.250"
+	
+	Please look at trace file 8.
+
+
+
+	
+###################################################################################################################################
+
+Exercise 6:  More Internet Control Message Protocol (ICMP)
+
+1) Command used:"tcpdump -n host 10.7.130.250 -w /tmp/trace10.out"
+		"tracepath 10.7.130.250"
+
+   Output:
+   
+    1:  osl-30.cse.iitb.ac.in                                 0.103ms pmtu 1500
+    1:  router.cse.iitb.ac.in                                 1.111ms 
+    1:  router.cse.iitb.ac.in                                 1.246ms 
+    2:  10.250.105.1                                          1.139ms 
+    3:  192.0.20.2                                            1.514ms 
+    4:  172.16.0.5                                            2.670ms 
+    5:  router-hostel7.hostel7.iitb.ac.in                     1.770ms reached
+        Resume: pmtu 1500 hops 5 back 251 
+
+
+2) ICMP message type/code is involved in the processes are:
+   Type: 11(Time-to-live exceeded) 
+   Code: 0(Time-to-live exceeded in transit)
+
+
+3) Tracepath traces a path to a designated network address, reporting on the "time to live" or TTL lag and maximum transmission units 
+   (MTU) along the way. 
+   First column shows TTL of the probe, followed by colon.
+   Second column shows the network hop.
+   Third column shows the round trip time from host to the corrsponding hop(RTT)
+   Additionally it shows the Path MTU whenever it changes.
+   Last line summarizes information about all the path to the destination
+   
+   How does this command works?
+   
+   TTL value is sent as 1. The value is decremented by First hop, and it becomes 0. So hop1 will send the host a packet informing about that packet 
+   is expired which helps host to know about hop1. 
+
+   Now, TTL value is sent as 2. The value is decremented by First hop and then by Second hop, and it becomes 0. So hop2 will send the host a packet 
+   informing about that packet is expired which helps host to know about hop2. 
+   
+   and so on.
+
+4) IP address of default router is 10.105.250.1
+
+
+
+

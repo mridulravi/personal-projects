@@ -1,0 +1,6 @@
+set term png
+set title 'Error v/s No. of Iterations'
+set ylabel 'Error'
+set xlabel 'No. of Iterations'
+set datafile separator ","
+plot "error_vs_numIterations_xor1.txt" using 1:2 smooth unique

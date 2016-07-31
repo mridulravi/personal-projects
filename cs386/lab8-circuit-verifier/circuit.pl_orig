@@ -1,0 +1,75 @@
+signal(x1, 0).
+signal(x2, 0).
+signal(x3, 0).
+signal(x4, 0).
+signal(x5, 0).
+
+
+
+connected(x1,in(1,a1)).
+connected(x2,in(2,a1)).
+connected(x3,in(1,a2)).
+connected(x4,in(2,a2)).
+connected(out(a1), in(1,a3)).
+connected(out(a2), in(2,a3)).
+connected(out(a3), in(1,a4)).
+connected(out(a4),x5).
+
+no_of_inputs(a1,2).
+no_of_inputs(a2,2).
+no_of_inputs(a3,2).
+no_of_inputs(a4,1).
+
+type(a1,'AND').
+type(a2,'XOR').
+type(a3,'OR').
+type(a4,'NOT').
+
+
+/*---------------------------------------------------------------*/
+
+count_1s(X,0,Y, Acc) :- Y is Acc.
+count_1s(X, N, Y, Acc) :- in(N, X, Val), ==(Val, 1), M is N-1, Acc1 is Acc+1, count_1s(X, M, Y, Acc1 ).
+count_1s(X, N, Y, Acc) :- in(N, X, Val), ==(Val, 0),M is N-1, count_1s(X, M, Y, Acc).
+
+
+/*----------------------------------------------------------------*/
+
+signal(X,Val) :-connected(out(Y),X),
+		out(Y,Val).
+
+in(N,X,Val) :-  connected(Y, in(N,X)), 
+		signal(Y,Val). 
+		
+in(N,X,Val) :-  connected(out(Y), in(N,X)), 
+		out(Y,Val).		
+
+
+/*in(N,X,Val) :- ( connected(in(N,X), out(Y)) ; connected(out(Y), in(N,X)) ), 
+		out(Y,Val).*/
+
+/*-----------------------------------------------------------------*/
+
+out(X,Val) :- type(X, 'OR'), no_of_inputs(X,N) , >(N,1), count_1s(X, N , Y, 0), >(Y,0), Val is 1.
+out(X,Val) :- type(X, 'OR'), no_of_inputs(X,N) , >(N,1), count_1s(X, N , Y, 0), ==(Y,0), Val is 0.
+
+out(X,Val) :- type(X, 'NOT'), no_of_inputs(X,N) , ==(N,1), count_1s(X, N , Y, 0), ==(Y,0), Val is 1. 	
+out(X,Val) :- type(X, 'NOT'), no_of_inputs(X,N) , ==(N,1), count_1s(X, N , Y, 0), ==(Y,1), Val is 0.
+
+out(X,Val) :- type(X, 'AND'), no_of_inputs(X,N) , >(N,1), count_1s(X, N , Y, 0), ==(Y,N), Val is 1.
+out(X,Val) :- type(X, 'AND'), no_of_inputs(X,N) , >(N,1), count_1s(X, N , Y, 0), <(Y,N), Val is 0.
+
+out(X,Val) :- type(X, 'XOR'), no_of_inputs(X,N) , >(N,1), count_1s(X, N , Y, 0), Val is Y mod 2.
+
+
+/*-----------------------------------------------------------------*/
+
+/*not sure
+type(X, 'OR'):- no_of_inputs(X,N) , 
+		count_1s(X, N , Y, 0), 
+		>(Y,0), 
+		out(X,1).
+
+*/
+
+

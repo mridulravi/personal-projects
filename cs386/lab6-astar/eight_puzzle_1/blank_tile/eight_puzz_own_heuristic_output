@@ -1,0 +1,58 @@
+The node chosen to be expanded from the open list: 0
+The node chosen to be expanded from the open list: 2
+The node chosen to be expanded from the open list: 3
+The node chosen to be expanded from the open list: 5
+The node chosen to be expanded from the open list: 7
+The node chosen to be expanded from the open list: 12
+The node chosen to be expanded from the open list: 16
+The node chosen to be expanded from the open list: 8
+The node chosen to be expanded from the open list: 18
+The node chosen to be expanded from the open list: 6
+The node chosen to be expanded from the open list: 17
+The node chosen to be expanded from the open list: 1
+The node chosen to be expanded from the open list: 32
+The node chosen to be expanded from the open list: 14
+The node chosen to be expanded from the open list: 30
+The node chosen to be expanded from the open list: 4
+The node chosen to be expanded from the open list: 28
+The node chosen to be expanded from the open list: 10
+The node chosen to be expanded from the open list: 52
+The node chosen to be expanded from the open list: 22
+The node chosen to be expanded from the open list: 15
+The node chosen to be expanded from the open list: 40
+The node chosen to be expanded from the open list: 26
+The node chosen to be expanded from the open list: 9
+The node chosen to be expanded from the open list: 11
+The node chosen to be expanded from the open list: 20
+The node chosen to be expanded from the open list: 21
+The node chosen to be expanded from the open list: 25
+The node chosen to be expanded from the open list: 36
+The node chosen to be expanded from the open list: 38
+The node chosen to be expanded from the open list: 46
+The node chosen to be expanded from the open list: 31
+The node chosen to be expanded from the open list: 56
+The node chosen to be expanded from the open list: 19
+The node chosen to be expanded from the open list: 66
+The node chosen to be expanded from the open list: 76
+The node chosen to be expanded from the open list: 58
+The node chosen to be expanded from the open list: 47
+The node chosen to be expanded from the open list: 34
+The node chosen to be expanded from the open list: 98
+The node chosen to be expanded from the open list: 79
+The node chosen to be expanded from the open list: 62
+The node chosen to be expanded from the open list: 175
+The node chosen to be expanded from the open list: 60
+The node chosen to be expanded from the open list: 39
+The node chosen to be expanded from the open list: 97
+The node chosen to be expanded from the open list: 138
+The node chosen to be expanded from the open list: 105
+The node chosen to be expanded from the open list: 102
+The node chosen to be expanded from the open list: 69
+The node chosen to be expanded from the open list: 174
+The node chosen to be expanded from the open list: 51
+The node chosen to be expanded from the open list: 166
+the optimal path is:
+0 1 4 10 22 39 69 119 
+optimal path cost is 7
+Number of iterations taken by the A* Algo =53
+Number of Parent Pointer Redirections =0

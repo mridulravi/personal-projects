@@ -1,0 +1,81 @@
+
+Production Rules
+(rule precedences determined from %prec or 1st terminal between parentheses):
+1: S ->  W
+2: W (ALPHABET) ->  ALPHABET
+3: W (FALSE) ->  FALSE
+4: W ('(') ->  '(' W IMPLIES W ')'
+5: S_$ ->  S
+
+
+Symbolic Terminal tokens:
+       error
+       EOF
+   257: ALPHABET
+   258: IMPLIES
+   259: FALSE
+    40: '('
+    41: ')'
+
+
+Grammar States: 
+State 0:
+5: S_$ ->  . S 
+  0:   On S to state 1
+  1:   On W to state 2
+  2:   On ALPHABET to state 3
+  3:   On FALSE to state 4
+  4:   On '(' to state 5
+
+
+State 1:
+5: S_$ -> S  . 
+
+
+State 2:
+1: S -> W  . 
+  Reduce by 1: S -> W  . 
+
+
+State 3:
+2: W -> ALPHABET  . 
+  Reduce by 2: W -> ALPHABET  . 
+
+
+State 4:
+3: W -> FALSE  . 
+  Reduce by 3: W -> FALSE  . 
+
+
+State 5:
+4: W -> '('  . W IMPLIES W ')' 
+  0:   On W to state 6
+  1:   On ALPHABET to state 3
+  2:   On FALSE to state 4
+  3:   On '(' to state 5
+
+
+State 6:
+4: W -> '(' W  . IMPLIES W ')' 
+  0:   On IMPLIES to state 7
+
+
+State 7:
+4: W -> '(' W IMPLIES  . W ')' 
+  0:   On W to state 8
+  1:   On ALPHABET to state 3
+  2:   On FALSE to state 4
+  3:   On '(' to state 5
+
+
+State 8:
+4: W -> '(' W IMPLIES W  . ')' 
+  0:   On ')' to state 9
+
+
+State 9:
+4: W -> '(' W IMPLIES W ')'  . 
+  Reduce by 4: W -> '(' W IMPLIES W ')'  . 
+
+
+

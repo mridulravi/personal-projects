@@ -1,0 +1,162 @@
+Team:-
+
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+
+EXERCISE 2:-
+
+Ques1)
+Machine's Hostname
+osl-37
+The command used to get this is -- cat /etc/hostname
+
+Machine's IP address
+10.105.11.37
+The command used to get this is -- cat /etc/network/interfaces | grep address | awk '{print $2;}'
+
+
+Ques2)
+Next hop router's IP address
+10.105.1.250
+The command used t0 get this is -- route | grep default | awk '{print $2}'
+
+Next hop router's mac address 
+00:19:56:ed:66:c1
+The command used to get is -- "arp" and then looking at the mac address of the row with the ip address of the next hop router
+
+
+Ques3)
+IP address of the DNS server
+10.105.1.7
+The command used is - cat /etc/resolv.conf
+
+The name of the DNS server is 
+rsl-jeeves.cse.iitb.ac.in
+The command used is -- host <ip-address of the DNS server>
+
+
+Ques4)
+The numbers in the /etc/protocols file represent the "protocol numbers" 
+or(in a better way)  "the official number for this protocol as it will appear within the IP header"
+
+The format in the /etc/protocols is
+Name	Number	Aliases
+
+
+Ques5)
+The port no's for the services are:-
+ssh	22
+ftp	21
+nfs	2049
+smtp	25
+
+The command used to get this is -- cat /etc/services | grep <service name> 
+
+
+
+EXERCISE 3:-
+
+Report:
+
+Ques1) tcpdump -n host 10.105.1.3 -w /tmp/abhishek/exercise3.out
+then we opened the url using - wget --no-proxy http://www.cse.iitb.ac.in/~chebrolu
+Then we closed the connection in tcpdump using ctrl-C
+
+Ques2(a)
+First use the route command to get the details of the gateways. There we find that for IP address 10.105.1.3 we don't have to go through any router, so in this case(i.e for CSE website) the next-hop is same as the final destination
+
+Next hop - cse.iitb.ac.in
+Ip address - 10.105.1.3
+The MAC address is - 02:01:02:03:02:09
+
+We opened the trace file in wireshark and looked at the first entry, all the details can be found in the options given below
+(For Eg: The MAC address can be found in the Ethernet II option )
+
+Ques2(b)
+Final destination - cse.iitb.ac.in
+Ip address - 10.105.1.3
+The MAC address is - 02:01:02:03:02:09
+
+We opened the trace file in wireshark and looked at the last entry, all the details can be found in the options given below
+(For Eg: The MAC address can be found in the Ethernet II option )
+
+
+Ques2(c)
+The fields used at the link(Ethernet), IP and TCP headers to demux the packet at the destination are as follows:-
+Link Layer - Frame Type
+IP Layer - Protocol
+TCP Layer - Port number
+
+Their values in this case(in decimal) is:-
+Link layer - IP(0x0800) = 2048
+IP layer - TCP (6) 
+TCP layer - http(80)
+
+
+
+EXERCISE 4:-
+
+Ques1)
+tcpdump -n -w /tmp/abhishek/exercise4.out
+ping www.google.com						// for icmp protocol
+ssh -X abhishekgupta@mars.cse.iitb.ac.in			// for ssh protocol
+
+Basically we open tcpdump and then we ping to get packets using icmp protocol, and login through ssh to get packets using ssh protocol.
+
+Ques2(a)
+The stack is as follows:-
+
+Ethernet II
+Address Resolution Protocol
+
+Ques2(b)
+The value of the field used in Ethernet header is ARP(0x0806) = 2054
+
+
+
+Ques3(a)
+Ethernet II
+Internet Protocol Version 4
+Internet Control Message Protocol
+
+
+Ques3(b)
+It is passed to IP protocol. It's value is 0x0800 = 2048 (in decimal)
+
+Ques3(c)
+The fields are :-
+Protocol - ICMP(1)
+
+
+Ques4(a)
+Source: 10.8.12.163 (10.8.12.163)
+Destination: 10.105.11.56 (10.105.11.56)
+
+Ques4(b)
+Source port: ssh (22)
+Destination port: 52777 (52777)
+
+Ques4(c)
+10.8.12.163
+
+
+
+EXERCISE 5:-
+
+Ques1)
+tcpdump -n host mars.cse.iitb.ac.in -w /tmp/abhishek/exercise5.out
+Terminal1: ssh -X abhishekgupta@mars.cse.iitb.ac.in
+Terminal2: ssh -X abhishekgupta@mars.cse.iitb.ac.in
+
+Ques2)
+The port number used by the remote machine for first and second ssh session is same and is 22.
+The source port number is different for both sessions (41833 for 1st one and 41834 for second one). So it distinguishes between the 2 sessions using their port no.
+
+Ques3)
+The TCP layer figures this out using the destination port. The destination port will be different for both (in my case, 1st terminal is at port 41833 while the second one is at port 41834)
+
+For First login:
+Destination port: 41833 (41833)
+
+For second login:
+Destination port: 41834 (41834)

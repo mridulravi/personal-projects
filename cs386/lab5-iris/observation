@@ -1,0 +1,84 @@
+Structure:- only 1 hidden layer
+	Output layer - 3 neurons
+	hidden layer - 5 neurons
+	input layer - 4 neurons
+
+Data 1
+
+threshold - 50
+momentum factor - 0.1
+initialization - random between -0.5 to 0.5
+accuracy - 1
+
+Data 2
+
+threshold - 30
+momentum factor - 0
+initialization - random between -0.5 to 0.5
+accuracy - 0.966667
+
+Data 3
+
+threshold - 50
+momentum factor - 0.1
+initialization - random between -0.5 to 0.5
+accuracy - 0.966667
+
+Data 4
+
+threshold - 70 
+momentum factor - 0.1
+initialization - random between -0.25 to 0.25
+learning rate - 0.3
+accuracy - 0.966667
+
+Data 5
+
+threshold - 50
+momentum factor - 0.1
+initialization - random between -0.5 to 0.5
+accuracy - 1
+
+##########################################################################################
+
+Data 11
+
+threshold - 50 
+momentum factor - 0.1
+learniMong rate - 0.1
+initialization - random between -0.25 to 0.25
+accuracy - 1
+
+Data 22
+
+threshold - 50 
+momentum factor - 0.1
+learning rate - 0.1
+initialization - random between -0.25 to 0.25
+accuracy - 0.933333
+
+Data 33
+
+threshold - 50 
+momentum factor - 0.1
+learning rate - 0.1
+initialization - random between -0.25 to 0.25
+accuracy - 0.966667
+
+Data 44
+
+threshold - 50 
+momentum factor - 0.1
+learning rate - 0.1
+initialization - random between -0.25 to 0.25
+accuracy - 1
+
+Data 55
+
+threshold - 50 
+momentum factor - 0.1
+learning rate - 0.1
+initialization - random between -0.25 to 0.25
+accuracy - 1
+
+

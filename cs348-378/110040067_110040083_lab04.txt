@@ -1,0 +1,98 @@
+Mridul Ravi Jain-110040083
+Abhishek Gupta-110040067
+
+-----------------------------------------------------------------------------------------
+                           Lab 04: Link layer preliminaries
+-----------------------------------------------------------------------------------------
+
+Exercise 2:
+
+1.  MAC Address: 70:54:d2:1b:32:c8
+    Command : ifconfig eth0 | grep -i "HWaddr"
+    
+    IPv4 Address: 10.105.11.33
+    Command : ifconfig eth0 | grep -i "inet addr"
+    
+    IPv6 Address: fe80::7254:d2ff:fe1b:32c8/64
+    Command : ifconfig eth0 | grep -i "inet6 addr"
+    
+2.  MTU stands for maximum transmission unit of a communicaton protocol. It is the size 
+	(in bytes) of the largest protocol data unit that the layer can pass onwards. (Ref Wikipedia)
+	MTU size of the interface : 1500 bytes
+	Command: ifconfig eth0 | grep -i MTU
+	
+3.	Ethernet of our machine is operating in FULL DUPLEX mode at a speed of 100 Mbps over Twisted 
+	pair cable.
+	
+	Commands: 
+	ethtool eth0 | grep -i Duplex
+	ethtool eth0 | grep -i speed
+	ethtool eth0 | grep -i port
+	
+4.  Recieved Packets: 15384385		Dropped Packets: 74412
+	Transmitted Packets: 4037448	Dropped Packets: 0
+	
+	Command:
+	ifconfig eth0 | grep -i TX
+	ifconfig eth0 | grep -i RX
+	
+5. 	On running the two commands: 
+	Received packets:
+	netstat -i    			 ifconfig eth0 | grep -i RX 
+	 15429200                      15429207 
+	
+	Transmitted packets:
+	netstat -i    			 ifconfig eth0 | grep -i TX 
+	 4088139                       4088135 
+
+	Reason: Since the interface is active, the difference arises because of the time difference 
+	between running the two commands. We figured this out by running the commands at different 
+	time gaps and noticed the difference between the number of transmitted and recieved packets.  
+	If you run both the commands simultaneously, i.e. "netstat -i && ifconfig eth0" then the 
+	difference in the no of packets will be 0.
+	
+	
+6.	Command: ifconfig eth0 | grep -i collision 
+	Result:	0
+	Reason: Our system is directly connected to switch in full duplex mode(STAR topology in full 
+	duplex mode) which results in no collisions
+	
+7.	Transmitted Bytes: 2542107905 (2.5 GB)
+	Command: ifconfig eth0 | grep -i "TX bytes"
+	
+	Recieved Bytes: 3802803498 (3.8 GB)
+	Command: ifconfig eth0 | grep -i "RX bytes"
+	
+8.	Manufacturer of the Ethernet card: PEGATRON CORPORATION
+	
+9.	lo stands for loopback interface. It is software loopback mechanism which may be used for 
+	performance analysis, software testing, and/or local communication. It does not have a MAC
+	address because it is a virtual network interface.
+	
+	Experiment:
+	(1) Open bash terminal and type command: tcpdump -i lo
+	(2) Now open another tab in terminal window and type: ping www.google.co.in
+	(3) Note any changes in first tab of the terminal.
+	(4) Now close connection to www.google.co.in and ping 127.0.0.1
+	(5) Note any changes in first tab of the terminal.
+	
+	Observations:
+	(1) When we ping www.google.co.in, tcpdump -i lo does not capture any traffic.
+	(2) When we ping 127.0.0.1(localhost), tcpdump -i lo shows numerous packets being captured.
+	
+	Conclusions:
+	(1) Observation (1) shows that lo does not interfere with our network interface controller.
+	(2) Observation (2) shows that loopback network interface is used as a virtual network
+	interface through which applications can connect while running on same machine.	
+
+10.	Default Gateway MAC address: 00:19:56:ed:66:c1
+	Command: First we used the command "netstat -r -n" to find out the IP address of default gateway,
+	which came out to be 10.105.1.250   Then we used command "arp 10.105.1.250" to find out the MAC 
+	address(00:19:56:ed:66:c1).
+	
+
+
+	
+	 
+
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cat /dev/null > words
+
+while read line
+do
+	if grep -Fxq $line words
+	then 
+		continue
+	else
+		echo $line >> words
+	fi
+done < out

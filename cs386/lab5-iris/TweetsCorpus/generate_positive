@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# read from twitter_positive_words and positive_words and add to my_positive
+
+cat /dev/null > my_positive
+
+while read line
+do
+	if grep -Fxq $line twitter_negative_words twitter_objective_words negative_words my_positive 
+	then
+		continue
+	else
+		# word not found
+		echo $line >> my_positive	
+	fi
+done < twitter_positive_words
+
+while read line
+do
+	if grep -Fxq $line twitter_negative_words twitter_objective_words negative_words my_positive
+	then
+		continue
+	else
+		# word not found
+		echo $line >> my_positive
+	fi
+done < positive_words
+

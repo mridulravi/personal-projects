@@ -1,0 +1,136 @@
+
+Team Members:-
+
+1) Mridul Ravi Jain		110040083
+2) Abhishek Gupta		110040067
+3) Sahil Jindal 		110020043
+4) Tarun Kathuria		110110028
+
+-----------------------------------------------------------------------------
+Key Idea:-
+	We use torch flashes to transmit the data.
+	Message is divided into packets, each having (at most) 8 message bits and 4 parity bits for error correction using Hamming code.
+
+-----------------------------------------------------------------------------
+Design Details:-
+
+	Physical Layer Encoding:- We have two torches which are used by the sender and one which is used by the receiver. We will call the two 
+	torches at the sender side left and right (as viewed by the receiver).
+		
+		--------------------------------------
+		Signals sent by the sender
+	
+		1) '1' - short flash on right torch
+		
+		2) '0' - short flash on left torch
+		
+		3) Start/End of packet – long flash on right torch
+								 This is a flag which denotes the end of one packet and start of next packet(if it exists).
+								 Receiver has to send an ACK on receipt of this signal.
+		
+		4) Start/End of message – long flash on left torch
+								  This is a flag which denotes the end of one message and start of next message(if it exists)
+								  Receiver has to send an ACK on receipt of this signal.
+			
+		5) Clear – Long flash on both left and right torch
+				   This is sent by the sender if he makes some mistake while transmitting. If receiver encounters CLEAR signal, then he 
+				   will discard the current/last packet and send an ACK confirming the receipt of CLEAR signal. After the ACK signal is 
+				   received by the sender, the sender will retransmit the packet
+		
+		------------------------------------
+		Signals sent by receiver
+		1) ACK – one flash
+				This is sent by the receiver after the successful reception of a packet/message. After receiving the ACK signal, the 
+				sender will start the transmission of the next packet
+		
+		2) NACK – two flashes
+				This is sent by the receiver whenever he was unable to interpret the signal received. It is sent only after current packet 
+				has been received completely. The sender will retransmit the packet(from the start of the packet) after he receives the 
+				NACK signal.
+		-------------------------------------
+		
+	Link Layer Framing:-
+	
+			--> We divide the message into blocks of 8 bits 
+			
+			--> For each block we add 4 parity bits using Hamming code
+			
+			--> These 12 bits constitute one packet
+			
+			--> After sending a packet, we send an end/start of packet signal which represents the end of current packet and the start of 					the next packet(if it exists). We send this signal before sending the first packet also.
+			
+			--> After sending a message, we send an end/start of message signal which represents the end of current message and the start 					of the next message(if it exists). We send this signal before sending the first message also.
+			
+			--> If the message is not a multiple of 8, then the last block will not be a multiple of 8. So the size of the last packet 					will not be 12 bits, but it will be the sum of the no of parity bits and no of message bits in the last block
+		
+		--------------------------------------
+		
+	Link Layer Reliability:- 
+			We are not considering packet loss.
+			
+			The only reliability issues that can arise are
+				 a) The sender makes mistake while transmitting 
+				 b) The receiver is not able to interpret the signal correctly.
+			
+			So we use a system of ACK and NACK on the receiver side and CLEAR on the sender side.
+			
+			The functionalities of the signals have been mentioned in the Physical Layer Encoding.
+		---------------------------------------
+		
+	Error Correction:-
+	
+			We use Hamming code to correct 1 bit error in each packet.
+	
+			We add k parity bits to n message bits, where k follows the constraint (2^k -k -1 >=n).
+	
+			While encoding the parity bits are added at positions 1, 2, 4, 8, 16, … .
+	
+			Parity bit at position 2^i is obtained by taking XOR of bits at positions whose binary representation has a 1 in the (i+1)th 				least significant bit.
+		
+			Our design is theoretically valid for message of any length, but due to human constraints we will prefer the message length 			not to exceed 16 bits.
+
+		-----------------------------------------
+
+	Metrics:-
+	
+	Throughput:- It is defined as no. of message bits sent divided by the time taken to send those bits.
+				 To find the denominator, we start the stopwatch at the time when start of the message signal is sent and stop it when the
+				 end of the message signal is sent
+
+	
+	Latency:- We define the latency of the message as the time between the start of the transmission of the message and the time when the 
+	sender receives the ack from the receiver confirming the receipt of the end of the message signal.
+
+	
+	We did 2 experiments. In the first one we sent 13 message bits and in the second one we sent 7 bits. Latency in the 1st case was 126 
+	seconds and in the second one it was 67 seconds. This translates to a througput of 0.103 bps and 0.104 bps respectively.
+
+-----------------------------------------
+EXAMPLE:-
+	Given a message 11000100, the encoding will be as follows
+	
+	Bit Position	1	2	3	4	5	6	7	8	9	10	11	12
+					P1	P2	1	P4	1	0	0	P8	0	1	0	0
+					
+	P1	-- XOR of bits(3,5,7,9,11) = 0
+	P2	-- XOR of bits(3,6,7,10,11) = 0
+	P3  -- XOR of bits(5,6,7,12) = 1
+	P4  -- XOR of bits(9,10,11,12) = 1  
+	
+	So the encoded message is :-  001110010100
+	
+	
+	Now decoding the received message:-
+	
+	Received message - 001110010100
+	
+	C1	=	XOR of bits(1,3,5,7,9,11)	= 0
+	C2	=	XOR of bits(2,3,6,7,10,11)	= 0	
+	C3	=	XOR of bits(4,5,6,7,12)	= 0
+	C4	=	XOR of bits(8,9,10,11,12)	= 0
+		
+	So C4 C3 C2 C1 = 0000, hence no error.
+	
+-----------------------------------------	
+Note: We have also submitted 2 images which depict how the transmittion is being done.
+	  The code used for encoding and decoding is also submitted

@@ -1,0 +1,100 @@
+
+
+STP status for bridge "abhi1" (ON UML2):-
+
+abhi1
+ bridge id              8000.fefd00000201
+ designated root        8000.fefd00000201
+ root port                 0                    path cost                  0
+ max age                  20.00                 bridge max age            20.00
+ hello time                2.00                 bridge hello time          2.00
+ forward delay            15.00                 bridge forward delay      15.00
+ ageing time             300.00
+ hello timer               1.18                 tcn timer                  0.00
+ topology change timer    23.44                 gc timer                   0.05
+ flags                  TOPOLOGY_CHANGE TOPOLOGY_CHANGE_DETECTED
+
+
+eth1 (0)
+ port id                0000                    state                forwarding
+ designated root        8000.fefd00000201       path cost                100
+ designated bridge      8000.fefd00000201       message age timer          0.00
+ designated port        8001                    forward delay timer        0.00
+ designated cost           0                    hold timer                 0.18
+ flags
+
+eth2 (0)
+ port id                0000                    state                forwarding
+ designated root        8000.fefd00000201       path cost                100
+ designated bridge      8000.fefd00000201       message age timer          0.00
+ designated port        8002                    forward delay timer        0.00
+ designated cost           0                    hold timer                 0.18
+ flags
+
+
+STP status for bridge "abhi2" (ON UML4):-
+
+abhi2
+ bridge id              8000.fefd00000401
+ designated root        8000.fefd00000201
+ root port                 1                    path cost                100
+ max age                  20.00                 bridge max age            20.00
+ hello time                2.00                 bridge hello time          2.00
+ forward delay            15.00                 bridge forward delay      15.00
+ ageing time             300.00
+ hello timer               0.00                 tcn timer                  0.00
+ topology change timer     0.00                 gc timer                   0.04
+ flags
+
+
+eth1 (0)
+ port id                0000                    state                forwarding
+ designated root        8000.fefd00000201       path cost                100
+ designated bridge      8000.fefd00000201       message age timer         18.63
+ designated port        8002                    forward delay timer        0.00
+ designated cost           0                    hold timer                 0.00
+ flags
+
+eth2 (0)
+ port id                0000                    state                forwarding
+ designated root        8000.fefd00000201       path cost                100
+ designated bridge      8000.fefd00000401       message age timer          0.00
+ designated port        8002                    forward delay timer        0.00
+ designated cost         100                    hold timer                 0.00
+ flags
+
+
+
+STP status for bridge "abhi3" (ON UML6):-
+
+abhi3
+ bridge id              8000.fefd00000601
+ designated root        8000.fefd00000201
+ root port                 1                    path cost                100
+ max age                  20.00                 bridge max age            20.00
+ hello time                2.00                 bridge hello time          2.00
+ forward delay            15.00                 bridge forward delay      15.00
+ ageing time             300.00
+ hello timer               0.00                 tcn timer                  0.00
+ topology change timer     0.00                 gc timer                   0.04
+ flags
+
+
+eth1 (0)
+ port id                0000                    state                forwarding
+ designated root        8000.fefd00000201       path cost                100
+ designated bridge      8000.fefd00000201       message age timer         19.92
+ designated port        8001                    forward delay timer        0.00
+ designated cost           0                    hold timer                 0.00
+ flags
+
+eth2 (0)
+ port id                0000                    state                  blocking
+ designated root        8000.fefd00000201       path cost                100
+ designated bridge      8000.fefd00000401       message age timer         19.91
+ designated port        8002                    forward delay timer        0.00
+ designated cost         100                    hold timer                 0.00
+ flags
+
+
+

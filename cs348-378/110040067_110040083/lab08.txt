@@ -1,0 +1,61 @@
+Team Member:-
+
+Abhishek Gupta		110040067
+Mridul Ravi Jain	110040083
+
+#################################################################
+
+EXERCISE 1)
+##########
+
+1) UML1 received 5 replies whereas UML2 received 15 replies. 
+
+Reason:	This is because when we tried to ping UML3 from UML1, then firstly UML1 sent an ARP packet asking for the MAC address of the host with IP address 10.0.0.102. UML3 stores the MAC address of UML1 using the ARP packet and replies back to it with its MAC address. Now UML1 send ping requests and UML3 replies with ping replies. After sometime (when 4-5 ping replies are received), we try to ping UML3 by UML2 (UML2 also has the IP address 10.0.0.100), UML2 sent an ARP packet asking for the MAC address of the host with IP address 10.0.0.102. Now UML3 sees that the IP address of the sender is 10.0.0.100 but its MAC address is different from the one stored in its ARP cache, so it updates the MAC address corressponding to the IP 10.0.0.100. Now all the echo request packets come from IP address 10.0.0.100(both UML1 and UML2 have IP address 10.0.0.100) and in UML3's ARP cache, the MAC address corressponding to IP 10.0.0.100 is of UML2. So from now onwards, all the echo replies are send to UML2.
+	Hence UML1 receives 5 ping replies whereas UML2 receives 15 packets.
+	
+	
+2) UML1 received 5 replies whereas UML2 received 15 replies.
+
+Reason: When we ping UML3 from UML1, first an ARP packet is send asking who has 10.0.0.102. Now UML3 has this IP address, so it stores in its ARP cache, the IP of UML1(10.0.0.100) and it's(UML1's) MAC address. Now it replies back to the ARP packet such that on receiving it, UML1 now knows the MAC address of the host corresponding to IP address 10.0.0.102. So it's arp cache has entry for UML3.
+	Now UML1 starts sending PING requests and UML3 replies with PING replies. But after 4-5 replies we try to ping UML4 from UML2. So UML2 sends an ARP packet asking for who has IP addresss 10.0.0.103. Now since all ARP packets are broadcast, therefore UML3 also receives this ARP packet. Now UML3 has an ARP entry corresponding to IP address 10.0.0.100(when UML1 tried to ping it), but the MAC address of source in the ARP packet received is different from the one in it's ARP cache. So now, it will update its cache entry. So now in the ARp entry of UML3, the IP address 10.0.0.100 will corresspond to MAc address of UML2.
+	Now UML4 also receives the ARP packet asking for its MAC address. So it stores the entry for its sender(UML2) in its ARP cache and replies back with its own MAC address. Now UML2 receives this reply and stores the MAC address of UML4 corressponding to 10.0.0.103.
+	Now the MAC address corresponding to 10.0.0.100 is of UML2 in the ARP cache of both UML3 and UML4. So whenever they receives an PING REQUEST from 10.0.0.100, they send the reply to UML2.(Since the IP address of UML1 is 10.0.0.100, therefore its replies are also send to UML2)
+		
+3) In our case:-
+	In 1st case UML2 replied
+	In 2nd case UML1 replied
+	
+Reason:- In Linux implementation, the host ignores unsolicited replies, so the ARP reply which comes first at source is stored in the ARP cache of the source.
+	In our case when we pinged 10.0.0.100 from UML3, then ARP reply of UML2 comes first at UML3, and hence in ARP cache of UML3 the MAC address corressponding to UML2 is stored for IP address, and ping requests are send to UML2 and hence UML2 replies to them.
+	In our case when we pinged 10.0.0.100 from UML4, then ARP reply of UML1 comes first at UML4, and hence in ARP cache of UML4 the MAC address corressponding to UML1 is stored for IP address, and ping requests are send to UML1 and hence UML1 replies to them.
+
+UML2 can do 2 things, so that it can always capture the ping requests and reply to them:-
+	1) UML2 should regularly send gratitous ARP REQUEST packets, so that at all times in all hosts the entry corressponding to 10.0.0.100 is for MAC address of UML2. So, if any host would want to ping 10.0.0.100, then it will not generate ARP packets since the entry corresponding to that IP address is already stored in each host's ARP cache.
+	2) Since in Linux implementation unsolicited replies are ignored, so if UML2 wants to always reply, then its ARP reply must reach first at both the hosts. So it should continously send ARP replies, if source has not send an ARP request for 10.0.0.100, then these ARP replies will be ignored but as soon as source sends an ARP request, then the ARP reply(from UML2) is accepted and the entry in ARP cache is stored for UML2 corressponding to IP address 10.0.0.100
+	
+#################################################################################################################################
+
+EXERCISE 2)	
+###########
+
+	1)
+		Pinging UML2 from UML1:-
+		Observation: ping successfully working (i.e. ping request send and ping replies received)
+		Reason: The IP address of UML1 is 10.0.0.100 and mask is 255.255.255.240, i.e., first 28 bits. So the subnet address of UML1 is the first 28 bits of the IP address of UML1. Now the first 28 bits of IP address of UML2 and UML1 are same(therefore UML1 concludes that UML2 is on the same network), and 28 is the subnet mask for UML1. So UML1 is able to ping UML2 
+		
+		Pinging UML2 from UML4:-
+		Observation: Network host unreachable
+		Reason: The IP address of UML4 is 10.0.0.120 and mask is 255.255.255.240, i.e., first 28 bits. Now the first 28 bits of the IP address of UML4 and UML2 are not same, therefore UML4 concludes that UML2 is not in the same subnet. Therefore it is unable to send any ARP request and hence shows the message that NETWORK HOST UNREACHABLE
+		
+		
+	2)
+	
+		Pinging UML1 from UML2:-
+		Observation: ping successfully working (i.e. ping request send and ping replies received)
+		Reason: The subnet mask of UML2 is 255.255.255.0, i.e., first 24 bits. Since the first 24 bits of UML1 and UML2 are same, therefore UML2 is able to send the PING requests to UML1. Now UML1's subnet mask is 255.255.255.240, i.e. first 28 bits. Since the first 28 bits of UML1 and UML2 are same(therefore UML1 concludes that UML2 is in same network), therefore UML1 is able to send PING replies back to UML2. 
+		
+		
+		Pinging UML4 from UML2:-
+		Observation: UML2 is able to send PING requests to UML4 but UML4 cannot send PING REPLIES back to UML2, i.e., if we use the command ping -c 10 10.0.0.120, then the output is 10 Ping requests send and 0 Ping replies received.
+		Reason: The subnet mask of UML2 is 255.255.255.0, i.e., first 24 bits. Since the first 24 bits of UML4 and UML2 are same, therefore UML2 is able to send the PING requests to UML4. Now UML4's subnet mask is 255.255.255.240, i.e. first 28 bits. Since the first 28 bits of UML1 and UML2 are different(therefore UML4 concludes that UML2 is in different network), therefore UML4 is not able to send PING replies back to UML2.
+		

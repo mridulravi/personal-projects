@@ -1,0 +1,13 @@
+The node chosen to be expanded from the open list: 0
+The node chosen to be expanded from the open list: 1
+The node chosen to be expanded from the open list: 4
+The node chosen to be expanded from the open list: 10
+The node chosen to be expanded from the open list: 22
+The node chosen to be expanded from the open list: 39
+The node chosen to be expanded from the open list: 40
+The node chosen to be expanded from the open list: 69
+the optimal path is:
+0 1 4 10 22 39 69 119 
+optimal path cost is 7
+Number of iterations taken by the A* Algo =8
+Number of Parent Pointer Redirections =0

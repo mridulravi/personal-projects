@@ -1,0 +1,215 @@
+110040083 Mridul Ravi Jain
+110040067 Abhishek Gupta
+
+##############################################################################################################################
+
+Exercise 2: Bridging
+~~~~~~~~~~~~~~~~~~~~
+
+Question(1)
+
+uml1:- can reach uml2 and uml3 but can not reach uml4, uml5, uml6
+uml2:- can reach uml2 and uml3 but can not reach uml4, uml5, uml6
+uml3:- can reach uml1 and uml2 but can not reach uml4, uml5, uml6
+uml4:- can reach uml5 but can not reach uml1, uml2, uml3, uml6
+uml5:- can reach uml4 but can not reach uml1, uml2, uml3, uml6
+uml6:- can not reach uml1, uml2, uml3, uml4, uml5
+
+Anamoly: Though all hosts are connected, all can not communicate with each other. 
+
+Reason: The default interface for uml3 is 10.0.0.3 and that for uml5 is 10.0.0.6 so packets are not transferred accross
+	the non-default interface i.e. 10.0.0.4 and 10.0.0.7 respectively.
+	For example if uml1 tries to connect to uml4, it can not do so because packet has to go via uml3-eth2-uml4 and 
+	default interface for uml3 is eth1(10.0.0.3). Hence, at uml3 packet can not be tranferred to eth2 and can not go to uml4.
+	
+Exception: For hosts uml3 and uml5 we can talk to either of the interfaces by selecting the interface we wish to use.
+	   For example, uml3 can talk to uml4 by using command "ping -I eth2 10.0.0.5" and uml1, uml2 by command 
+	   "ping 10.0.0.1" / "ping 10.0.0.2"(Here we do not need to specify the interface because eth1 is default interface)
+
+	   
+Question(2)
+
+Commands:
+brctl addbr abhi
+brctl addif eth1
+brctl addif eth2
+ifconfig abhi up
+
+On enabling bridging to interconnet Net0 and Net1, uml1 can now reach uml2, uml4, uml5 but not uml6. 
+uml3(which was a host earlier)is now a bridge and therfore can transfer packets both ways. However we have still not connected 
+Net1 and Net2 and therefore to reach uml6 packet has to go via uml5-eth2-uml6. As default interface for uml5 is eth1(10.0.0.6). 
+Hence, at uml5 packet can not be tranferred to eth2 and can not go to uml6.
+
+
+Question(3)
+
+Commands:
+brctl addbr abhi1
+brctl addif eth1
+brctl addif eth2
+ifconfig abhi1 up
+ 
+On enabling bridging to interconnet Net1 and Net2, uml1 can now reach uml2, uml4 as well as uml6. As all hosts are
+connected by bridges and can talk to each other. uml3 and uml5 are now acting as bridges.
+
+
+Question(4)
+
+To clear out all entries in the learning table at bridge abhi(uml3) 
+
+brctl setageing abhi 0 			//This basically clears out the forwarding table by setting ageing timer to 0
+
+brctl setageing abhi 300 		//We set it back to 300 sec so as to be able to examine the forwarding table in future 
+
+When we ping uml6 from uml1 we observe the following learning table entries:
+port no      mac addr 		is local?	 ageing timer 
+1   	 fe:fd:00:00:01:01	 no 		    155.18 
+1  	 fe:fd:00:00:03:01 	 yes 	    	    0.00 
+2  	 fe:fd:00:00:03:02 	 yes	 	    0.00 
+2  	 fe:fd:00:00:06:01 	 no 		    155.18
+
+Command used for obtaining this table: "brctl showmacs abhi"
+
+The entries match the theoretical expectation:
+When echo(ping) request packet goes from uml1 to uml6 via abhi(uml3), bridge abhi gets the mac address of uml1 as 
+"fe:fd:00:00:01:01".And when an echo reply packet is sent from uml6 to uml1, bridge abhi gets the mac address of uml6 as 
+"fe:fd:00:00:06:01". The remaining two entries correspond to the mac address of hosts directly attached to the bridge. 
+So in this way entires are entered/updated in the learning table. 
+
+
+Question(5)
+
+Root bridge: abhi(uml3)
+Root bridge ID: 8000.fefd00000301
+We determined this by observing the designated root ID which shows the MAC address of bridge abhi(uml3).
+
+Designated bridge for Net0: abhi(uml3)
+Designated bridge for Net1: abhi(uml3)
+Designated bridge for Net2: abhi1(uml5)
+
+Command:
+"brctl stp abhi on"
+"brctl stp abhi1 on"
+"brctl showstp abhi"
+"brctl showstp abhi1"
+
+Output for uml3(output for uml5 is not shown):
+
+uml3:~# brctl showstp abhi 
+abhi
+ bridge id              8000.fefd00000301
+ designated root        8000.fefd00000301
+ root port                 0                    path cost                  0
+ max age                  20.00                 bridge max age            20.00
+ hello time                2.00                 bridge hello time          2.00
+ forward delay            15.00                 bridge forward delay      15.00
+ ageing time             300.00
+ hello timer               1.93                 tcn timer                  0.00
+ topology change timer     0.00                 gc timer                   0.03
+ flags  
+
+
+eth1 (0)
+ port id                0000                    state                forwarding
+ designated root        8000.fefd00000301       path cost                100
+ designated bridge      8000.fefd00000301       message age timer          0.00
+ designated port        8001                    forward delay timer        0.00
+ designated cost           0                    hold timer                 0.93
+ flags  
+
+eth2 (0)
+ port id                0000                    state                forwarding
+ designated root        8000.fefd00000301       path cost                100
+ designated bridge      8000.fefd00000301       message age timer          0.00
+ designated port        8002                    forward delay timer        0.00
+ designated cost           0                    hold timer                 0.93
+ flags  
+
+
+Question(6)
+
+Command should be executed in the following order on interfaces as mentioned:
+
+On uml3:-
+
+brctl addbr abhi
+brctl addif eth1
+brctl addif eth2
+ifconfig abhi up
+
+On uml5:-
+
+brctl addbr abhi1
+brctl addif eth1
+brctl addif eth2
+ifconfig abhi1 up
+
+On uml3:-
+
+brctl stp abhi on
+
+On uml5:-
+
+brctl stp abhi1 on
+
+##############################################################################################################################
+
+Exercise 3: Bridging with loops
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Question(2)
+ID of the root bridge: 8000.fefd00000201 		// abhi1(on UML2) is the root bridge
+The designated bridge for Net0: abhi1 			// (on UML2, id is 8000.fefd00000201)
+The designated bridge for Net1: abhi1 			// (on UML2, id is 8000.fefd00000201)
+The designated bridge for Net2: abhi2 			// (on UML4, id is 8000.fefd00000401)
+
+Question(5)
+ID of the new root bridge: 8000.fefd00000401 		// abhi2(on UML4) is the root bridge
+The designated bridge for Net0: abhi3 			// (on UML6, id is 8000.fefd00000601)
+The designated bridge for Net1: abhi2 			// (on UML4, id is 8000.fefd00000401)
+The designated bridge for Net2: abhi2 			// (on UML4, id is 8000.fefd00000401)
+
+Question(7)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

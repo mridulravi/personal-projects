@@ -1,0 +1,40 @@
+#!/bin/bash
+
+i=0
+j=1
+filename=$1
+newFile=$filename$j
+
+while read line
+do
+	i=$(($i+1))
+
+	if [[ "$i" -le 2 ]]
+	then
+		continue	
+	fi
+
+	if [[ "$i" -eq 17 ]]
+	then
+		continue
+	fi
+
+	if [[ "$i" -eq 18 ]]
+	then
+		continue
+	fi
+
+	if [[ "$i" -eq 19 ]]
+	then
+		i=0
+		j=$(($j+1))
+		newFile=$filename$j
+		continue
+	fi
+
+	number1=$(echo $line | awk -F ',' '{print $1;}' )
+	number2=$(echo $line | awk -F ',' '{print $2;}' )
+	
+	echo "$number2,$number1" >>$newFile
+
+done < $filename

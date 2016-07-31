@@ -1,0 +1,7 @@
+Run make command
+Then it will throw an error
+After that include '#include "hilbert.hh"' in parserbase.hh
+run make again
+run using ./simcalc
+Give expression
+Look at the grammar before giving an expression(for correct syntax)
