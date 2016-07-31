@@ -1,0 +1,9 @@
+	The tar contains 5 files : First.java 	README	web.xml	  movieinfo.csv   movieratings.csv 
+
+	Put the movieinfo.csv and movieratings.csv files in <templatename>/bin
+
+	URL:	http://localhost:8080/First
+
+	To compile: javac -cp "/usr/share/tomcat7/lib/servlet-api.jar" First.java
+
+	To start tomcat server: change directory to <templatename>/bin and ./startup.sh

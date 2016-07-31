@@ -1,0 +1,18 @@
+RESULTS OBTAINED : For 1000 iterations
+
+     Time                           For buffered write		         For direct write
+  When files are being updated            20 sec                            23 sec
+  Otherwise                               280 ms                            1300 ms
+
+
+where, direct write : write through policy which will update the files as the write happens.
+       buffered write :  Implement buffered writes by having a timer and a separate thread that periodically (when the timer goes 
+                          off) writes out the data to files rather than on every write. 
+
+Clearly buffered write is more efficient than direct write.
+
+
+
+
+
+

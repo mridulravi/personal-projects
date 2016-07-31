@@ -1,0 +1,74 @@
+The tar file contains 4 files namely : lab01.java  README  movieinfo.csv    movieratings.csv
+
+To run the program: 
+
+ 1. Download the 110040083.tar.gz file in the home directory.
+
+ 2. Untar the file.
+
+ 3. Open the terminal and cd to 110040083
+
+ 4. Type:     javac lab01.java 
+
+ 5. Check weather a lab01.class file is created.
+
+ 6. Type:     java lab01
+
+ 7. The queries work as follows
+    a. Ability to add a new movie - 
+	This is done by simply giving a 'q4' command. You will be prompted to enter the details. For example:
+
+	Enter a query:
+	q4
+	Enter movie name:
+	The Avengers
+	Enter director name:
+	Joss Whedon
+	Enter year of release:
+	2012
+	Enter movie genre:
+	Sci-fi
+	Enter actor names(separated by commas):
+	Robert Downey Jr, Chris Evans, Mark Ruffalo
+	Enter movie rating:
+	8.5
+	Movie added to the database
+
+    b. Ability to delete an existing movie -
+	This is done by  'q5 <Movie Name>' command. For example : 
+
+	q5 The Hangover
+	Movie deleted from the info database.
+	Movie deleted from the ratings database.
+
+    c. Ability to change information about a movie - 
+	This is done by 'q6 <Movie Name>' command. You will then be asked the field you want to change. Instructions will follow :
+
+	c1 <Director name>                        -> To change director name of this movie
+	c2 <Year of release>                      -> To change year of release of this movie
+	c3 <Genre>				  -> To change genre of this movie
+	c4 <Actor names seprated by commas>       -> To change actor names list of this movie
+	c5 <Movie rating>                         -> To change rating of this movie
+
+	For eg : 
+	q6 Capote
+	To change information about the movie - Capote. Enter commands:
+	c1 <Director name>
+	c2 <Year of release>
+	c3 <Genre>
+	c4 <Actor names seprated by commas>
+	c5 <Movie rating>
+	c2 1983
+	Movie information edited in the database
+
+
+
+
+
+
+
+
+ 
+
+
+	

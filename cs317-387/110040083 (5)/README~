@@ -1,0 +1,39 @@
+	The tar contains 2 folders and two files : 
+
+		1. Buffered : consists of files which implement buffered writes.
+				First.java  : the main code
+				measure_buffered_write.java : java file to measure the performance of buffered writes
+                                web.xml : the sevlet xml file.
+
+		2. Direct : consists of files which implement a write which will update the files as the write happens.
+				First.java  : the main code
+				measure_direct_write.java : java file to measure the performance of direct writes
+                                web.xml : the sevlet xml file.
+
+                3. README : this file itself.
+
+		4. RESULTS.txt : comparison of write performance between the two cases.
+ 
+
+	Put the movieinfo.csv and movieratings.csv files in HOME folder
+
+	URL:	http://localhost:8080/First
+
+	To compile: javac -cp "/usr/share/tomcat7/lib/servlet-api.jar" First.java
+
+
+	
+
+	To measure performance :
+
+	1. Buffered writes : put it in the same folder as First.java in Buffered folder. Compile the First.java as above, restart 
+                             the tomcat server and compile and run as 
+                     
+                             javac measure_buffered_write.java 
+                             java measure_buffered_write
+
+	1. Direct writes : put it in the same folder as First.java in Buffered folder. Compile the First.java as above, restart 
+                           the tomcat server and compile and run as 
+                     
+                             javac measure_direct_write.java 
+                             java measure_direct_write
