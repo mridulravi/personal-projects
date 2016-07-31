@@ -1,0 +1,1252 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  l_BIT_BANK                      
+C:   00000000  l_BSEG                          
+C:   00000000  l_BSEG_BYTES                    
+C:   00000000  l_CABS                          
+C:   00000000  l_CONST                         
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_ISEG                          
+C:   00000000  l_OSEG                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l_XINIT                         
+C:   00000000  l_XISEG                         
+C:   00000000  l_XSEG                          
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG                          
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_HOME                          
+C:   00000000  s_IABS                          
+C:   00000000  s_ISEG                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000001  s_PSEG                          
+C:   00000001  s_XISEG                         
+C:   00000001  s_XSEG                          
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000006  l_HOME                          
+C:   00000006  s_GSINIT0                       
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   00000009  s_GSINIT1                       
+C:   00000009  s_GSINIT2                       
+C:   0000000A  l_GSINIT2                       
+C:   00000010  s_REG_BANK_2                    
+C:   00000010  s_SSEG                          
+C:   00000013  s_GSINIT3                       
+C:   00000018  l_GSINIT                        
+C:   00000018  s_BIT_BANK                      
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000018  s_OSEG                          
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BSEG_BYTES                    
+C:   00000020  s__CODE                         
+C:   00000022  l_GSINIT3                       
+C:   0000002A  l_GSINIT4                       
+C:   00000035  s_GSINIT4                       
+C:   0000005F  s_GSINIT                        
+C:   0000005F  s_GSINIT5                       
+C:   00000077  s_GSFINAL                       
+C:   0000007A  s_CSEG                          
+C:   00000080  l_DSEG                          
+C:   000000F0  l_SSEG                          
+C:   00000100  l_IRAM                          
+C:   00000324  l_CSEG                          
+C:   0000039E  s_CONST                         
+C:   0000039E  s_XINIT                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000080  G$P0$0$0                           asgn2_3
+     00000080  G$P0_0$0$0                         asgn2_3
+     00000080  _P0                                asgn2_3
+     00000080  _P0_0                              asgn2_3
+     00000081  G$P0_1$0$0                         asgn2_3
+     00000081  G$SP$0$0                           asgn2_3
+     00000081  _P0_1                              asgn2_3
+     00000081  _SP                                asgn2_3
+     00000082  G$DPL$0$0                          asgn2_3
+     00000082  G$P0_2$0$0                         asgn2_3
+     00000082  _DPL                               asgn2_3
+     00000082  _P0_2                              asgn2_3
+     00000083  G$DPH$0$0                          asgn2_3
+     00000083  G$P0_3$0$0                         asgn2_3
+     00000083  _DPH                               asgn2_3
+     00000083  _P0_3                              asgn2_3
+     00000084  G$P0_4$0$0                         asgn2_3
+     00000084  _P0_4                              asgn2_3
+     00000085  G$P0_5$0$0                         asgn2_3
+     00000085  _P0_5                              asgn2_3
+     00000086  G$P0_6$0$0                         asgn2_3
+     00000086  _P0_6                              asgn2_3
+     00000087  G$P0_7$0$0                         asgn2_3
+     00000087  G$PCON$0$0                         asgn2_3
+     00000087  _P0_7                              asgn2_3
+     00000087  _PCON                              asgn2_3
+     00000088  G$IT0$0$0                          asgn2_3
+     00000088  G$TCON$0$0                         asgn2_3
+     00000088  _IT0                               asgn2_3
+     00000088  _TCON                              asgn2_3
+     00000089  G$IE0$0$0                          asgn2_3
+     00000089  G$TMOD$0$0                         asgn2_3
+     00000089  _IE0                               asgn2_3
+     00000089  _TMOD                              asgn2_3
+     0000008A  G$IT1$0$0                          asgn2_3
+     0000008A  G$TL0$0$0                          asgn2_3
+     0000008A  _IT1                               asgn2_3
+     0000008A  _TL0                               asgn2_3
+     0000008B  G$IE1$0$0                          asgn2_3
+     0000008B  G$TL1$0$0                          asgn2_3
+     0000008B  _IE1                               asgn2_3
+     0000008B  _TL1                               asgn2_3
+     0000008C  G$TH0$0$0                          asgn2_3
+     0000008C  G$TR0$0$0                          asgn2_3
+     0000008C  _TH0                               asgn2_3
+     0000008C  _TR0                               asgn2_3
+     0000008D  G$TF0$0$0                          asgn2_3
+     0000008D  G$TH1$0$0                          asgn2_3
+     0000008D  _TF0                               asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000008D  _TH1                               asgn2_3
+     0000008E  G$TR1$0$0                          asgn2_3
+     0000008E  _TR1                               asgn2_3
+     0000008F  G$TF1$0$0                          asgn2_3
+     0000008F  _TF1                               asgn2_3
+     00000090  G$P1$0$0                           asgn2_3
+     00000090  G$P1_0$0$0                         asgn2_3
+     00000090  G$T2$0$0                           asgn2_3
+     00000090  _P1                                asgn2_3
+     00000090  _P1_0                              asgn2_3
+     00000090  _T2                                asgn2_3
+     00000091  G$P1_1$0$0                         asgn2_3
+     00000091  G$T2EX$0$0                         asgn2_3
+     00000091  _P1_1                              asgn2_3
+     00000091  _T2EX                              asgn2_3
+     00000092  G$P1_2$0$0                         asgn2_3
+     00000092  _P1_2                              asgn2_3
+     00000093  G$P1_3$0$0                         asgn2_3
+     00000093  _P1_3                              asgn2_3
+     00000094  G$P1_4$0$0                         asgn2_3
+     00000094  _P1_4                              asgn2_3
+     00000095  G$P1_5$0$0                         asgn2_3
+     00000095  _P1_5                              asgn2_3
+     00000096  G$P1_6$0$0                         asgn2_3
+     00000096  _P1_6                              asgn2_3
+     00000097  G$P1_7$0$0                         asgn2_3
+     00000097  _P1_7                              asgn2_3
+     00000098  G$RI$0$0                           asgn2_3
+     00000098  G$SCON$0$0                         asgn2_3
+     00000098  _RI                                asgn2_3
+     00000098  _SCON                              asgn2_3
+     00000099  G$SBUF$0$0                         asgn2_3
+     00000099  G$TI$0$0                           asgn2_3
+     00000099  _SBUF                              asgn2_3
+     00000099  _TI                                asgn2_3
+     0000009A  G$RB8$0$0                          asgn2_3
+     0000009A  _RB8                               asgn2_3
+     0000009B  G$TB8$0$0                          asgn2_3
+     0000009B  _TB8                               asgn2_3
+     0000009C  G$REN$0$0                          asgn2_3
+     0000009C  _REN                               asgn2_3
+     0000009D  G$SM2$0$0                          asgn2_3
+     0000009D  _SM2                               asgn2_3
+     0000009E  G$SM1$0$0                          asgn2_3
+     0000009E  _SM1                               asgn2_3
+     0000009F  G$SM0$0$0                          asgn2_3
+     0000009F  _SM0                               asgn2_3
+     000000A0  G$P2$0$0                           asgn2_3
+     000000A0  G$P2_0$0$0                         asgn2_3
+     000000A0  _P2                                asgn2_3
+     000000A0  _P2_0                              asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000A0  __XPAGE                            
+     000000A1  G$P2_1$0$0                         asgn2_3
+     000000A1  _P2_1                              asgn2_3
+     000000A2  G$P2_2$0$0                         asgn2_3
+     000000A2  _P2_2                              asgn2_3
+     000000A3  G$P2_3$0$0                         asgn2_3
+     000000A3  _P2_3                              asgn2_3
+     000000A4  G$P2_4$0$0                         asgn2_3
+     000000A4  _P2_4                              asgn2_3
+     000000A5  G$P2_5$0$0                         asgn2_3
+     000000A5  _P2_5                              asgn2_3
+     000000A6  G$P2_6$0$0                         asgn2_3
+     000000A6  _P2_6                              asgn2_3
+     000000A7  G$P2_7$0$0                         asgn2_3
+     000000A7  _P2_7                              asgn2_3
+     000000A8  G$EX0$0$0                          asgn2_3
+     000000A8  G$IE$0$0                           asgn2_3
+     000000A8  _EX0                               asgn2_3
+     000000A8  _IE                                asgn2_3
+     000000A9  G$ET0$0$0                          asgn2_3
+     000000A9  _ET0                               asgn2_3
+     000000AA  G$EX1$0$0                          asgn2_3
+     000000AA  _EX1                               asgn2_3
+     000000AB  G$ET1$0$0                          asgn2_3
+     000000AB  _ET1                               asgn2_3
+     000000AC  G$ES$0$0                           asgn2_3
+     000000AC  _ES                                asgn2_3
+     000000AD  G$ET2$0$0                          asgn2_3
+     000000AD  _ET2                               asgn2_3
+     000000AF  G$EA$0$0                           asgn2_3
+     000000AF  _EA                                asgn2_3
+     000000B0  G$P3$0$0                           asgn2_3
+     000000B0  G$P3_0$0$0                         asgn2_3
+     000000B0  G$RXD$0$0                          asgn2_3
+     000000B0  _P3                                asgn2_3
+     000000B0  _P3_0                              asgn2_3
+     000000B0  _RXD                               asgn2_3
+     000000B1  G$P3_1$0$0                         asgn2_3
+     000000B1  G$TXD$0$0                          asgn2_3
+     000000B1  _P3_1                              asgn2_3
+     000000B1  _TXD                               asgn2_3
+     000000B2  G$INT0$0$0                         asgn2_3
+     000000B2  G$P3_2$0$0                         asgn2_3
+     000000B2  _INT0                              asgn2_3
+     000000B2  _P3_2                              asgn2_3
+     000000B3  G$INT1$0$0                         asgn2_3
+     000000B3  G$P3_3$0$0                         asgn2_3
+     000000B3  _INT1                              asgn2_3
+     000000B3  _P3_3                              asgn2_3
+     000000B4  G$P3_4$0$0                         asgn2_3
+     000000B4  G$T0$0$0                           asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000B4  _P3_4                              asgn2_3
+     000000B4  _T0                                asgn2_3
+     000000B5  G$P3_5$0$0                         asgn2_3
+     000000B5  G$T1$0$0                           asgn2_3
+     000000B5  _P3_5                              asgn2_3
+     000000B5  _T1                                asgn2_3
+     000000B6  G$P3_6$0$0                         asgn2_3
+     000000B6  G$WR$0$0                           asgn2_3
+     000000B6  _P3_6                              asgn2_3
+     000000B6  _WR                                asgn2_3
+     000000B7  G$P3_7$0$0                         asgn2_3
+     000000B7  G$RD$0$0                           asgn2_3
+     000000B7  _P3_7                              asgn2_3
+     000000B7  _RD                                asgn2_3
+     000000B8  G$IP$0$0                           asgn2_3
+     000000B8  G$PX0$0$0                          asgn2_3
+     000000B8  _IP                                asgn2_3
+     000000B8  _PX0                               asgn2_3
+     000000B9  G$PT0$0$0                          asgn2_3
+     000000B9  _PT0                               asgn2_3
+     000000BA  G$PX1$0$0                          asgn2_3
+     000000BA  _PX1                               asgn2_3
+     000000BB  G$PT1$0$0                          asgn2_3
+     000000BB  _PT1                               asgn2_3
+     000000BC  G$PS$0$0                           asgn2_3
+     000000BC  _PS                                asgn2_3
+     000000BD  G$PT2$0$0                          asgn2_3
+     000000BD  _PT2                               asgn2_3
+     000000C8  G$CP_RL2$0$0                       asgn2_3
+     000000C8  G$T2CON$0$0                        asgn2_3
+     000000C8  G$T2CON_0$0$0                      asgn2_3
+     000000C8  _CP_RL2                            asgn2_3
+     000000C8  _T2CON                             asgn2_3
+     000000C8  _T2CON_0                           asgn2_3
+     000000C9  G$C_T2$0$0                         asgn2_3
+     000000C9  G$T2CON_1$0$0                      asgn2_3
+     000000C9  G$T2MOD$0$0                        asgn2_3
+     000000C9  _C_T2                              asgn2_3
+     000000C9  _T2CON_1                           asgn2_3
+     000000C9  _T2MOD                             asgn2_3
+     000000CA  G$RCAP2L$0$0                       asgn2_3
+     000000CA  G$T2CON_2$0$0                      asgn2_3
+     000000CA  G$TR2$0$0                          asgn2_3
+     000000CA  _RCAP2L                            asgn2_3
+     000000CA  _T2CON_2                           asgn2_3
+     000000CA  _TR2                               asgn2_3
+     000000CB  G$EXEN2$0$0                        asgn2_3
+     000000CB  G$RCAP2H$0$0                       asgn2_3
+     000000CB  G$T2CON_3$0$0                      asgn2_3
+     000000CB  _EXEN2                             asgn2_3
+     000000CB  _RCAP2H                            asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000CB  _T2CON_3                           asgn2_3
+     000000CC  G$T2CON_4$0$0                      asgn2_3
+     000000CC  G$TCLK$0$0                         asgn2_3
+     000000CC  G$TL2$0$0                          asgn2_3
+     000000CC  _T2CON_4                           asgn2_3
+     000000CC  _TCLK                              asgn2_3
+     000000CC  _TL2                               asgn2_3
+     000000CD  G$RCLK$0$0                         asgn2_3
+     000000CD  G$T2CON_5$0$0                      asgn2_3
+     000000CD  G$TH2$0$0                          asgn2_3
+     000000CD  _RCLK                              asgn2_3
+     000000CD  _T2CON_5                           asgn2_3
+     000000CD  _TH2                               asgn2_3
+     000000CE  G$EXF2$0$0                         asgn2_3
+     000000CE  G$T2CON_6$0$0                      asgn2_3
+     000000CE  _EXF2                              asgn2_3
+     000000CE  _T2CON_6                           asgn2_3
+     000000CF  G$T2CON_7$0$0                      asgn2_3
+     000000CF  G$TF2$0$0                          asgn2_3
+     000000CF  _T2CON_7                           asgn2_3
+     000000CF  _TF2                               asgn2_3
+     000000D0  G$P$0$0                            asgn2_3
+     000000D0  G$PSW$0$0                          asgn2_3
+     000000D0  _P                                 asgn2_3
+     000000D0  _PSW                               asgn2_3
+     000000D1  G$FL$0$0                           asgn2_3
+     000000D1  _FL                                asgn2_3
+     000000D2  G$OV$0$0                           asgn2_3
+     000000D2  _OV                                asgn2_3
+     000000D3  G$RS0$0$0                          asgn2_3
+     000000D3  _RS0                               asgn2_3
+     000000D4  G$RS1$0$0                          asgn2_3
+     000000D4  _RS1                               asgn2_3
+     000000D5  G$F0$0$0                           asgn2_3
+     000000D5  _F0                                asgn2_3
+     000000D6  G$AC$0$0                           asgn2_3
+     000000D6  _AC                                asgn2_3
+     000000D7  G$CY$0$0                           asgn2_3
+     000000D7  _CY                                asgn2_3
+     000000E0  G$A$0$0                            asgn2_3
+     000000E0  G$ACC$0$0                          asgn2_3
+     000000E0  _A                                 asgn2_3
+     000000E0  _ACC                               asgn2_3
+     000000F0  G$B$0$0                            asgn2_3
+     000000F0  _B                                 asgn2_3
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000080 =         128. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000008  G$first$0$0                        asgn2_3
+     00000008  _first                             asgn2_3
+     0000000A  G$second$0$0                       asgn2_3
+     0000000A  _second                            asgn2_3
+     0000000C  G$third$0$0                        asgn2_3
+     0000000C  _third                             asgn2_3
+     0000000E  G$fourth$0$0                       asgn2_3
+     0000000E  _fourth                            asgn2_3
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000010    000000F0 =         240. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000010  __start__stack                     asgn2_3
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00000000    00000006 =           6. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  A$asgn2_3$477                      asgn2_3
+C:   00000003  A$asgn2_3$515                      asgn2_3
+C:   00000003  __sdcc_program_startup             asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             00000006    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000006  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             00000009    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             00000013    00000022 =          34. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000013  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             00000035    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000035  __mcs51_genRAMCLEAR                
+C:   0000003B  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              0000005F    00000018 =          24. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000005F  A$asgn2_3$493                      asgn2_3
+C:   00000062  A$asgn2_3$494                      asgn2_3
+C:   00000065  A$asgn2_3$497                      asgn2_3
+C:   00000068  A$asgn2_3$498                      asgn2_3
+C:   0000006B  A$asgn2_3$501                      asgn2_3
+C:   0000006E  A$asgn2_3$502                      asgn2_3
+C:   00000071  A$asgn2_3$505                      asgn2_3
+C:   00000071  C$asgn2_3.c$4$1$45                 asgn2_3
+C:   00000074  A$asgn2_3$506                      asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             00000077    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000077  A$asgn2_3$508                      asgn2_3
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000007A  A$asgn2_3$541                      asgn2_3
+C:   0000007A  C$asgn2_3.c$7$0$0                  asgn2_3
+C:   0000007A  C$asgn2_3.c$9$1$1                  asgn2_3
+C:   0000007A  G$t0Delay$0$0                      asgn2_3
+C:   0000007A  _t0Delay                           asgn2_3
+C:   0000007D  A$asgn2_3$544                      asgn2_3
+C:   0000007D  C$asgn2_3.c$10$1$1                 asgn2_3
+C:   00000080  A$asgn2_3$547                      asgn2_3
+C:   00000080  C$asgn2_3.c$11$1$1                 asgn2_3
+C:   00000083  A$asgn2_3$550                      asgn2_3
+C:   00000083  C$asgn2_3.c$12$1$1                 asgn2_3
+C:   00000085  A$asgn2_3$554                      asgn2_3
+C:   00000085  C$asgn2_3.c$13$1$1                 asgn2_3
+C:   00000088  A$asgn2_3$557                      asgn2_3
+C:   00000088  C$asgn2_3.c$14$1$1                 asgn2_3
+C:   0000008A  A$asgn2_3$560                      asgn2_3
+C:   0000008A  C$asgn2_3.c$15$1$1                 asgn2_3
+C:   0000008C  A$asgn2_3$563                      asgn2_3
+C:   0000008C  C$asgn2_3.c$16$1$1                 asgn2_3
+C:   0000008C  XG$t0Delay$0$0                     asgn2_3
+C:   0000008D  A$asgn2_3$576                      asgn2_3
+C:   0000008D  C$asgn2_3.c$19$1$1                 asgn2_3
+C:   0000008D  C$asgn2_3.c$21$1$3                 asgn2_3
+C:   0000008D  G$t0Delay56ms$0$0                  asgn2_3
+C:   0000008D  _t0Delay56ms                       asgn2_3
+C:   00000090  A$asgn2_3$579                      asgn2_3
+C:   00000090  C$asgn2_3.c$22$1$3                 asgn2_3
+C:   00000093  A$asgn2_3$582                      asgn2_3
+C:   00000093  C$asgn2_3.c$23$1$3                 asgn2_3
+C:   00000096  A$asgn2_3$585                      asgn2_3
+C:   00000096  C$asgn2_3.c$24$1$3                 asgn2_3
+C:   00000098  A$asgn2_3$589                      asgn2_3
+C:   00000098  C$asgn2_3.c$25$1$3                 asgn2_3
+C:   0000009B  A$asgn2_3$592                      asgn2_3
+C:   0000009B  C$asgn2_3.c$26$1$3                 asgn2_3
+C:   0000009D  A$asgn2_3$595                      asgn2_3
+C:   0000009D  C$asgn2_3.c$27$1$3                 asgn2_3
+C:   0000009F  A$asgn2_3$598                      asgn2_3
+C:   0000009F  C$asgn2_3.c$28$1$3                 asgn2_3
+C:   0000009F  XG$t0Delay56ms$0$0                 asgn2_3
+C:   000000A0  A$asgn2_3$611                      asgn2_3
+C:   000000A0  C$asgn2_3.c$32$1$3                 asgn2_3
+C:   000000A0  G$setSegment$0$0                   asgn2_3
+C:   000000A0  _setSegment                        asgn2_3
+C:   000000A2  A$asgn2_3$612                      asgn2_3
+C:   000000A4  A$asgn2_3$615                      asgn2_3
+C:   000000A4  C$asgn2_3.c$34$1$5                 asgn2_3
+C:   000000A5  A$asgn2_3$616                      asgn2_3
+C:   000000A6  A$asgn2_3$617                      asgn2_3
+C:   000000A8  A$asgn2_3$620                      asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000A8  C$asgn2_3.c$36$2$6                 asgn2_3
+C:   000000AA  A$asgn2_3$623                      asgn2_3
+C:   000000AA  C$asgn2_3.c$37$2$6                 asgn2_3
+C:   000000AC  A$asgn2_3$626                      asgn2_3
+C:   000000AC  C$asgn2_3.c$38$2$6                 asgn2_3
+C:   000000AE  A$asgn2_3$629                      asgn2_3
+C:   000000AE  C$asgn2_3.c$39$2$6                 asgn2_3
+C:   000000B0  A$asgn2_3$632                      asgn2_3
+C:   000000B0  C$asgn2_3.c$40$2$6                 asgn2_3
+C:   000000B2  A$asgn2_3$635                      asgn2_3
+C:   000000B2  C$asgn2_3.c$41$2$6                 asgn2_3
+C:   000000B4  A$asgn2_3$638                      asgn2_3
+C:   000000B4  C$asgn2_3.c$42$2$6                 asgn2_3
+C:   000000B6  A$asgn2_3$639                      asgn2_3
+C:   000000B9  A$asgn2_3$643                      asgn2_3
+C:   000000B9  C$asgn2_3.c$44$1$5                 asgn2_3
+C:   000000BC  A$asgn2_3$644                      asgn2_3
+C:   000000BF  A$asgn2_3$647                      asgn2_3
+C:   000000BF  C$asgn2_3.c$46$2$7                 asgn2_3
+C:   000000C1  A$asgn2_3$650                      asgn2_3
+C:   000000C1  C$asgn2_3.c$47$2$7                 asgn2_3
+C:   000000C3  A$asgn2_3$653                      asgn2_3
+C:   000000C3  C$asgn2_3.c$48$2$7                 asgn2_3
+C:   000000C5  A$asgn2_3$656                      asgn2_3
+C:   000000C5  C$asgn2_3.c$49$2$7                 asgn2_3
+C:   000000C7  A$asgn2_3$659                      asgn2_3
+C:   000000C7  C$asgn2_3.c$50$2$7                 asgn2_3
+C:   000000C9  A$asgn2_3$662                      asgn2_3
+C:   000000C9  C$asgn2_3.c$51$2$7                 asgn2_3
+C:   000000CB  A$asgn2_3$665                      asgn2_3
+C:   000000CB  C$asgn2_3.c$52$2$7                 asgn2_3
+C:   000000CD  A$asgn2_3$666                      asgn2_3
+C:   000000D0  A$asgn2_3$670                      asgn2_3
+C:   000000D0  C$asgn2_3.c$54$1$5                 asgn2_3
+C:   000000D3  A$asgn2_3$671                      asgn2_3
+C:   000000D6  A$asgn2_3$674                      asgn2_3
+C:   000000D6  C$asgn2_3.c$56$2$8                 asgn2_3
+C:   000000D8  A$asgn2_3$677                      asgn2_3
+C:   000000D8  C$asgn2_3.c$57$2$8                 asgn2_3
+C:   000000DA  A$asgn2_3$680                      asgn2_3
+C:   000000DA  C$asgn2_3.c$58$2$8                 asgn2_3
+C:   000000DC  A$asgn2_3$683                      asgn2_3
+C:   000000DC  C$asgn2_3.c$59$2$8                 asgn2_3
+C:   000000DE  A$asgn2_3$686                      asgn2_3
+C:   000000DE  C$asgn2_3.c$60$2$8                 asgn2_3
+C:   000000E0  A$asgn2_3$689                      asgn2_3
+C:   000000E0  C$asgn2_3.c$61$2$8                 asgn2_3
+C:   000000E2  A$asgn2_3$692                      asgn2_3
+C:   000000E2  C$asgn2_3.c$62$2$8                 asgn2_3
+C:   000000E4  A$asgn2_3$693                      asgn2_3
+C:   000000E7  A$asgn2_3$697                      asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000E7  C$asgn2_3.c$64$1$5                 asgn2_3
+C:   000000EA  A$asgn2_3$698                      asgn2_3
+C:   000000ED  A$asgn2_3$701                      asgn2_3
+C:   000000ED  C$asgn2_3.c$66$2$9                 asgn2_3
+C:   000000EF  A$asgn2_3$704                      asgn2_3
+C:   000000EF  C$asgn2_3.c$67$2$9                 asgn2_3
+C:   000000F1  A$asgn2_3$707                      asgn2_3
+C:   000000F1  C$asgn2_3.c$68$2$9                 asgn2_3
+C:   000000F3  A$asgn2_3$710                      asgn2_3
+C:   000000F3  C$asgn2_3.c$69$2$9                 asgn2_3
+C:   000000F5  A$asgn2_3$713                      asgn2_3
+C:   000000F5  C$asgn2_3.c$70$2$9                 asgn2_3
+C:   000000F7  A$asgn2_3$716                      asgn2_3
+C:   000000F7  C$asgn2_3.c$71$2$9                 asgn2_3
+C:   000000F9  A$asgn2_3$719                      asgn2_3
+C:   000000F9  C$asgn2_3.c$72$2$9                 asgn2_3
+C:   000000FB  A$asgn2_3$720                      asgn2_3
+C:   000000FE  A$asgn2_3$724                      asgn2_3
+C:   000000FE  C$asgn2_3.c$74$1$5                 asgn2_3
+C:   00000101  A$asgn2_3$725                      asgn2_3
+C:   00000104  A$asgn2_3$728                      asgn2_3
+C:   00000104  C$asgn2_3.c$76$2$10                asgn2_3
+C:   00000106  A$asgn2_3$731                      asgn2_3
+C:   00000106  C$asgn2_3.c$77$2$10                asgn2_3
+C:   00000108  A$asgn2_3$734                      asgn2_3
+C:   00000108  C$asgn2_3.c$78$2$10                asgn2_3
+C:   0000010A  A$asgn2_3$737                      asgn2_3
+C:   0000010A  C$asgn2_3.c$79$2$10                asgn2_3
+C:   0000010C  A$asgn2_3$740                      asgn2_3
+C:   0000010C  C$asgn2_3.c$80$2$10                asgn2_3
+C:   0000010E  A$asgn2_3$743                      asgn2_3
+C:   0000010E  C$asgn2_3.c$81$2$10                asgn2_3
+C:   00000110  A$asgn2_3$746                      asgn2_3
+C:   00000110  C$asgn2_3.c$82$2$10                asgn2_3
+C:   00000112  A$asgn2_3$747                      asgn2_3
+C:   00000115  A$asgn2_3$751                      asgn2_3
+C:   00000115  C$asgn2_3.c$84$1$5                 asgn2_3
+C:   00000118  A$asgn2_3$752                      asgn2_3
+C:   0000011B  A$asgn2_3$755                      asgn2_3
+C:   0000011B  C$asgn2_3.c$86$2$11                asgn2_3
+C:   0000011D  A$asgn2_3$758                      asgn2_3
+C:   0000011D  C$asgn2_3.c$87$2$11                asgn2_3
+C:   0000011F  A$asgn2_3$761                      asgn2_3
+C:   0000011F  C$asgn2_3.c$88$2$11                asgn2_3
+C:   00000121  A$asgn2_3$764                      asgn2_3
+C:   00000121  C$asgn2_3.c$89$2$11                asgn2_3
+C:   00000123  A$asgn2_3$767                      asgn2_3
+C:   00000123  C$asgn2_3.c$90$2$11                asgn2_3
+C:   00000125  A$asgn2_3$770                      asgn2_3
+C:   00000125  C$asgn2_3.c$91$2$11                asgn2_3
+C:   00000127  A$asgn2_3$773                      asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000127  C$asgn2_3.c$92$2$11                asgn2_3
+C:   00000129  A$asgn2_3$774                      asgn2_3
+C:   0000012C  A$asgn2_3$778                      asgn2_3
+C:   0000012C  C$asgn2_3.c$94$1$5                 asgn2_3
+C:   0000012F  A$asgn2_3$779                      asgn2_3
+C:   00000132  A$asgn2_3$782                      asgn2_3
+C:   00000132  C$asgn2_3.c$96$2$12                asgn2_3
+C:   00000134  A$asgn2_3$785                      asgn2_3
+C:   00000134  C$asgn2_3.c$97$2$12                asgn2_3
+C:   00000136  A$asgn2_3$788                      asgn2_3
+C:   00000136  C$asgn2_3.c$98$2$12                asgn2_3
+C:   00000138  A$asgn2_3$791                      asgn2_3
+C:   00000138  C$asgn2_3.c$99$2$12                asgn2_3
+C:   0000013A  A$asgn2_3$794                      asgn2_3
+C:   0000013A  C$asgn2_3.c$100$2$12               asgn2_3
+C:   0000013C  A$asgn2_3$797                      asgn2_3
+C:   0000013C  C$asgn2_3.c$101$2$12               asgn2_3
+C:   0000013E  A$asgn2_3$800                      asgn2_3
+C:   0000013E  C$asgn2_3.c$102$2$12               asgn2_3
+C:   00000140  A$asgn2_3$801                      asgn2_3
+C:   00000143  A$asgn2_3$805                      asgn2_3
+C:   00000143  C$asgn2_3.c$104$1$5                asgn2_3
+C:   00000146  A$asgn2_3$806                      asgn2_3
+C:   00000149  A$asgn2_3$809                      asgn2_3
+C:   00000149  C$asgn2_3.c$106$2$13               asgn2_3
+C:   0000014B  A$asgn2_3$812                      asgn2_3
+C:   0000014B  C$asgn2_3.c$107$2$13               asgn2_3
+C:   0000014D  A$asgn2_3$815                      asgn2_3
+C:   0000014D  C$asgn2_3.c$108$2$13               asgn2_3
+C:   0000014F  A$asgn2_3$818                      asgn2_3
+C:   0000014F  C$asgn2_3.c$109$2$13               asgn2_3
+C:   00000151  A$asgn2_3$821                      asgn2_3
+C:   00000151  C$asgn2_3.c$110$2$13               asgn2_3
+C:   00000153  A$asgn2_3$824                      asgn2_3
+C:   00000153  C$asgn2_3.c$111$2$13               asgn2_3
+C:   00000155  A$asgn2_3$827                      asgn2_3
+C:   00000155  C$asgn2_3.c$112$2$13               asgn2_3
+C:   00000157  A$asgn2_3$828                      asgn2_3
+C:   0000015A  A$asgn2_3$832                      asgn2_3
+C:   0000015A  C$asgn2_3.c$114$1$5                asgn2_3
+C:   0000015D  A$asgn2_3$833                      asgn2_3
+C:   00000160  A$asgn2_3$836                      asgn2_3
+C:   00000160  C$asgn2_3.c$116$2$14               asgn2_3
+C:   00000162  A$asgn2_3$839                      asgn2_3
+C:   00000162  C$asgn2_3.c$117$2$14               asgn2_3
+C:   00000164  A$asgn2_3$842                      asgn2_3
+C:   00000164  C$asgn2_3.c$118$2$14               asgn2_3
+C:   00000166  A$asgn2_3$845                      asgn2_3
+C:   00000166  C$asgn2_3.c$119$2$14               asgn2_3
+C:   00000168  A$asgn2_3$848                      asgn2_3
+C:   00000168  C$asgn2_3.c$120$2$14               asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   0000016A  A$asgn2_3$851                      asgn2_3
+C:   0000016A  C$asgn2_3.c$121$2$14               asgn2_3
+C:   0000016C  A$asgn2_3$854                      asgn2_3
+C:   0000016C  C$asgn2_3.c$122$2$14               asgn2_3
+C:   0000016E  A$asgn2_3$855                      asgn2_3
+C:   00000171  A$asgn2_3$859                      asgn2_3
+C:   00000171  C$asgn2_3.c$124$1$5                asgn2_3
+C:   00000174  A$asgn2_3$860                      asgn2_3
+C:   00000177  A$asgn2_3$863                      asgn2_3
+C:   00000177  C$asgn2_3.c$126$2$15               asgn2_3
+C:   00000179  A$asgn2_3$866                      asgn2_3
+C:   00000179  C$asgn2_3.c$127$2$15               asgn2_3
+C:   0000017B  A$asgn2_3$869                      asgn2_3
+C:   0000017B  C$asgn2_3.c$128$2$15               asgn2_3
+C:   0000017D  A$asgn2_3$872                      asgn2_3
+C:   0000017D  C$asgn2_3.c$129$2$15               asgn2_3
+C:   0000017F  A$asgn2_3$875                      asgn2_3
+C:   0000017F  C$asgn2_3.c$130$2$15               asgn2_3
+C:   00000181  A$asgn2_3$878                      asgn2_3
+C:   00000181  C$asgn2_3.c$131$2$15               asgn2_3
+C:   00000183  A$asgn2_3$881                      asgn2_3
+C:   00000183  C$asgn2_3.c$132$2$15               asgn2_3
+C:   00000185  A$asgn2_3$882                      asgn2_3
+C:   00000188  A$asgn2_3$886                      asgn2_3
+C:   00000188  C$asgn2_3.c$134$1$5                asgn2_3
+C:   0000018B  A$asgn2_3$887                      asgn2_3
+C:   0000018E  A$asgn2_3$890                      asgn2_3
+C:   0000018E  C$asgn2_3.c$136$2$16               asgn2_3
+C:   00000190  A$asgn2_3$893                      asgn2_3
+C:   00000190  C$asgn2_3.c$137$2$16               asgn2_3
+C:   00000192  A$asgn2_3$896                      asgn2_3
+C:   00000192  C$asgn2_3.c$138$2$16               asgn2_3
+C:   00000194  A$asgn2_3$899                      asgn2_3
+C:   00000194  C$asgn2_3.c$139$2$16               asgn2_3
+C:   00000196  A$asgn2_3$902                      asgn2_3
+C:   00000196  C$asgn2_3.c$140$2$16               asgn2_3
+C:   00000198  A$asgn2_3$905                      asgn2_3
+C:   00000198  C$asgn2_3.c$141$2$16               asgn2_3
+C:   0000019A  A$asgn2_3$908                      asgn2_3
+C:   0000019A  C$asgn2_3.c$142$2$16               asgn2_3
+C:   0000019C  A$asgn2_3$909                      asgn2_3
+C:   0000019F  A$asgn2_3$913                      asgn2_3
+C:   0000019F  C$asgn2_3.c$144$1$5                asgn2_3
+C:   000001A2  A$asgn2_3$914                      asgn2_3
+C:   000001A5  A$asgn2_3$917                      asgn2_3
+C:   000001A5  C$asgn2_3.c$146$2$17               asgn2_3
+C:   000001A7  A$asgn2_3$920                      asgn2_3
+C:   000001A7  C$asgn2_3.c$147$2$17               asgn2_3
+C:   000001A9  A$asgn2_3$923                      asgn2_3
+C:   000001A9  C$asgn2_3.c$148$2$17               asgn2_3
+C:   000001AB  A$asgn2_3$926                      asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000001AB  C$asgn2_3.c$149$2$17               asgn2_3
+C:   000001AD  A$asgn2_3$929                      asgn2_3
+C:   000001AD  C$asgn2_3.c$150$2$17               asgn2_3
+C:   000001AF  A$asgn2_3$932                      asgn2_3
+C:   000001AF  C$asgn2_3.c$151$2$17               asgn2_3
+C:   000001B1  A$asgn2_3$935                      asgn2_3
+C:   000001B1  C$asgn2_3.c$152$2$17               asgn2_3
+C:   000001B3  A$asgn2_3$936                      asgn2_3
+C:   000001B5  A$asgn2_3$940                      asgn2_3
+C:   000001B5  C$asgn2_3.c$154$1$5                asgn2_3
+C:   000001B8  A$asgn2_3$941                      asgn2_3
+C:   000001BB  A$asgn2_3$944                      asgn2_3
+C:   000001BB  C$asgn2_3.c$156$2$18               asgn2_3
+C:   000001BD  A$asgn2_3$947                      asgn2_3
+C:   000001BD  C$asgn2_3.c$157$2$18               asgn2_3
+C:   000001BF  A$asgn2_3$950                      asgn2_3
+C:   000001BF  C$asgn2_3.c$158$2$18               asgn2_3
+C:   000001C1  A$asgn2_3$953                      asgn2_3
+C:   000001C1  C$asgn2_3.c$159$2$18               asgn2_3
+C:   000001C3  A$asgn2_3$956                      asgn2_3
+C:   000001C3  C$asgn2_3.c$160$2$18               asgn2_3
+C:   000001C5  A$asgn2_3$959                      asgn2_3
+C:   000001C5  C$asgn2_3.c$161$2$18               asgn2_3
+C:   000001C7  A$asgn2_3$962                      asgn2_3
+C:   000001C7  C$asgn2_3.c$162$2$18               asgn2_3
+C:   000001C9  A$asgn2_3$963                      asgn2_3
+C:   000001CB  A$asgn2_3$967                      asgn2_3
+C:   000001CB  C$asgn2_3.c$164$1$5                asgn2_3
+C:   000001CE  A$asgn2_3$968                      asgn2_3
+C:   000001D1  A$asgn2_3$971                      asgn2_3
+C:   000001D1  C$asgn2_3.c$166$2$19               asgn2_3
+C:   000001D3  A$asgn2_3$974                      asgn2_3
+C:   000001D3  C$asgn2_3.c$167$2$19               asgn2_3
+C:   000001D5  A$asgn2_3$977                      asgn2_3
+C:   000001D5  C$asgn2_3.c$168$2$19               asgn2_3
+C:   000001D7  A$asgn2_3$980                      asgn2_3
+C:   000001D7  C$asgn2_3.c$169$2$19               asgn2_3
+C:   000001D9  A$asgn2_3$983                      asgn2_3
+C:   000001D9  C$asgn2_3.c$170$2$19               asgn2_3
+C:   000001DB  A$asgn2_3$986                      asgn2_3
+C:   000001DB  C$asgn2_3.c$171$2$19               asgn2_3
+C:   000001DD  A$asgn2_3$989                      asgn2_3
+C:   000001DD  C$asgn2_3.c$172$2$19               asgn2_3
+C:   000001DF  A$asgn2_3$990                      asgn2_3
+C:   000001E1  A$asgn2_3$994                      asgn2_3
+C:   000001E1  C$asgn2_3.c$174$1$5                asgn2_3
+C:   000001E4  A$asgn2_3$995                      asgn2_3
+C:   000001E7  A$asgn2_3$998                      asgn2_3
+C:   000001E7  C$asgn2_3.c$176$2$20               asgn2_3
+C:   000001E9  A$asgn2_3$1001                     asgn2_3
+C:   000001E9  C$asgn2_3.c$177$2$20               asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000001EB  A$asgn2_3$1004                     asgn2_3
+C:   000001EB  C$asgn2_3.c$178$2$20               asgn2_3
+C:   000001ED  A$asgn2_3$1007                     asgn2_3
+C:   000001ED  C$asgn2_3.c$179$2$20               asgn2_3
+C:   000001EF  A$asgn2_3$1010                     asgn2_3
+C:   000001EF  C$asgn2_3.c$180$2$20               asgn2_3
+C:   000001F1  A$asgn2_3$1013                     asgn2_3
+C:   000001F1  C$asgn2_3.c$181$2$20               asgn2_3
+C:   000001F3  A$asgn2_3$1016                     asgn2_3
+C:   000001F3  C$asgn2_3.c$182$2$20               asgn2_3
+C:   000001F5  A$asgn2_3$1017                     asgn2_3
+C:   000001F7  A$asgn2_3$1021                     asgn2_3
+C:   000001F7  C$asgn2_3.c$184$1$5                asgn2_3
+C:   000001FA  A$asgn2_3$1022                     asgn2_3
+C:   000001FD  A$asgn2_3$1025                     asgn2_3
+C:   000001FD  C$asgn2_3.c$186$2$21               asgn2_3
+C:   000001FF  A$asgn2_3$1028                     asgn2_3
+C:   000001FF  C$asgn2_3.c$187$2$21               asgn2_3
+C:   00000201  A$asgn2_3$1031                     asgn2_3
+C:   00000201  C$asgn2_3.c$188$2$21               asgn2_3
+C:   00000203  A$asgn2_3$1034                     asgn2_3
+C:   00000203  C$asgn2_3.c$189$2$21               asgn2_3
+C:   00000205  A$asgn2_3$1037                     asgn2_3
+C:   00000205  C$asgn2_3.c$190$2$21               asgn2_3
+C:   00000207  A$asgn2_3$1040                     asgn2_3
+C:   00000207  C$asgn2_3.c$191$2$21               asgn2_3
+C:   00000209  A$asgn2_3$1043                     asgn2_3
+C:   00000209  C$asgn2_3.c$192$2$21               asgn2_3
+C:   0000020B  A$asgn2_3$1047                     asgn2_3
+C:   0000020B  C$asgn2_3.c$194$1$5                asgn2_3
+C:   0000020B  XG$setSegment$0$0                  asgn2_3
+C:   0000020C  A$asgn2_3$1060                     asgn2_3
+C:   0000020C  C$asgn2_3.c$197$1$5                asgn2_3
+C:   0000020C  C$asgn2_3.c$199$1$23               asgn2_3
+C:   0000020C  G$display$0$0                      asgn2_3
+C:   0000020C  _display                           asgn2_3
+C:   0000020E  A$asgn2_3$1063                     asgn2_3
+C:   0000020E  C$asgn2_3.c$200$1$23               asgn2_3
+C:   00000210  A$asgn2_3$1066                     asgn2_3
+C:   00000210  C$asgn2_3.c$201$1$23               asgn2_3
+C:   00000212  A$asgn2_3$1069                     asgn2_3
+C:   00000212  C$asgn2_3.c$202$1$23               asgn2_3
+C:   00000214  A$asgn2_3$1072                     asgn2_3
+C:   00000214  C$asgn2_3.c$203$1$23               asgn2_3
+C:   00000217  A$asgn2_3$1073                     asgn2_3
+C:   0000021A  A$asgn2_3$1074                     asgn2_3
+C:   0000021D  A$asgn2_3$1077                     asgn2_3
+C:   0000021D  C$asgn2_3.c$204$1$23               asgn2_3
+C:   00000220  A$asgn2_3$1080                     asgn2_3
+C:   00000220  C$asgn2_3.c$205$1$23               asgn2_3
+C:   00000222  A$asgn2_3$1083                     asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000222  C$asgn2_3.c$206$1$23               asgn2_3
+C:   00000224  A$asgn2_3$1086                     asgn2_3
+C:   00000224  C$asgn2_3.c$207$1$23               asgn2_3
+C:   00000226  A$asgn2_3$1089                     asgn2_3
+C:   00000226  C$asgn2_3.c$208$1$23               asgn2_3
+C:   00000228  A$asgn2_3$1092                     asgn2_3
+C:   00000228  C$asgn2_3.c$209$1$23               asgn2_3
+C:   0000022B  A$asgn2_3$1093                     asgn2_3
+C:   0000022E  A$asgn2_3$1094                     asgn2_3
+C:   00000231  A$asgn2_3$1097                     asgn2_3
+C:   00000231  C$asgn2_3.c$210$1$23               asgn2_3
+C:   00000234  A$asgn2_3$1100                     asgn2_3
+C:   00000234  C$asgn2_3.c$211$1$23               asgn2_3
+C:   00000236  A$asgn2_3$1103                     asgn2_3
+C:   00000236  C$asgn2_3.c$212$1$23               asgn2_3
+C:   00000238  A$asgn2_3$1106                     asgn2_3
+C:   00000238  C$asgn2_3.c$213$1$23               asgn2_3
+C:   0000023A  A$asgn2_3$1109                     asgn2_3
+C:   0000023A  C$asgn2_3.c$214$1$23               asgn2_3
+C:   0000023C  A$asgn2_3$1112                     asgn2_3
+C:   0000023C  C$asgn2_3.c$215$1$23               asgn2_3
+C:   0000023F  A$asgn2_3$1113                     asgn2_3
+C:   00000242  A$asgn2_3$1114                     asgn2_3
+C:   00000245  A$asgn2_3$1117                     asgn2_3
+C:   00000245  C$asgn2_3.c$216$1$23               asgn2_3
+C:   00000248  A$asgn2_3$1120                     asgn2_3
+C:   00000248  C$asgn2_3.c$217$1$23               asgn2_3
+C:   0000024A  A$asgn2_3$1123                     asgn2_3
+C:   0000024A  C$asgn2_3.c$218$1$23               asgn2_3
+C:   0000024C  A$asgn2_3$1126                     asgn2_3
+C:   0000024C  C$asgn2_3.c$219$1$23               asgn2_3
+C:   0000024E  A$asgn2_3$1129                     asgn2_3
+C:   0000024E  C$asgn2_3.c$220$1$23               asgn2_3
+C:   00000250  A$asgn2_3$1132                     asgn2_3
+C:   00000250  C$asgn2_3.c$221$1$23               asgn2_3
+C:   00000253  A$asgn2_3$1133                     asgn2_3
+C:   00000256  A$asgn2_3$1134                     asgn2_3
+C:   00000259  A$asgn2_3$1137                     asgn2_3
+C:   00000259  C$asgn2_3.c$222$1$23               asgn2_3
+C:   0000025C  A$asgn2_3$1140                     asgn2_3
+C:   0000025C  C$asgn2_3.c$223$1$23               asgn2_3
+C:   0000025C  XG$display$0$0                     asgn2_3
+C:   0000025D  A$asgn2_3$1153                     asgn2_3
+C:   0000025D  C$asgn2_3.c$239$1$23               asgn2_3
+C:   0000025D  G$updateDisplay$0$0                asgn2_3
+C:   0000025D  _updateDisplay                     asgn2_3
+C:   0000025F  A$asgn2_3$1154                     asgn2_3
+C:   00000261  A$asgn2_3$1157                     asgn2_3
+C:   00000261  C$asgn2_3.c$241$1$25               asgn2_3
+C:   00000264  A$asgn2_3$1158                     asgn2_3
+C:   00000267  A$asgn2_3$1161                     asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000267  C$asgn2_3.c$242$1$25               asgn2_3
+C:   0000026A  A$asgn2_3$1162                     asgn2_3
+C:   0000026D  A$asgn2_3$1165                     asgn2_3
+C:   0000026D  C$asgn2_3.c$243$1$25               asgn2_3
+C:   00000270  A$asgn2_3$1166                     asgn2_3
+C:   00000273  A$asgn2_3$1169                     asgn2_3
+C:   00000273  C$asgn2_3.c$244$1$25               asgn2_3
+C:   00000275  A$asgn2_3$1170                     asgn2_3
+C:   00000277  A$asgn2_3$1173                     asgn2_3
+C:   00000277  C$asgn2_3.c$245$1$25               asgn2_3
+C:   00000277  XG$updateDisplay$0$0               asgn2_3
+C:   00000278  A$asgn2_3$1186                     asgn2_3
+C:   00000278  C$asgn2_3.c$247$1$25               asgn2_3
+C:   00000278  C$asgn2_3.c$250$1$27               asgn2_3
+C:   00000278  G$findButtonPress$0$0              asgn2_3
+C:   00000278  _findButtonPress                   asgn2_3
+C:   0000027A  A$asgn2_3$1189                     asgn2_3
+C:   0000027A  C$asgn2_3.c$251$1$27               asgn2_3
+C:   0000027D  A$asgn2_3$1192                     asgn2_3
+C:   0000027D  C$asgn2_3.c$253$2$28               asgn2_3
+C:   00000280  A$asgn2_3$1193                     asgn2_3
+C:   00000283  A$asgn2_3$1196                     asgn2_3
+C:   00000283  C$asgn2_3.c$254$2$28               asgn2_3
+C:   00000286  A$asgn2_3$1200                     asgn2_3
+C:   00000286  C$asgn2_3.c$255$2$28               asgn2_3
+C:   00000289  A$asgn2_3$1204                     asgn2_3
+C:   00000289  C$asgn2_3.c$257$1$27               asgn2_3
+C:   0000028C  A$asgn2_3$1207                     asgn2_3
+C:   0000028C  C$asgn2_3.c$259$2$29               asgn2_3
+C:   0000028F  A$asgn2_3$1208                     asgn2_3
+C:   00000292  A$asgn2_3$1211                     asgn2_3
+C:   00000292  C$asgn2_3.c$260$2$29               asgn2_3
+C:   00000295  A$asgn2_3$1215                     asgn2_3
+C:   00000295  C$asgn2_3.c$261$2$29               asgn2_3
+C:   00000298  A$asgn2_3$1219                     asgn2_3
+C:   00000298  C$asgn2_3.c$263$1$27               asgn2_3
+C:   0000029B  A$asgn2_3$1222                     asgn2_3
+C:   0000029B  C$asgn2_3.c$265$2$30               asgn2_3
+C:   0000029E  A$asgn2_3$1223                     asgn2_3
+C:   000002A1  A$asgn2_3$1226                     asgn2_3
+C:   000002A1  C$asgn2_3.c$266$2$30               asgn2_3
+C:   000002A4  A$asgn2_3$1230                     asgn2_3
+C:   000002A4  C$asgn2_3.c$267$2$30               asgn2_3
+C:   000002A7  A$asgn2_3$1234                     asgn2_3
+C:   000002A7  C$asgn2_3.c$269$1$27               asgn2_3
+C:   000002AA  A$asgn2_3$1237                     asgn2_3
+C:   000002AA  C$asgn2_3.c$271$2$31               asgn2_3
+C:   000002AD  A$asgn2_3$1238                     asgn2_3
+C:   000002B0  A$asgn2_3$1241                     asgn2_3
+C:   000002B0  C$asgn2_3.c$272$2$31               asgn2_3
+C:   000002B3  A$asgn2_3$1245                     asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000002B3  C$asgn2_3.c$273$2$31               asgn2_3
+C:   000002B6  A$asgn2_3$1249                     asgn2_3
+C:   000002B6  C$asgn2_3.c$276$1$27               asgn2_3
+C:   000002B8  A$asgn2_3$1252                     asgn2_3
+C:   000002B8  C$asgn2_3.c$277$1$27               asgn2_3
+C:   000002BA  A$asgn2_3$1255                     asgn2_3
+C:   000002BA  C$asgn2_3.c$279$1$27               asgn2_3
+C:   000002BD  A$asgn2_3$1258                     asgn2_3
+C:   000002BD  C$asgn2_3.c$281$2$32               asgn2_3
+C:   000002C0  A$asgn2_3$1259                     asgn2_3
+C:   000002C3  A$asgn2_3$1262                     asgn2_3
+C:   000002C3  C$asgn2_3.c$282$2$32               asgn2_3
+C:   000002C6  A$asgn2_3$1266                     asgn2_3
+C:   000002C6  C$asgn2_3.c$283$2$32               asgn2_3
+C:   000002C9  A$asgn2_3$1270                     asgn2_3
+C:   000002C9  C$asgn2_3.c$285$1$27               asgn2_3
+C:   000002CC  A$asgn2_3$1273                     asgn2_3
+C:   000002CC  C$asgn2_3.c$287$2$33               asgn2_3
+C:   000002CF  A$asgn2_3$1274                     asgn2_3
+C:   000002D2  A$asgn2_3$1277                     asgn2_3
+C:   000002D2  C$asgn2_3.c$288$2$33               asgn2_3
+C:   000002D5  A$asgn2_3$1281                     asgn2_3
+C:   000002D5  C$asgn2_3.c$289$2$33               asgn2_3
+C:   000002D8  A$asgn2_3$1285                     asgn2_3
+C:   000002D8  C$asgn2_3.c$291$1$27               asgn2_3
+C:   000002DB  A$asgn2_3$1288                     asgn2_3
+C:   000002DB  C$asgn2_3.c$293$2$34               asgn2_3
+C:   000002DE  A$asgn2_3$1289                     asgn2_3
+C:   000002E1  A$asgn2_3$1292                     asgn2_3
+C:   000002E1  C$asgn2_3.c$294$2$34               asgn2_3
+C:   000002E4  A$asgn2_3$1296                     asgn2_3
+C:   000002E4  C$asgn2_3.c$295$2$34               asgn2_3
+C:   000002E7  A$asgn2_3$1300                     asgn2_3
+C:   000002E7  C$asgn2_3.c$297$1$27               asgn2_3
+C:   000002EA  A$asgn2_3$1303                     asgn2_3
+C:   000002EA  C$asgn2_3.c$299$2$35               asgn2_3
+C:   000002ED  A$asgn2_3$1304                     asgn2_3
+C:   000002F0  A$asgn2_3$1307                     asgn2_3
+C:   000002F0  C$asgn2_3.c$300$2$35               asgn2_3
+C:   000002F3  A$asgn2_3$1311                     asgn2_3
+C:   000002F3  C$asgn2_3.c$301$2$35               asgn2_3
+C:   000002F6  A$asgn2_3$1315                     asgn2_3
+C:   000002F6  C$asgn2_3.c$304$1$27               asgn2_3
+C:   000002F8  A$asgn2_3$1318                     asgn2_3
+C:   000002F8  C$asgn2_3.c$305$1$27               asgn2_3
+C:   000002FA  A$asgn2_3$1321                     asgn2_3
+C:   000002FA  C$asgn2_3.c$307$1$27               asgn2_3
+C:   000002FD  A$asgn2_3$1324                     asgn2_3
+C:   000002FD  C$asgn2_3.c$309$2$36               asgn2_3
+C:   00000300  A$asgn2_3$1325                     asgn2_3
+C:   00000303  A$asgn2_3$1328                     asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000303  C$asgn2_3.c$310$2$36               asgn2_3
+C:   00000306  A$asgn2_3$1332                     asgn2_3
+C:   00000306  C$asgn2_3.c$311$2$36               asgn2_3
+C:   00000309  A$asgn2_3$1336                     asgn2_3
+C:   00000309  C$asgn2_3.c$313$1$27               asgn2_3
+C:   0000030C  A$asgn2_3$1339                     asgn2_3
+C:   0000030C  C$asgn2_3.c$315$2$37               asgn2_3
+C:   0000030F  A$asgn2_3$1340                     asgn2_3
+C:   00000312  A$asgn2_3$1343                     asgn2_3
+C:   00000312  C$asgn2_3.c$316$2$37               asgn2_3
+C:   00000315  A$asgn2_3$1347                     asgn2_3
+C:   00000315  C$asgn2_3.c$317$2$37               asgn2_3
+C:   00000318  A$asgn2_3$1351                     asgn2_3
+C:   00000318  C$asgn2_3.c$319$1$27               asgn2_3
+C:   0000031B  A$asgn2_3$1354                     asgn2_3
+C:   0000031B  C$asgn2_3.c$321$2$38               asgn2_3
+C:   0000031E  A$asgn2_3$1355                     asgn2_3
+C:   00000321  A$asgn2_3$1358                     asgn2_3
+C:   00000321  C$asgn2_3.c$322$2$38               asgn2_3
+C:   00000324  A$asgn2_3$1362                     asgn2_3
+C:   00000324  C$asgn2_3.c$323$2$38               asgn2_3
+C:   00000327  A$asgn2_3$1366                     asgn2_3
+C:   00000327  C$asgn2_3.c$325$1$27               asgn2_3
+C:   0000032A  A$asgn2_3$1369                     asgn2_3
+C:   0000032A  C$asgn2_3.c$327$2$39               asgn2_3
+C:   0000032D  A$asgn2_3$1370                     asgn2_3
+C:   00000330  A$asgn2_3$1373                     asgn2_3
+C:   00000330  C$asgn2_3.c$328$2$39               asgn2_3
+C:   00000333  A$asgn2_3$1377                     asgn2_3
+C:   00000333  C$asgn2_3.c$329$2$39               asgn2_3
+C:   00000336  A$asgn2_3$1381                     asgn2_3
+C:   00000336  C$asgn2_3.c$332$1$27               asgn2_3
+C:   00000338  A$asgn2_3$1384                     asgn2_3
+C:   00000338  C$asgn2_3.c$333$1$27               asgn2_3
+C:   0000033A  A$asgn2_3$1387                     asgn2_3
+C:   0000033A  C$asgn2_3.c$335$1$27               asgn2_3
+C:   0000033D  A$asgn2_3$1390                     asgn2_3
+C:   0000033D  C$asgn2_3.c$337$2$40               asgn2_3
+C:   00000340  A$asgn2_3$1391                     asgn2_3
+C:   00000343  A$asgn2_3$1394                     asgn2_3
+C:   00000343  C$asgn2_3.c$338$2$40               asgn2_3
+C:   00000346  A$asgn2_3$1398                     asgn2_3
+C:   00000346  C$asgn2_3.c$339$2$40               asgn2_3
+C:   00000349  A$asgn2_3$1402                     asgn2_3
+C:   00000349  C$asgn2_3.c$341$1$27               asgn2_3
+C:   0000034C  A$asgn2_3$1405                     asgn2_3
+C:   0000034C  C$asgn2_3.c$343$2$41               asgn2_3
+C:   0000034F  A$asgn2_3$1406                     asgn2_3
+C:   00000352  A$asgn2_3$1409                     asgn2_3
+C:   00000352  C$asgn2_3.c$344$2$41               asgn2_3
+C:   00000355  A$asgn2_3$1413                     asgn2_3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                0000007A    00000324 =         804. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000355  C$asgn2_3.c$345$2$41               asgn2_3
+C:   00000358  A$asgn2_3$1417                     asgn2_3
+C:   00000358  C$asgn2_3.c$347$1$27               asgn2_3
+C:   0000035B  A$asgn2_3$1420                     asgn2_3
+C:   0000035B  C$asgn2_3.c$349$2$42               asgn2_3
+C:   0000035E  A$asgn2_3$1421                     asgn2_3
+C:   00000361  A$asgn2_3$1424                     asgn2_3
+C:   00000361  C$asgn2_3.c$350$2$42               asgn2_3
+C:   00000364  A$asgn2_3$1428                     asgn2_3
+C:   00000364  C$asgn2_3.c$351$2$42               asgn2_3
+C:   00000367  A$asgn2_3$1432                     asgn2_3
+C:   00000367  C$asgn2_3.c$353$1$27               asgn2_3
+C:   0000036A  A$asgn2_3$1435                     asgn2_3
+C:   0000036A  C$asgn2_3.c$355$2$43               asgn2_3
+C:   0000036D  A$asgn2_3$1436                     asgn2_3
+C:   00000370  A$asgn2_3$1439                     asgn2_3
+C:   00000370  C$asgn2_3.c$356$2$43               asgn2_3
+C:   00000373  A$asgn2_3$1443                     asgn2_3
+C:   00000373  C$asgn2_3.c$357$2$43               asgn2_3
+C:   00000376  A$asgn2_3$1447                     asgn2_3
+C:   00000376  C$asgn2_3.c$360$1$27               asgn2_3
+C:   00000378  A$asgn2_3$1450                     asgn2_3
+C:   00000378  C$asgn2_3.c$361$1$27               asgn2_3
+C:   00000378  XG$findButtonPress$0$0             asgn2_3
+C:   00000379  A$asgn2_3$1463                     asgn2_3
+C:   00000379  C$asgn2_3.c$363$1$27               asgn2_3
+C:   00000379  C$asgn2_3.c$365$1$45               asgn2_3
+C:   00000379  G$main$0$0                         asgn2_3
+C:   00000379  _main                              asgn2_3
+C:   0000037C  A$asgn2_3$1464                     asgn2_3
+C:   0000037F  A$asgn2_3$1467                     asgn2_3
+C:   0000037F  C$asgn2_3.c$366$1$45               asgn2_3
+C:   00000382  A$asgn2_3$1468                     asgn2_3
+C:   00000385  A$asgn2_3$1471                     asgn2_3
+C:   00000385  C$asgn2_3.c$367$1$45               asgn2_3
+C:   00000388  A$asgn2_3$1472                     asgn2_3
+C:   0000038B  A$asgn2_3$1475                     asgn2_3
+C:   0000038B  C$asgn2_3.c$368$1$45               asgn2_3
+C:   0000038E  A$asgn2_3$1476                     asgn2_3
+C:   00000391  A$asgn2_3$1482                     asgn2_3
+C:   00000391  C$asgn2_3.c$370$1$45               asgn2_3
+C:   00000391  C$asgn2_3.c$372$2$46               asgn2_3
+C:   00000394  A$asgn2_3$1485                     asgn2_3
+C:   00000394  C$asgn2_3.c$373$2$46               asgn2_3
+C:   00000397  A$asgn2_3$1486                     asgn2_3
+C:   00000399  A$asgn2_3$1489                     asgn2_3
+C:   00000399  C$asgn2_3.c$375$1$45               asgn2_3
+C:   00000399  XG$main$0$0                        asgn2_3
+C:   0000039A  __sdcc_external_startup            _startup
+ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
+
+Files Linked                              [ module(s) ]
+
+asgn2_3.rel                               [  ]
+
+
+Libraries Linked                          [ object file ]
+
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtclear.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtxinit.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtxclear.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtpagesfr.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/mcs51.lib
+                                          [ crtstart.rel ]
+C:\Program Files\SDCC\bin\..\lib\small/libsdcc.lib
+                                          [ _startup.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
+
+User Base Address Definitions
+
+HOME = 0x0000
+XSEG = 0x0001
+PSEG = 0x0001
+ISEG = 0x0000
+BSEG = 0x0000
+
+

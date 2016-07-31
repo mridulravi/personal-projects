@@ -1,0 +1,96 @@
+		Name: Mridul Ravi Jain			CS308 (Embedded Systems Lab) 
+		Roll No.: 110040083				Class Assignment-1
+		
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Q1: You have to name at least 5 Smart Devices with their components (and the components’ job in the device)*.
+
+###############################################################################################################
+1. HVAC : Heating, ventilation and air conditioning (HVAC) systems can include temperature and humidity control, including fresh air heating and natural cooling. An Internet-controlled thermostat allows the homeowner to control the building's heating and air conditioning systems remotely. The system may automatically open and close windows to cool the house. Its Components:
+
+	-Coil: Equipment that performs heat transfer to air when mounted inside an air handling unit or ductwork. It is heated or cooled by electrical means or by circulating liquid or steam within it.
+
+	-Condenser: A component in the basic refrigeration cycle that ejects or removes heat from the system. The condenser is the hot side of an air conditioner or heat pump. Condensers are heat exchangers, and can transfer heat to air or to an intermediate fluid (such as water or an aqueous solution of ethylene glycol) to carry heat to a distant sink, such as ground (earth sink), a body of water, or air (as with cooling towers).
+
+	-Evaporator: A component in the basic refrigeration cycle that absorbs or adds heat to the system. Evaporators can be used to absorb heat from air or from a liquid. The evaporator is the cold side of an air conditioner or heat pump.
+
+	-Economizer: An HVAC component that uses outside air, under suitable climate conditions, to reduce required mechanical cooling. When the outside air’s enthalpy is less than the required supply air during a call for cooling, an economizer allows a building’s mechanical ventilation system to use up to the maximum amount of outside air
+
+	-Furnace: A component of an HVAC system that adds heat to air or an intermediate fluid by burning fuel (natural gas, oil, propane, butane, or other flammable substances) in a heat exchanger.
+
+
+###############################################################################################################
+2. Lighting control system: A Lighting control system can be used to switch lights based on a time cycle, or arranged to automatically go out when a room is unoccupied. Some electronically controlled lamps can be controlled for brightness or color to provide different light levels for different tasks. Lighting can be controlled remotely by a wireless control or over the Internet. Natural lighting (daylighting) can be used to automatically control window shades and draperies to make best use of natural light.
+
+	- Occupancy sensor: Detects occupancy of a space by people and turns the lights on or off automatically, using infrared, ultrasonic or Microwave technology
+
+	- Photoresisto: is a light-controlled variable resistor. The resistance of a photoresistor decreases with increasing incident light intensity; in other words, it exhibits photoconductivity. A photoresistor can be applied in light-sensitive detector circuits, and light- and dark-activated switching circuits.
+
+	- Timeclocks: to change the Lighting system according to time
+
+
+###############################################################################################################
+3. Household security systems: A household security systems integrated with a home automation system can provide additional services such as remote surveillance of security cameras over the Internet, or central locking of all perimeter doors and windows.With home automation, the user can select and watch cameras live from an Internet source to their home or business. Security systems can include motion sensors that will detect any kind of unauthorized movement and notify the user through the security system or via cell phone. The automation system can simulate the appearance of an occupied home by automatically adjusting lighting or window coverings. Detection systems such as fire alarm, gas leak, carbon monoxide, or water leaks can be integrated. Personal medical alarm systems allow an injured home occupant to summon help.
+
+	- Closed Circuit Camera
+	- Motion Detectors: presence of a person 
+	- A glass break detector : detects if a pane of glass is shattered or broken
+	- Biometric Systems: authentication 
+	- Security Alarm: detection of anamoly
+
+
+###############################################################################################################
+4. Smart Watch/Wearables: may include features such as a camera, accelerometer, thermometer, altimeter, barometer, compass, chronograph, calculator, cell phone, touch screen, GPS navigation, Map display, graphical display, speaker, scheduler, watch, SDcards that are recognized as a mass storage device by a computer, and rechargeable battery. It may communicate with a wireless headset, heads-up display, insulin pump, microphone, modem, or other devices.
+
+
+###############################################################################################################
+5. Driverless car: an automated or autonomous vehicle capable of fulfilling the transportation capabilities of a traditional car. As an autonomous vehicle, it is capable of sensing its environment and navigating without human input. It contains cameras, proximity sensors, speed detectors, GPS, accelerometer and many other components.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Q2. Suppose, you are going to airport to catch your flight. Think and write all the tasks which you shall perform while going to airport. Also, identify the type of deadline each task is associated with.
+
+
+Tasks to be performed(in order):
+
+1. Pack my belonings.
+2. Print-out my ticket.
+3. Make an entry in hostel register.
+4. Get a cab.
+5. Pickup my friend.
+6. Check-in at airport.
+7. Aboard the flight.
+
+
+
+Lets say my flight is at 7:00 PM then in order to prepare a schedule I need to take go backwards in terms of my activites. Since my flight is at 7:00, I need to check in by 6:00 at the latest. Also, might take some time for my friend to get ready and thus I need a 15 minute extra backup time for that. It takes 1 hour from my hostel to Airport. So I must leave my hostel by 4:45. So, I must start making an entry in the hostel register (which takes 5 min) by 4:40. Let's say I need to get a print out (which takes 10 min) from the hostel shop so that must be started by 4:30. That means I must be done packing by 4:30 and since packing itself takes 1:00 hour so I must start packing by 3:30.
+ 
+							 	  Deadline
+1. Pack my belonings - 				4:30	(Critical)
+2. Print-out my ticket - 			4:40	(Not critical)
+3. Enter in hostel register - 		4:45	(Not critical)
+4. Get a cab -						4:45	(Critical)
+5. Pickup my friend - 				5:00	(Critical)
+6. Check-in at airport - 			6:00	(Critical)
+7. Aboard the flight - 				7:00	(Critical)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
